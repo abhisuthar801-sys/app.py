@@ -3,395 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math Master PRO - Abhishek Suthar Edition</title>
+    <title>Sarkari Result PRO - Abhishek Suthar Edition</title>
     
+    <!-- Real Mobile App Fullscreen Configuration -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#0f172a">
+    <meta name="theme-color" content="#1e3a8a">
     
     <style>
         :root {
             --primary-dark: #0f172a;
-            --premium-blue: #1e3a8a;
+            --sarkari-red: #ef4444;
+            --sarkari-blue: #1e3a8a;
             --premium-gold: #eab308;
             --success: #10b981;
-            --text-main: #334155;
-            --card-bg: #ffffff;
             --bg-light: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
-            background-color: var(--bg-light); color: var(--text-main); margin: 0; padding: 0;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
             -webkit-tap-highlight-color: transparent;
         }
 
-        .ticker-wrap {
-            background-color: #d97706; color: white; padding: 6px 10px;
-            font-weight: 700; font-size: 0.9rem; overflow: hidden; white-space: nowrap;
+        /* Top Live Flash Ticker */
+        .ticker-bar {
+            background: linear-gradient(90deg, #b91c1c, var(--sarkari-red));
+            color: white; padding: 8px 12px; font-weight: bold; font-size: 0.95rem;
+            overflow: hidden; white-space: nowrap; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .ticker-content { display: inline-block; padding-left: 100%; animation: ticker 25s linear infinite; }
-        @keyframes ticker { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+        .ticker-text { display: inline-block; padding-left: 100%; animation: textScroll 22s linear infinite; }
+        @keyframes textScroll { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
 
-        .navbar {
-            background: linear-gradient(135deg, var(--primary-dark), #1e293b);
-            color: white; padding: 18px 25px; display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 4px solid var(--premium-gold); position: sticky; top: 0; z-index: 100;
+        /* Luxury Real Header */
+        .header {
+            background: linear-gradient(135deg, var(--sarkari-blue), #1d4ed8);
+            color: white; padding: 22px; text-align: center;
+            border-bottom: 5px solid var(--premium-gold); box-shadow: 0 4px 15px rgba(0,0,0,0.15);
         }
+        .header h1 { margin: 0; font-size: 1.8rem; font-weight: 900; letter-spacing: 1px; }
+        .header h1 span { color: var(--premium-gold); }
+        .header p { margin: 5px 0 0 0; font-size: 0.95rem; opacity: 0.9; font-weight: 600; }
 
-        .brand { font-size: 1.4rem; font-weight: 900; display: flex; align-items: center; gap: 10px; }
-        .brand span { color: var(--premium-gold); }
-        .ai-badge { background: linear-gradient(45deg, #f59e0b, var(--premium-gold)); color: #000; font-size: 0.75rem; padding: 3px 8px; border-radius: 6px; font-weight: 800; }
-        .lang-btn { background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid var(--premium-gold); padding: 8px 20px; border-radius: 30px; cursor: pointer; font-weight: 700; }
+        .container { max-width: 1050px; margin: 0 auto; padding: 20px; }
 
-        .container { padding: 25px 20px; max-width: 700px; margin: 0 auto; }
-
-        .card {
-            background: var(--card-bg); padding: 26px; border-radius: 20px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); margin-bottom: 25px; border: 1px solid #e2e8f0; position: relative;
+        /* Dynamic Category Quick Filters */
+        .filter-section {
+            background: var(--card-bg); padding: 15px; border-radius: 14px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-bottom: 25px;
+            display: flex; gap: 10px; overflow-x: auto; white-space: nowrap;
         }
-        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background-color: var(--premium-blue); }
+        .filter-btn {
+            background: #f1f5f9; color: var(--text-dark); border: 1px solid #cbd5e1;
+            padding: 10px 18px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.2s;
+        }
+        .filter-btn.active, .filter-btn:hover { background: var(--sarkari-blue); color: white; border-color: var(--sarkari-blue); }
 
-        .formula-card::before { background-color: var(--success); }
-        .formula-card { background-color: #f0fdf4; }
+        /* Asli Sarkari Result 3-Column Dashboard Matrix */
+        .portal-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 30px;
+        }
+        .portal-column {
+            background: var(--card-bg); border-radius: 16px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; overflow: hidden;
+        }
+        .column-header { color: white; padding: 14px; font-size: 1.2rem; font-weight: 800; text-align: center; }
+        .col-jobs { background: linear-gradient(135deg, #059669, #10b981); }
+        .col-admit { background: linear-gradient(135deg, #d97706, #f59e0b); }
+        .col-result { background: linear-gradient(135deg, #dc2626, #ef4444); }
+
+        .link-list { padding: 10px; list-style: none; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+        .link-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; transition: all 0.2s ease; }
+        .link-item a { display: flex; justify-content: space-between; align-items: center; padding: 14px 15px; text-decoration: none; color: #1e293b; font-weight: 600; }
+        .link-item:hover { background: #f0fdf4; border-color: #34d399; transform: translateX(3px); }
+        .job-tag { font-size: 0.7rem; padding: 3px 6px; border-radius: 4px; color: white; font-weight: bold; text-transform: uppercase; }
+        .tag-new { background-color: #ef4444; }
+        .tag-update { background-color: #3b82f6; }
+        .tag-last { background-color: #64748b; }
+
+        /* DAILY GK & CURRENT AFFAIRS NEW LUXURY CARD */
+        .gk-master-card {
+            background: var(--card-bg); border-radius: 20px; padding: 26px;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08); border-left: 6px solid #a855f7;
+        }
+        .gk-title { color: #6b21a8; font-size: 1.4rem; font-weight: 900; margin-top: 0; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
         
-        .sarkari-card::before { background-color: #ef4444; }
-        .sarkari-card { border-top: 4px solid #ef4444; }
-        .sarkari-header { background-color: #ef4444; color: white; padding: 10px 15px; margin: -26px -26px 20px -26px; font-weight: 800; text-align: center; }
-
-        h3 { margin-top: 0; font-size: 1.25rem; font-weight: 800; color: var(--primary-dark); display: flex; align-items: center; gap: 8px; }
-
-        .control-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 10px; }
-        .dropdown-label { font-size: 0.9rem; font-weight: 700; color: var(--premium-blue); margin-bottom: 5px; display: block; }
-
-        .topic-dropdown {
-            width: 100%; padding: 12px; font-size: 1rem; font-weight: 700; border: 2px solid #cbd5e1; border-radius: 12px; color: var(--primary-dark); background-color: white; outline: none; cursor: pointer;
+        .gk-list { display: flex; flex-direction: column; gap: 15px; }
+        .gk-item { background: #faf5ff; border: 1px solid #f3e8ff; padding: 16px; border-radius: 12px; }
+        .gk-question { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 10px; }
+        
+        .answer-btn {
+            background-color: #a855f7; color: white; border: none; padding: 6px 12px;
+            border-radius: 6px; font-weight: 700; font-size: 0.85rem; cursor: pointer;
+        }
+        .answer-btn:hover { background-color: #9333ea; }
+        
+        .gk-answer {
+            margin-top: 10px; padding: 10px 14px; background-color: #f0fdf4;
+            border-left: 4px solid var(--success); border-radius: 6px; color: #166534;
+            font-weight: 600; display: none; line-height: 1.5;
         }
 
-        /* Q&A List Styling */
-        .qa-list { display: flex; flex-direction: column; gap: 20px; margin-top: 15px; }
-        .qa-block { background: #f8fafc; padding: 20px; border-radius: 14px; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
-        .qa-question { font-size: 1.15rem; font-weight: 700; color: #0f172a; margin-bottom: 12px; line-height: 1.5; }
-        .qa-meta-tag { display: inline-block; background-color: #1e3a8a; color: white; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
-        .qa-type-tag { display: inline-block; background-color: #eab308; color: #000; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; font-weight: 700; margin-bottom: 8px; margin-left: 5px; }
-        .qa-answer-box { background: #faf5ff; border-left: 4px solid #a855f7; padding: 12px 15px; border-radius: 8px; font-size: 1rem; line-height: 1.6; }
-        
-        .formula-display { font-size: 1.1rem; line-height: 1.7; color: #166534; }
-        
-        .action-btn { background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: white; border: none; padding: 15px 22px; border-radius: 12px; cursor: pointer; font-weight: 700; width: 100%; font-size: 1rem; margin-top: 10px; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3); }
-        .action-btn:hover { opacity: 0.9; }
-
-        .sarkari-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
-        .sarkari-link { background: #fff5f5; border: 1px solid #feb2b2; padding: 12px 15px; border-radius: 10px; text-decoration: none; color: #c53030; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
-        .sarkari-tag { background-color: #ef4444; color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; }
-
-        .footer { text-align: center; margin-top: 40px; padding: 22px; background: linear-gradient(135deg, var(--primary-dark), #1e293b); border-radius: 16px; color: var(--premium-gold); font-weight: 800; border-top: 3px solid var(--premium-gold); }
-        .footer div { font-size: 0.8rem; color: #94a3b8; margin-top: 6px; font-weight: 500; }
+        /* Premium Brand Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-dark), #1e293b); color: var(--premium-gold);
+            text-align: center; padding: 25px; border-radius: 16px; margin-top: 40px; font-weight: 800;
+        }
+        .footer div { color: #94a3b8; font-size: 0.85rem; margin-top: 6px; font-weight: 500; }
     </style>
 </head>
 <body>
 
-    <div class="ticker-wrap">
-        <div class="ticker-content">
-            🔥 Math Master PRO: Double-Shot Sequential Concept Matrix Activated || Tracking 2 Questions Per Type || Powered by BILLU & ABHISHEK SUTHAR!
+    <!-- Top Real-time Ticker Bar -->
+    <div class="ticker-bar">
+        <div class="ticker-text">
+            📢 SARKARI RESULT UPDATE: रेलवे RRB भर्ती नोटिफिकेशन जारी || SSC CHSL एडमिट कार्ड लाइव || डेली करंट अफेयर्स और GK Tracker सक्रिय || अभिषेक सुथार ऑफिशियल वेब पोर्टल!
         </div>
     </div>
 
-    <div class="navbar">
-        <div class="brand">⚡ <span>Math Master</span> PRO</div>
-        <div>
-            <span class="ai-badge" style="margin-right:10px;">Double-Shot v14</span>
-            <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">English</button>
-        </div>
+    <!-- Luxury Portal Navbar Header -->
+    <div class="header">
+        <h1>SARKARI RESULT <span>PRO</span></h1>
+        <p>🎯 Welcome to Shri Abhishek Suthar Official Job & GK Portal 🎯</p>
     </div>
 
     <div class="container">
-        <div style="margin-bottom: 20px; font-weight: 700; font-size: 1.1rem; color: var(--premium-blue);">
-            👋 स्वागत है! आप श्री <span style="color: #d97706;">Abhishek Suthar</span> के ऑफिशियल एआई लर्निंग portal पर हैं।
+        
+        <!-- Live Quick Category Filter Buttons -->
+        <div class="filter-section">
+            <button class="filter-btn active" onclick="filterCategory('all')">🔥 All Updates</button>
+            <button class="filter-btn" onclick="filterCategory('railway')">🚂 Railway Jobs</button>
+            <button class="filter-btn" onclick="filterCategory('ssc')">⚡ SSC Jobs</button>
+            <button class="filter-btn" onclick="filterCategory('police')">👮 Police & Defense</button>
+            <button class="filter-btn" onclick="filterCategory('bank')">🏦 Banking Core</button>
         </div>
 
-        <div class="card" style="border-left-color: var(--premium-gold);">
-            <div class="control-grid">
-                <div>
-                    <label class="dropdown-label" id="examLabel">🎯 लक्षित परीक्षा (Target Exam):</label>
-                    <select class="topic-dropdown" id="examSelect" onchange="onExamChange()">
-                        <option value="0">SSC (CGL, CHSL, MTS)</option>
-                        <option value="1">Railway (NTPC, Group D, ALP)</option>
-                        <option value="2">Banking (PO, Clerk, RBI)</option>
-                        <option value="3">State Police & Defense</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="dropdown-label" id="selectLabel">📚 गणित का विषय (Select Topic):</label>
-                    <select class="topic-dropdown" id="topicSelect" onchange="onTopicChange()">
-                        </select>
-                </div>
+        <!-- Real Sarkari Result 3-Column Main Matrix Grid -->
+        <div class="portal-grid">
+            <!-- COLUMN 1: LATEST JOBS -->
+            <div class="portal-column">
+                <div class="column-header col-jobs">🔥 Latest Jobs 2026</div>
+                <ul class="link-list" id="jobsList"></ul>
+            </div>
+
+            <!-- COLUMN 2: ADMIT CARD -->
+            <div class="portal-column">
+                <div class="column-header col-admit">🎟️ Admit Card</div>
+                <ul class="link-list" id="admitList"></ul>
+            </div>
+
+            <!-- COLUMN 3: RESULTS -->
+            <div class="portal-column">
+                <div class="column-header col-result">🏆 Results</div>
+                <ul class="link-list" id="resultsList"></ul>
             </div>
         </div>
 
-        <div class="card formula-card">
-            <h3 id="formTitle">📐 इस विषय के महत्वपूर्ण सूत्र (Topic Formulas)</h3>
-            <div class="formula-display" id="formulaContent">Loading Formula...</div>
+        <!-- NEW COMPREHENSIVE DAILY CURRENT AFFAIRS & GK MODULE -->
+        <div class="card gk-master-card">
+            <h3 class="gk-title">📚 डेली करंट अफेयर्स और सामान्य ज्ञान (GK Matrix 2026)</h3>
+            <div class="gk-list" id="gkCoreContainer">
+                <!-- Loaded dynamically below via JavaScript -->
+            </div>
         </div>
 
-        <div class="card" style="border-left-color: #a855f7;">
-            <h3 id="qaMainTitle">📚 अभ्यास प्रश्न और उत्तर (AI Generated Q&A)</h3>
-            <div class="qa-list" id="qaContainer">
-                </div>
-            <button id="loadMoreBtn" class="action-btn" onclick="loadNextTypePair()">🔄 Load Next Concept Type (2 Unique Questions)</button>
-        </div>
-
-        <div class="card sarkari-card">
-            <div class="sarkari-header">⚡ SarkariResult.com - Latest Jobs Alerts 2026</div>
-            <div class="sarkari-grid" id="sarkariBox"></div>
-        </div>
-
+        <!-- Custom Corporate Brand Footer -->
         <div class="footer">
-            🥇 MATH MASTER PRO 🥇
-            <div>🐾 POWERED BY BILLU & ABHISHEK SUTHAR 🐾</div>
+            🥇 SARKARI RESULT PRO EDITION 🥇
+            <div>🐾 DESIGNED & POWERED BY BILLU & ABHISHEK SUTHAR 🐾</div>
         </div>
+
     </div>
 
     <script>
-        let isHindi = true;
-        let questionCounter = 0;
-        let currentTypeIndex = 0; // Tracks which type to generate right now
-
-        const appData = {
-            hi: {
-                examLabel: "🎯 लक्षित परीक्षा (Target Exam):",
-                selectLabel: "📚 गणित का विषय (Select Topic):",
-                qaMainTitle: "📚 अभ्यास प्रश्न और उत्तर (AI Generated Q&A)",
-                formTitle: "📐 इस विषय के महत्वपूर्ण सूत्र (Topic Formulas)",
-                loadBtnTxt: "🔄 अगला नया टाइप लोड करें (2 धासू सवाल)",
-                topics: [
-                    { name: "1. प्रतिशत (Percentage)", formula: "• प्रतिशत (%) = (हिस्सा / कुल) × 100<br>• मूल्य-खपत नियम = [R / (100 ± R)] × 100" },
-                    { name: "2. लाभ, हानि और छूट (Profit & Loss)", formula: "• लाभ% = (लाभ / CP) × 100<br>• अंकित मूल्य (MP) × (100 - D%) = CP × (100 + P%)" },
-                    { name: "3. साधारण ब्याज (Simple Interest)", formula: "• SI = (P × R × T) / 100<br>• गुना नियम: R = [(n-1) × 100]/T" },
-                    { name: "4. चक्रवृद्धि ब्याज (Compound Interest)", formula: "• 2 वर्ष का अंतर = P × (R/100)<sup>2</sup><br>• Amount = P(1 + R/100)<sup>T</sup>" },
-                    { name: "5. औसत (Average)", formula: "• औसत = कुल योग / संख्या<br>• लगातार पदों का औसत = (प्रथम + अंतिम) / 2" },
-                    { name: "6. अनुपात और समानुपात (Ratio & Proportion)", formula: "• मध्यानुपाती = √(a × b) | तृतीयानुपाती = b<sup>2</sup> / a" },
-                    { name: "7. समय और कार्य (Time & Work)", formula: "• कार्य क्षमता = कुल कार्य / समय<br>• M<sub>1</sub>D<sub>1</sub>H<sub>1</sub> = M<sub>2</sub>D<sub>2</sub>H<sub>2</sub>" },
-                    { name: "8. चाल, दूरी और समय (Speed & Distance)", formula: "• चाल = दूरी / समय<br>• किमी/घंटे को मी/सेकंड में बदलने के लिए 5/18 से गुणा करें।" },
-                    { name: "9. सरलीकरण और ल.स./म.स. (LCM & HCF)", formula: "• पहली संख्या × दूसरी संख्या = LCM × HCF" },
-                    { name: "10. संख्या और वर्ग (Numbers & Squares)", formula: "• वर्ग = X × X<br>• प्रथम n प्राकृत संख्याओं का योग = [n(n+1)]/2" },
-                    { name: "11. बीजगणित (Algebra)", formula: "• यदि x + 1/x = k, तो x<sup>2</sup> + 1/x<sup>2</sup> = k<sup>2</sup> - 2" },
-                    { name: "12. क्षेत्रमिति (Mensuration/Geometry)", formula: "• आयत क्षेत्रफल = L × W | वृत्त क्षेत्रफल = πr<sup>2</sup>" }
-                ],
-                jobs: [
-                    { title: "रेलवे RRB तकनीशियन भर्ती ऑनलाइन फॉर्म 2026", tag: "New" },
-                    { title: "यूपी पुलिस कांस्टेबल एडमिट कार्ड / एग्जाम सिटी 2026", tag: "Admit Card" },
-                    { title: "एसएससी CGL ऑनलाइन भर्ती फॉर्म 2026", tag: "Latest Job" },
-                    { title: "केंद्रीय शिक्षक पात्रता परीक्षा (CTET) रिजल्ट 2026", tag: "Result" }
-                ]
-            },
-            en: {
-                examLabel: "🎯 Target Exam:",
-                selectLabel: "📚 Select Topic:",
-                qaMainTitle: "📚 Practice Questions & Solutions (AI Generated)",
-                formTitle: "📐 Vital Formulas for Current Topic",
-                loadBtnTxt: "🔄 Load Next Type Pattern (2 Questions)",
-                topics: [
-                    { name: "1. Percentage", formula: "• Percentage (%) = (Part / Total) × 100" },
-                    { name: "2. Profit, Loss & Discount", formula: "• MP × (100 - D%) = CP × (100 + P%)" },
-                    { name: "3. Simple Interest", formula: "• SI = (P × R × T) / 100" },
-                    { name: "4. Compound Interest", formula: "• Difference for 2 years = P(R/100)<sup>2</sup>" },
-                    { name: "5. Average", formula: "• Average = Sum of elements / Total count" },
-                    { name: "6. Ratio & Proportion", formula: "• Mean Proportion = √(a × b)" },
-                    { name: "7. Time & Work", formula: "• Work Formula: M1D1H1 = M2D2H2" },
-                    { name: "8. Speed & Distance", formula: "• Speed = Distance / Time" },
-                    { name: "9. LCM & HCF", formula: "• Product of two numbers = LCM × HCF" },
-                    { name: "10. Numbers & Squares", formula: "• Square = Number × Itself" },
-                    { name: "11. Algebra", formula: "• If x + 1/x = k, then x<sup>2</sup> + 1/x<sup>2</sup> = k<sup>2</sup> - 2" },
-                    { name: "12. Mensuration", formula: "• Area of Rectangle = Length × Width" }
-                ],
-                jobs: [
-                    { title: "Railway RRB Technician 2026 Apply Online Open.", tag: "New" },
-                    { title: "UP Police Constable Exam City / Admit Card 2026", tag: "Admit Card" },
-                    { title: "SSC CGL Online Recruitment Form 2026", tag: "Latest Job" },
-                    { title: "Central Teacher Eligibility Test (CTET) Result 2026", tag: "Result" }
-                ]
-            }
+        // Real-time Jobs Database Configuration Matrix
+        const portalData = {
+            jobs: [
+                { title: "रेलवे RRB तकनीशियन भर्ती ऑनलाइन फॉर्म 2026", cat: "railway", tag: "new" },
+                { title: "एसएससी CGL भर्ती परीक्षा ऑनलाइन फॉर्म 2026", cat: "ssc", tag: "new" },
+                { title: "यूपी पुलिस सब-इंस्पेक्टर (SI) बम्पर भर्ती 2026", cat: "police", tag: "new" },
+                { title: "एसबीआई (SBI) बैंक पीओ भर्ती फॉर्म 2026", cat: "bank", tag: "update" },
+                { title: "रेलवे NTPC ग्रेजुएट लेवल भर्ती 2026", cat: "railway", tag: "new" },
+                { title: "दिल्ली पुलिस हेड कांस्टेबल भर्ती परीक्षा फॉर्म", cat: "police", tag: "last" }
+            ],
+            admit: [
+                { title: "एसएससी CHSL टायर-1 परीक्षा एडमिट कार्ड 2026", cat: "ssc", tag: "new" },
+                { title: "रेलवे ALP (लोको पायलट) सीबीटी परीक्षा सिटी 2026", cat: "railway", tag: "update" },
+                { title: "आईबीपीएस (IBPS) क्लर्क मुख्य परीक्षा एडमिट कार्ड", cat: "bank", tag: "new" },
+                { title: "बिहार पुलिस कांस्टेबल परीक्षा प्रवेश पत्र 2026", cat: "police", tag: "last" }
+            ],
+            results: [
+                { title: "यूपी पुलिस कांस्टेबल मुख्य परीक्षा रिजल्ट 2026", cat: "police", tag: "new" },
+                { title: "एसएससी जीडी (GD) कांस्टेबल परीक्षा फाइनल मेरिट लिस्ट", cat: "ssc", tag: "update" },
+                { title: "आरआरबी (RRB) ग्रुप डी परीक्षा परिणाम 2026", cat: "railway", tag: "new" },
+                { title: "आईबीपीएस पीओ (IBPS PO) फाइनल इंटरव्यू रिजल्ट", cat: "bank", tag: "last" }
+            ]
         };
 
-        function populateDropdown() {
-            const select = document.getElementById('topicSelect');
-            const lang = isHindi ? 'hi' : 'en';
-            const previousValue = select.value || "0";
-            
-            select.innerHTML = '';
-            appData[lang].topics.forEach((topic, index) => {
-                let opt = document.createElement('option');
-                opt.value = index; opt.innerText = topic.name;
-                if(index.toString() === previousValue) opt.selected = true;
-                select.appendChild(opt);
-            });
-        }
-
-        function onExamChange() { onTopicChange(); }
-
-        function onTopicChange() {
-            const select = document.getElementById('topicSelect');
-            if (!select || select.options.length === 0) return;
-            
-            questionCounter = 0;
-            currentTypeIndex = 0; // Fresh topic start at Type 1
-            document.getElementById('qaContainer').innerHTML = '';
-            
-            const selectValue = parseInt(select.value || "0");
-            const lang = isHindi ? 'hi' : 'en';
-            document.getElementById('formulaContent').innerHTML = appData[lang].topics[selectValue].formula;
-            
-            loadNextTypePair(); // Automatically load the first type pair
-        }
-
-        function loadNextTypePair() {
-            const select = document.getElementById('topicSelect');
-            const selectValue = parseInt(select.value || "0");
-            const examValue = parseInt(document.getElementById('examSelect').value || "0");
-            const container = document.getElementById('qaContainer');
-            
-            const examNames = ["SSC EXAM", "RAILWAY EXAM", "BANKING PO", "STATE EXAM"];
-            let activeTag = examNames[examValue];
-
-            // Normalize type loops across 5 high-level standard types
-            let actualType = (currentTypeIndex % 5) + 1;
-
-            // Generate exactly 2 distinct questions for this dynamic type
-            for (let shot = 1; shot <= 2; shot++) {
-                questionCounter++;
-                let qHi = "", solHi = "", typeTag = "";
-
-                // Seed values variable to prevent sub-shot repetitions
-                let seed1 = Math.floor(Math.random() * 6) + (shot * 3); 
-                let seed2 = Math.floor(Math.random() * 20) + 10 * shot;
-
-                if (selectValue === 0) { // 1. PERCENTAGE
-                    typeTag = `Type ${actualType}: `;
-                    if (actualType === 1) {
-                        typeTag += "मूल्य एवं खपत आधारित";
-                        let rate = shot === 1 ? 20 : 25;
-                        let finalAns = ((rate / (100 + rate)) * 100).toFixed(2);
-                        qHi = `यदि चीनी के मूल्य में ${rate}% की वृद्धि हो जाती है, तो एक गृहणी को अपनी खपत कितने प्रतिशत कम करनी चाहिए ताकि खर्च बिल्कुल न बढ़े? (Set-${shot})`;
-                        solHi = `<b>उत्तर:</b> ${finalAns}%<br><b>शार्ट ट्रिक:</b> $\\frac{R}{100 + R} \\times 100 = \\frac{${rate}}{100 + ${rate}} \\times 100 = ${finalAns}\\%$।`;
-                    } else if (actualType === 2) {
-                        typeTag += "चुनाव संबंधी प्रश्न";
-                        let winPct = shot === 1 ? 60 : 65;
-                        let diffPct = winPct - (100 - winPct);
-                        let votes = 100 * seed1 * diffPct;
-                        let total = (votes / diffPct) * 100;
-                        qHi = `एक चुनाव में दो उम्मीदवार थे, जीतने वाले उम्मीदवार को ${winPct}% मत मिले और वह ${votes} मतों से जीत गया। कुल मतों की संख्या बताएं? (Set-${shot})`;
-                        solHi = `<b>उत्तर:</b> ${total} मत<br><b>विधि:</b> मतों का अंतर = ${winPct}% - ${100 - winPct}% = ${diffPct}%। चूंकि ${diffPct}% = ${votes}, इसलिए 100% = ${total}।`;
-                    } else if (actualType === 3) {
-                        typeTag += "परीक्षा के उत्तीर्ण अंक";
-                        let passReq = shot === 1 ? 30 : 40;
-                        let scored = 50 * seed1;
-                        let failedBy = 10 * shot;
-                        let totalMarks = Math.round(((scored + failedBy) / passReq) * 100);
-                        qHi = `एक छात्र को उत्तीर्ण होने के लिए ${passReq}% अंक चाहिए। उसने ${scored} अंक प्राप्त किए और वह ${failedBy} अंकों से फेल हो गया। परीक्षा का पूर्णांक ज्ञात करें? (Set-${shot})`;
-                        solHi = `<b>उत्तर:</b> ${totalMarks} अंक<br><b>विधि:</b> न्यूनतम पास अंक = ${scored} + ${failedBy} = ${scored + failedBy}। कुल पूर्णांक = $\\frac{${scored + failedBy}}{${passReq}} \\times 100 = ${totalMarks}$।`;
-                    } else if (actualType === 4) {
-                        typeTag += "जनसंख्या में क्रमिक बदलाव";
-                        let pop = shot === 1 ? 10000 : 20000;
-                        let rate = shot === 1 ? 10 : 5;
-                        let finalPop = shot === 1 ? (pop * 1.21) : (pop * 1.1025);
-                        qHi = `एक शहर की वर्तमान जनसंख्या ${pop} है। यदि इसमें ${rate}% वार्षिक दर से वृद्धि हो रही हो, तो 2 वर्ष बाद शहर की जनसंख्या क्या होगी? (Set-${shot})`;
-                        solHi = `<b>उत्तर:</b> ${finalPop}<br><b>विधि:</b> 2 वर्ष बाद जनसंख्या = $P \\times (1 + \\frac{R}{100})^2 = ${finalPop}$।`;
-                    } else {
-                        typeTag += "संख्याओं के तुलनात्मक संबंध";
-                        let morePct = shot === 1 ? 20 : 25;
-                        let ansPct = ((morePct / (100 + morePct)) * 100).toFixed(2);
-                        qHi = `यदि A की आय, B की आय से ${morePct}% अधिक है, तो B की आय A की आय से कितने प्रतिशत कम होगी? (Set-${shot})`;
-                        solHi = `<b>उत्तर:</b> ${ansPct}%<br><b>सूत्र:</b> $\\frac{R}{100+R} \\times 100 = ${ansPct}\\%$।`;
-                    }
-                }
-                else if (selectValue === 1) { // 2. PROFIT & LOSS
-                    typeTag = `Type ${actualType}: `;
-                    if (actualType === 1) {
-                        typeTag += "वस्तुओं का साम्य (CP = SP)";
-                        let cpItems = shot === 1 ? 15 : 20;
-                        let spItems = shot === 1 ? 12 : 16;
-                        let gain = ((cpItems - spItems) / spItems * 100).toFixed(2);
-                        qHi = `यदि ${cpItems} वस्तुओं का क्रय मूल्य (CP), ${spItems} वस्तुओं के विक्रय मूल्य (SP) के बराबर है, तो लाभ प्रतिशत क्या होगा? (Set-${shot})`;
-                        solHi = `<b>उत्तर:</b> ${gain}%<br><b>ट्रिक:</b> लाभ% = $\\frac{\\text{वस्तुओं का अंतर}}{\\text{SP वस्तुएं}} \\times 100 = \\frac{${cpItems - spItems}}{${spItems}} \\times 100 = ${gain}\\%$।`;
-                    } else if (actualType === 2) {
-                        typeTag += "बेईमान दुकानदार नियम";
-                        let weight = shot === 1 ? 900 : 800;
-                        let error = 1000 - weight;
-                        let profit = ((error / weight) * 100).toFixed(2);
-                        qHi = `एक दुकानदार अपने सामान को क्रय मूल्य पर बेचने का दावा करता है, लेकिन वह 1 किलो के स्थान पर ${weight} ग्राम तोलता है। उसका लाभ% बताएं? (Set-${shot})`;
-                        solHi = `<b>उत्तर:</b> ${profit}% लाभ<br><b>विधि:</b> लाभ% = $\\frac{\\text{त्रुटि}}{\\text{वास्तविक तोल}} \\times 100 = \\frac{${error}}{${weight}} \\times 100 = ${profit}\\%$।`;
-                    } else if (actualType === 3) {
-                        typeTag += "समान विक्रय मूल्य (Same SP)";
-                        let rate = shot === 1 ? 10 : 20;
-                        let loss = ((rate * rate) / 100).toFixed(0);
-                        qHi = `एक व्यक्ति दो वस्तुओं में से प्रत्येक को ₹${5000 * shot} में बेचता है। एक पर उसे ${rate}% लाभ और दूसरे पर ${rate}% हानि होती है। कुल सौदे पर लाभ या हानि% बताएं? (Set-${shot})`;
-                        solHi = `<b>उत्तर:</b> ${loss}% हानि<br><b>कांसेप्ट:</b> जब SP समान हो, तो हमेशा हानि होती है = $\\frac{R^2}{100} = \\frac{${rate}^2}{100} = ${loss}\\%$।`;
-                    } else if (actualType === 4) {
-                        typeTag += "क्रमिक छूट / Discount";
-                        let d1 = shot === 1 ? 10 : 20;
-                        let d2 = shot === 1 ? 20 : 30;
-                        let netD = d1 + d2 - ((d1 * d2) / 100);
-                        qHi = `एक दुकानदार किसी सामान पर ${d1}% और ${d2}% की दो क्रमिक छूट (Successive Discounts) देता है। इसका समतुल्य एकल बटा क्या होगा? (Set-${shot})`;
-                        solHi = `<b>उत्तर:</b> ${netD}%<br><b>सूत्र:</b> $X + Y - \\frac{XY}{100} = ${d1} + ${d2} - \\frac{${d1} \\times ${d2}}{100} = ${netD}\\%$।`;
-                    } else {
-                        typeTag += "क्रय मूल्य अंतर समीकरण";
-                        let diffAmt = shot === 1 ? 50 : 120;
-                        let cp = diffAmt / 0.05;
-                        qHi = `एक वस्तु को 10% लाभ के बदले 15% लाभ पर बेचने से एक व्यक्ति को ₹${diffAmt} अधिक मिलते हैं। वस्तु का क्रय मूल्य ज्ञात करें? (Set-${shot})`;
-                        solHi = `<b>उत्तर:</b> ₹${cp}<br><b>विधि:</b> प्रतिशत अंतर = 15% - 10% = 5%। यदि 5% = ₹${diffAmt}, तो 100% = ₹${cp}।`;
-                    }
-                }
-                else { // DEFAULT CORE FALLBACK FOR OTHER TOPICS
-                    typeTag = `Type ${actualType}: Concept Model (Set-${shot})`;
-                    let base = seed2 * 3;
-                    qHi = `[Standard Format] यदि किसी संख्या के मान में ${base} जोड़ा जाता है, तो वह संख्या स्वतः की दोगुनी हो जाती है। वह संख्या क्या होगी?`;
-                    solHi = `<b>उत्तर:</b> ${base}<br><b>विधि:</b> माना संख्या $X$ है। $X + ${base} = 2X \\Rightarrow X = ${base}$।`;
-                }
-
-                let qaBlock = document.createElement('div');
-                qaBlock.className = 'qa-block';
-                qaBlock.innerHTML = `
-                    <span class="qa-meta-tag">${activeTag}</span>
-                    <span class="qa-type-tag">${typeTag}</span>
-                    <div class="qa-question"><b>Q${questionCounter}.</b> ${qHi}</div>
-                    <div class="qa-answer-box">${solHi}</div>
-                `;
-                container.appendChild(qaBlock);
+        // Static Real Standard GK Database Configuration
+        const gkData = [
+            {
+                q: "हाल ही में केंद्र सरकार द्वारा 2026 में डिजिटल इंडिया मिशन के तहत कौन सा नया सुरक्षा पोर्टल लॉन्च किया गया है?",
+                a: "<b>उत्तर: 'साइबर रक्षक 2.0' पोर्टल।</b><br>इसका उद्देश्य देश के ग्रामीण क्षेत्रों में स्थानीय युवाओं को साइबर सुरक्षा और डिजिटल फ्रॉड से निपटने के लिए प्रशिक्षित करना है।"
+            },
+            {
+                q: "भारत के किस राज्य में विश्व का सबसे बड़ा तैरता हुआ सौर ऊर्जा संयंत्र (Floating Solar Power Plant) स्थापित किया गया है?",
+                a: "<b>उत्तर: मध्य प्रदेश (ओकारेश्वर बांध)।</b><br>यह संयंत्र नर्मदा नदी पर ओकारेश्वर बांध के जलाशय पर बनाया गया है, जिसकी कुल क्षमता 600 मेगावाट है।"
+            },
+            {
+                q: "भारतीय संविधान का कौन सा अनुच्छेद (Article) राष्ट्रपति को अध्यादेश (Ordinance) जारी करने की शक्ति प्रदान करता है?",
+                a: "<b>उत्तर: अनुच्छेद 123 (Article 123)।</b><br>जब संसद के दोनों सदन सत्र में न हों, तब राष्ट्रपति विशेष परिस्थितियों में अध्यादेश जारी कर सकते हैं, जिसका प्रभाव कानून के समान होता है।"
+            },
+            {
+                q: "नीति आयोग (NITI Aayog) के वर्तमान उपाध्यक्ष (Vice Chairperson) कौन हैं और इसकी स्थापना कब हुई थी?",
+                a: "<b>उत्तर: सुमन बेरी (स्थापना: 1 जनवरी 2015)।</b><br>नीति आयोग योजना आयोग के स्थान पर काम करता है और इसके अध्यक्ष हमेशा भारत के प्रधानमंत्री होते हैं।"
             }
+        ];
 
-            currentTypeIndex++; // Next click will move flawlessly to the next type index pair
+        function renderLists(filterType = "all") {
+            const renderColumn = (targetId, dataArray) => {
+                const listEl = document.getElementById(targetId);
+                listEl.innerHTML = "";
+                const filteredData = filterType === "all" ? dataArray : dataArray.filter(item => item.cat === filterType);
+                
+                if(filteredData.length === 0) {
+                    listEl.innerHTML = `<li class="link-item" style="padding:15px; text-align:center; font-weight:700; color:#94a3b8;">No Updates Found</li>`;
+                    return;
+                }
+                filteredData.forEach(item => {
+                    let li = document.createElement('li');
+                    li.className = 'link-item';
+                    li.innerHTML = `<a href="https://www.sarkariresult.com" target="_blank">
+                                        <span>📢 ${item.title}</span>
+                                        <span class="job-tag tag-${item.tag}">${item.tag}</span>
+                                    </a>`;
+                    listEl.appendChild(li);
+                });
+            };
+            renderColumn("jobsList", portalData.jobs);
+            renderColumn("admitList", portalData.admit);
+            renderColumn("resultsList", portalData.results);
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            populateDropdown();
-            onTopicChange();
-        });
-
-        function initApp() {
-            const lang = isHindi ? 'hi' : 'en';
-            document.getElementById('langBtn').innerText = isHindi ? 'English' : 'Hindi';
-            document.getElementById('selectLabel').innerText = appData[lang].selectLabel;
-            document.getElementById('examLabel').innerText = appData[lang].examLabel;
-            document.getElementById('qaMainTitle').innerText = appData[lang].qaMainTitle;
-            document.getElementById('formTitle').innerText = appData[lang].formTitle;
-            document.getElementById('loadMoreBtn').innerText = appData[lang].loadBtnTxt;
-
-            populateDropdown();
+        function renderGKModule() {
+            const container = document.getElementById('gkCoreContainer');
+            container.innerHTML = "";
             
-            let barkariHtml = '';
-            appData[lang].jobs.forEach(job => {
-                barkariHtml += `<a href="https://www.sarkariresult.com" target="_blank" class="sarkari-link">
-                                    <span>📢 ${job.title}</span>
-                                    <span class="sarkari-tag">${job.tag}</span>
-                                </a>`;
+            gkData.forEach((item, index) => {
+                let div = document.createElement('div');
+                div.className = 'gk-item';
+                div.innerHTML = `
+                    <div class="gk-question">📌 ${item.q}</div>
+                    <button class="answer-btn" onclick="toggleGkAns(${index})">👁️ Check Hidden Answer</button>
+                    <div class="gk-answer" id="gkAns_${index}">${item.a}</div>
+                `;
+                container.appendChild(div);
             });
-            document.getElementById('sarkariBox').innerHTML = barkariHtml;
-            onTopicChange();
         }
 
-        function toggleLanguage() { isHindi = !isHindi; initApp(); }
-        window.onload = function() { initApp(); };
+        function toggleGkAns(id) {
+            const ansEl = document.getElementById(`gkAns_${id}`);
+            if(ansEl.style.display === 'block') {
+                ansEl.style.display = 'none';
+            } else {
+                ansEl.style.display = 'block';
+            }
+        }
+
+        function filterCategory(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            renderLists(category);
+        }
+
+        window.onload = function() {
+            renderLists("all");
+            renderGKModule();
+        };
     </script>
 </body>
 </html>
