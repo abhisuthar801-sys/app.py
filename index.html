@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sarkari Result & AI Global GK Portal - Abhishek Suthar Edition</title>
+    <title>Sarkari Result & AI Global GK Book - Abhishek Suthar Edition</title>
     
     <!-- Real Mobile App Fullscreen Configuration -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -66,29 +66,50 @@
             outline: none; cursor: pointer; background-color: #f8fafc;
         }
 
-        /* DAILY GK & CURRENT AFFAIRS TOP LUXURY CARD */
-        .gk-master-card {
-            background: var(--card-bg); border-radius: 20px; padding: 26px;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08); border-left: 6px solid #a855f7;
-            margin-bottom: 35px;
+        /* PREMIUM DYNAMIC DIGITAL BOOK CARD LAYOUT */
+        .book-card {
+            background: #fffdf5; border-radius: 20px; padding: 30px;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.03), 0 10px 30px rgba(0,0,0,0.08); 
+            border: 2px solid #e6dfc7; border-left: 10px solid #8b5cf6;
+            margin-bottom: 35px; position: relative;
         }
-        .gk-title { color: #6b21a8; font-size: 1.4rem; font-weight: 900; margin-top: 0; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
-        
+        .book-spine-line {
+            position: absolute; left: 15px; top: 0; bottom: 0; width: 1px; background: rgba(0,0,0,0.05);
+        }
+        .book-header-panel {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 2px dashed #cbd5e1; padding-bottom: 12px; margin-bottom: 22px;
+        }
+        .book-title { color: #5b21b6; font-size: 1.3rem; font-weight: 900; margin: 0; }
+        .page-badge { background-color: #8b5cf6; color: white; padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 0.9rem; }
+
         .gk-list { display: flex; flex-direction: column; gap: 15px; }
-        .gk-item { background: #faf5ff; border: 1px solid #f3e8ff; padding: 16px; border-radius: 12px; }
-        .gk-question { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 10px; line-height: 1.5; }
+        .gk-item { background: #ffffff; border: 1px solid #e2e8f0; padding: 18px; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.01); }
+        .gk-question { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 12px; line-height: 1.6; }
         
         .answer-btn {
-            background-color: #a855f7; color: white; border: none; padding: 10px 18px;
-            border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: all 0.2s;
+            background-color: #8b5cf6; color: white; border: none; padding: 8px 16px;
+            border-radius: 6px; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.2s;
         }
-        .answer-btn:hover { background-color: #9333ea; }
+        .answer-btn:hover { background-color: #7c3aed; }
         
         .gk-answer {
-            margin-top: 10px; padding: 10px 14px; background-color: #f0fdf4;
+            margin-top: 12px; padding: 12px 16px; background-color: #f0fdf4;
             border-left: 4px solid var(--success); border-radius: 6px; color: #166534;
-            font-weight: 600; display: none; line-height: 1.5;
+            font-weight: 600; display: none; line-height: 1.6; font-size: 0.95rem;
         }
+
+        /* Real Page Navigation Bar Grid */
+        .book-navigation-panel {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 25px; border-top: 2px dashed #cbd5e1; padding-top: 18px;
+        }
+        .nav-book-btn {
+            background: linear-gradient(135deg, #1e3a8a, #1d4ed8); color: white; border: none;
+            padding: 12px 24px; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 0.95rem;
+            box-shadow: 0 4px 10px rgba(30, 58, 138, 0.2); transition: all 0.2s;
+        }
+        .nav-book-btn:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; box-shadow: none; }
 
         /* Dynamic Category Quick Filters */
         .filter-section {
@@ -124,12 +145,6 @@
         .tag-update { background-color: #3b82f6; }
         .tag-last { background-color: #64748b; }
 
-        .action-btn {
-            background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: white; border: none;
-            padding: 14px 20px; border-radius: 10px; cursor: pointer; font-weight: 700; width: 100%;
-            font-size: 1rem; margin-top: 15px; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
-        }
-
         .footer {
             background: linear-gradient(135deg, var(--primary-dark), #1e293b); color: var(--premium-gold);
             text-align: center; padding: 25px; border-radius: 16px; margin-top: 40px; font-weight: 800;
@@ -142,56 +157,59 @@
     <!-- Top Real-time Ticker Bar -->
     <div class="ticker-bar">
         <div class="ticker-text">
-            🚀 AI ENGINE ACTIVE: अनंत सामान्य ज्ञान (Infinite GK Matrix) और लाइव करंट अफेयर्स ट्रैकर चालू || रेलवे भर्ती बोर्ड (RRB) 2026 अपडेट्स || Powered by ABHISHEK SUTHAR!
+            📖 DIGITAL BOOK EDITION ACTIVE: पन्ना-वार अनंत सामान्य ज्ञान (Page-by-Page Book Layout) सक्रिय || 5 Sawaal Per Page Frame Counter Active || Powered by ABHISHEK SUTHAR!
         </div>
     </div>
 
     <!-- Luxury Portal Navbar Header -->
     <div class="header">
-        <h1>SARKARI RESULT & <span>AI GLOBAL GK</span></h1>
-        <p>🎯 Welcome to Abhishek Suthar Infinite Smart Learning Engine 🎯</p>
+        <h1>SARKARI RESULT & <span>AI SMART BOOK</span></h1>
+        <p>🎯 Welcome to Abhishek Suthar Interactive Page-by-Page Learning Portal 🎯</p>
     </div>
 
     <div class="container">
 
-        <!-- STEP 1: TIME FILTERS -->
+        <!-- STEP 1: TIME CONTROLS -->
         <div class="card time-filter-card">
-            <h3 style="margin-top:0; color: #1e3a8a; font-size: 1.1rem; margin-bottom: 12px;">📅 ऐतिहासिक एवं समसामयिक कालचक्र (Select Timeline):</h3>
+            <h3 style="margin-top:0; color: #1e3a8a; font-size: 1.1rem; margin-bottom: 12px;">📅 कालखंड चयन ग्रिड (Select Book Subject Baseline):</h3>
             <div class="time-grid">
-                <select class="filter-select" id="yearSelect" onchange="generateAIQuestionsList()">
-                    <option value="2026">Year: 2026 (Live Current)</option>
-                    <option value="2025">Year: 2025 (Recent Core)</option>
-                    <option value="2024">Year: 2024 (Past Year)</option>
-                    <option value="ancient">प्राचीन काल (Ancient History)</option>
-                    <option value="medieval">मध्यकालीन भारत (Medieval)</option>
+                <select class="filter-select" id="yearSelect" onchange="resetBookToPageOne()">
+                    <option value="2026">Current Affairs: 2026</option>
+                    <option value="2025">Current Affairs: 2025</option>
+                    <option value="2024">Current Affairs: 2024</option>
+                    <option value="history">इतिहास एवं संस्कृति (History Core)</option>
                 </select>
-                <select class="filter-select" id="monthSelect" onchange="generateAIQuestionsList()">
-                    <option value="jan">January / प्रथम खंड</option>
-                    <option value="feb">February / द्वितीय खंड</option>
-                    <option value="mar">March / तृतीय खंड</option>
-                    <option value="apr">April / चतुर्थ खंड</option>
-                    <option value="may">May / पंचम खंड</option>
-                    <option value="jun">June / षष्ठम खंड</option>
-                    <option value="jul">July / सप्तम खंड</option>
-                    <option value="aug">August / अष्टम खंड</option>
-                    <option value="sep">September / नवम खंड</option>
-                    <option value="oct">October / दशम खंड</option>
-                    <option value="nov">November / एकादश खंड</option>
-                    <option value="dec">December / द्वादश खंड</option>
+                <select class="filter-select" id="monthSelect" onchange="resetBookToPageOne()">
+                    <option value="jan">अध्याय खंड: January / Part-A</option>
+                    <option value="feb">अध्याय खंड: February / Part-B</option>
+                    <option value="mar">अध्याय खंड: March / Part-C</option>
+                    <option value="apr">अध्याय खंड: April / Part-D</option>
                 </select>
             </div>
         </div>
 
-        <!-- STEP 2: GLOBAL GK AI GENERATOR BLOCK -->
-        <div class="card gk-master-card">
-            <h3 class="gk-title">🌐 एआई संचालित अनंत ज्ञानकोश (Infinite AI GK Matrix)</h3>
-            <div class="gk-list" id="gkCoreContainer">
-                <!-- Synthesized AI contents go here -->
+        <!-- STEP 2: INTERACTIVE DIGITAL BOOK MODULE (Panna Layout) -->
+        <div class="book-card">
+            <div class="book-spine-line"></div>
+            
+            <div class="book-header-panel">
+                <h3 class="book-title">📖 वैश्विक ज्ञानकोष - डिजिटल एडिशन</h3>
+                <span class="page-badge" id="pageNumberDisplay">Page 1</span>
             </div>
-            <button class="action-btn" onclick="appendMoreAIQuestions()">🔄 Generate New Random AI Question</button>
+
+            <!-- Inside Page Content Matrix (Will change dynamically on flipping) -->
+            <div class="gk-list" id="bookPageContainer">
+                <!-- 5 Unique structured questions load here per page -->
+            </div>
+
+            <!-- Page Flip Control Buttons Layout -->
+            <div class="book-navigation-panel">
+                <button class="nav-book-btn" id="prevPageBtn" onclick="flipPage(-1)">◀️ Previous Page</button>
+                <button class="nav-book-btn" id="nextPageBtn" onclick="flipPage(1)">Next Page ▶️</button>
+            </div>
         </div>
 
-        <!-- STEP 3: LATEST JOBS QUICK FILTERS -->
+        <!-- STEP 3: LATEST JOBS FILTERS -->
         <div class="filter-section">
             <button class="filter-btn active" onclick="filterCategory('all')">🔥 All Updates</button>
             <button class="filter-btn" onclick="filterCategory('railway')">🚂 Railway Jobs</button>
@@ -200,7 +218,7 @@
             <button class="filter-btn" onclick="filterCategory('bank')">🏦 Banking Core</button>
         </div>
 
-        <!-- STEP 4: SARKARI RESULT JOBS MATRIX -->
+        <!-- STEP 4: SARKARI RESULT TABLES -->
         <div class="portal-grid">
             <div class="portal-column">
                 <div class="column-header col-jobs">🔥 Latest Jobs 2026</div>
@@ -217,25 +235,26 @@
         </div>
 
         <div class="footer">
-            🥇 SARKARI RESULT & INFINITE AI GK SUITE 🥇
+            🥇 SARKARI RESULT & AI INTERACTIVE BOOK 🥇
             <div>🐾 DESIGNED & POWERED BY BILLU & ABHISHEK SUTHAR 🐾</div>
         </div>
 
     </div>
 
     <script>
-        let questionCounter = 0;
+        let currentPage = 1;
 
-        // Semantic components for AI generation simulation
-        const countries = ["अमेरिका", "भारत", "जापान", "रूस", "जर्मनी", "ब्रिटेन", "फ्रांस", "ऑस्ट्रेलिया", "चीन", "ब्राजील"];
-        const organizations = ["संयुक्त राष्ट्र (UN)", "विश्व बैंक (World Bank)", "अंतर्राष्ट्रीय मुद्रा कोष (IMF)", "इसरो (ISRO)", "नासा (NASA)", "नीति आयोग", "डब्ल्यूएचओ (WHO)"];
-        const topics = ["डिजिटल सुरक्षा प्रणाली", "रिन्यूएबल ग्रीन एनर्जी कॉरिडोर्स", "डीप स्पेस सैटेलाइट मिशन", "क्वांटम कंप्यूटिंग अनुसंधान", "वैश्विक आर्थिक सुधार सूचकांक", "समुद्री सीमा सुरक्षा समझौता"];
-        
-        const historyQuestions = [
-            { q: "सिंधु घाटी सभ्यता का प्रसिद्ध बंदरगाह नगर 'लोथल' वर्तमान में भारत के किस राज्य में स्थित है?", a: "<b>उत्तर: गुजरात (अहमदाबाद जिला)।</b><br>लोथल भोगवा नदी के किनारे स्थित था। यहाँ से प्राचीन काल के विशाल डॉकयार्ड (गोदीबाड़ा) के प्रमाण मिले हैं, जो इसके समृद्ध समुद्री व्यापार को दर्शाते हैं।" },
-            { q: "1920 में असहयोग आंदोलन (Non-Cooperation Movement) को शुरू करने के पीछे मुख्य ऐतिहासिक कारण क्या थे?", a: "<b>उत्तर: रौलट एक्ट, जलियांवाला बाग हत्याकांड और खिलाफत आंदोलन।</b><br>महात्मा गांधी के नेतृत्व में यह पहला राष्ट्रव्यापी जन आंदोलन था, जिसे बाद में 1922 में चौरी-चौरा कांड के कारण वापस ले लिया गया था।" },
-            { q: "विजयनगर साम्राज्य की स्थापना 1336 में किन दो भाइयों द्वारा की गई थी और इसकी राजधानी कहाँ थी?", a: "<b>उत्तर: हरिहर और बुक्का (राजधानी: हम्पी)।</b><br>यह साम्राज्य दक्षिण भारत में तुंगभद्रा नदी के तट पर स्थित था और हम्पी के अवशेष आज भी कर्नाटक में यूनेस्को की विश्व धरोहर सूची में शामिल हैं।" },
-            { q: "दिल्ली सल्तनत के किस सुल्तान ने 'बाजार नियंत्रण नीति' (Market Control System) और घोड़ों को दागने की प्रथा शुरू की थी?", a: "<b>उत्तर: अलाउद्दीन खिलजी।</b><br>उसने सेना को कम खर्च पर बनाए रखने और भ्रष्टाचार रोकने के लिए अनाज, कपड़ों और मवेशियों के दाम तय कर दिए थे।" }
+        // Structural elements for book compilation
+        const globalNations = ["भारत", "अमेरिका", "रूस", "ब्रिटेन", "फ्रांस", "जर्मनी", "जापान", "कनाडा", "ऑस्ट्रेलिया", "इटली"];
+        const globalOrgs = ["संयुक्त राष्ट्र (UN)", "विश्व बैंक", "अंतर्राष्ट्रीय मुद्रा कोष (IMF)", "यूनेस्को", "नासा (NASA)", "इसरो (ISRO)", "डब्ल्यूएचओ (WHO)"];
+        const coreTopics = ["आर्टिफिशियल इंटेलिजेंस रेगुलेशन", "ग्रीन हाइड्रोजन एनर्जी ग्रिड", "ग्लोबल वार्मिंग नियंत्रण संधि", "क्वांटम नेटवर्क सिक्योरिटी", "साइबर थ्रेट मैनेजमेंट कॉरिडोर्स", "अंतरिक्ष मलबे (Space Debris) का निपटारा"];
+
+        const staticHistoryPool = [
+            { q: "मौर्य राजवंश के प्रसिद्ध शासक सम्राट अशोक ने किस ऐतिहासिक युद्ध के बाद बौद्ध धर्म को अपनाया था?", a: "<b>उत्तर: कलिंग युद्ध (261 ईसा पूर्व)।</b><br>कलिंग युद्ध में हुए भीषण नरसंहार को देखकर अशोक का हृदय परिवर्तन हुआ। उन्होंने 'भेरीघोष' (युद्ध) को छोड़कर 'धम्मघोष' (शांति) का मार्ग अपनाया।" },
+            { q: "भारतीय राष्ट्रीय कांग्रेस (INC) के प्रथम अधिवेशन की अध्यक्षता 1885 में किसने की थी और यह कहाँ हुआ था?", a: "<b>उत्तर: व्योमेश चंद्र बनर्जी (स्थान: बॉम्बे)।</b><br>यह अधिवेशन गोकुलदास तेजपाल संस्कृत कॉलेज में आयोजित किया गया था, जिसमें कुल 72 प्रतिनिधियों ने भाग लिया था।" },
+            { q: "प्रसिद्ध चीनी यात्री 'ह्वेनसांग' (Hiuen Tsang) ने किस उत्तर भारतीय सम्राट के शासनकाल में भारत की यात्रा की थी?", a: "<b>उत्तर: सम्राट हर्षवर्धन।</b><br>ह्वेनसांग ने नालंदा विश्वविद्यालय में बौद्ध धर्म का अध्ययन किया। उनके यात्रा वृत्तांत को 'सी-यू-की' (Si-Yu-Ki) के नाम से जाना जाता है।" },
+            { q: "1916 के प्रसिद्ध 'लखनऊ समझौते' (Lucknow Pact) का मुख्य ऐतिहासिक महत्व क्या था?", a: "<b>उत्तर: कांग्रेस के दोनों धड़ों (नरम दल-गरम दल) और मुस्लिम लीग का एक मंच पर आना।</b><br>इस अधिवेशन की अध्यक्षता अंबिका चरण मजूमदार ने की थी, जिसने भारतीय स्वतंत्रता संग्राम को नई दिशा दी।" },
+            { q: "भारतीय पुरातत्व सर्वेक्षण (ASI) के प्रथम महानिदेशक कौन थे जिन्हें भारत में पुरातत्व का जनक कहा जाता है?", a: "<b>उत्तर: सर अलेक्जेंडर कनिंघम।</b><br>उन्होंने 1861 में ब्रिटिश काल के दौरान भारत के ऐतिहासिक स्थलों की व्यापक मैपिंग और खुदाई शुरू करवाई थी।" }
         ];
 
         const portalData = {
@@ -258,57 +277,72 @@
             ]
         };
 
-        // CORE AI SYNTHESIZER ENGINE (Synthesizes structural content infinitely)
-        function generateAIQuestionsList() {
-            questionCounter = 0;
-            document.getElementById('gkCoreContainer').innerHTML = "";
-            appendMoreAIQuestions();
-            appendMoreAIQuestions();
+        function resetBookToPageOne() {
+            currentPage = 1;
+            renderBookPage();
         }
 
-        function appendMoreAIQuestions() {
-            const container = document.getElementById('gkCoreContainer');
+        function flipPage(direction) {
+            currentPage += direction;
+            if(currentPage < 1) currentPage = 1;
+            renderBookPage();
+        }
+
+        // --- BOOK PAGE COMPILER MATRIX ---
+        function renderBookPage() {
+            const container = document.getElementById('bookPageContainer');
             const timeline = document.getElementById('yearSelect').value;
             const month = document.getElementById('monthSelect').value;
             
-            questionCounter++;
-            let finalQuestion = "";
-            let finalAnswer = "";
+            document.getElementById('pageNumberDisplay').innerText = `Page ${currentPage}`;
+            document.getElementById('prevPageBtn').disabled = (currentPage === 1);
+            
+            container.innerHTML = "";
 
-            if (timeline === "ancient" || timeline === "medieval") {
-                // Pick a historical structural card model randomly
-                let model = historyQuestions[Math.floor(Math.random() * historyQuestions.length)];
-                finalQuestion = `[इतिहास / History] ${model.q}`;
-                finalAnswer = model.a;
-            } else {
-                // CURRENT AFFAIRS AI GENERATION MATRIX
-                let c1 = countries[Math.floor(Math.random() * countries.length)];
-                let c2 = countries[(countries.indexOf(c1) + 1) % countries.length];
-                let org = organizations[Math.floor(Math.random() * organizations.length)];
-                let top = topics[Math.floor(Math.random() * topics.length)];
-                let rNum = Math.floor(Math.random() * 500) + 50;
+            // Dynamic logic to render exactly 5 questions on the current page view
+            for (let qIndex = 1; qIndex <= 5; qIndex++) {
+                let globalCounter = ((currentPage - 1) * 5) + qIndex;
+                let qText = "", ansText = "";
 
-                if (Math.random() > 0.5) {
-                    finalQuestion = `[वैश्विक समसामयिकी] हाल ही में ${org} द्वारा जारी वैश्विक सूचकांक रिपोर्ट के अनुसार, ${top} के मामले में कौन सा देश पहले स्थान पर रहा है? (महीना: ${month} ${timeline})`;
-                    finalAnswer = `<b>उत्तर: ${c1} प्रथम स्थान पर रहा है, जबकि भारत को इस इंडेक्स में अनुकूल स्थान मिला है।</b><br>यह रिपोर्ट वैश्विक स्तर पर सतत तकनीकी मापदंडों और नीतिगत सुधारों के गहन विश्लेषण के बाद तैयार की गई है।`;
+                if (timeline === "history") {
+                    // History page rendering logic using sequential mod index lookup
+                    let poolItem = staticHistoryPool[(globalCounter - 1) % staticHistoryPool.length];
+                    qText = `[इतिहास खंड] ${poolItem.q} (Page-${currentPage} Ref-${qIndex})`;
+                    ansText = poolItem.a;
                 } else {
-                    finalQuestion = `[द्विपक्षीय संबंध] हाल ही में ${c1} और ${c2} के बीच किस रणनीतिक विषय या '${top}' को लेकर एक उच्च स्तरीय द्विपक्षीय समझौता ज्ञापन (MoU) पर हस्ताक्षर किए गए हैं? (${timeline})`;
-                    finalAnswer = `<b>उत्तर: ${top} पर ऐतिहासिक समझौता हुआ है।</b><br>इसका मुख्य उद्देश्य दोनों देशों के बीच आपसी तकनीकी सहयोग बढ़ाना, व्यापारिक बाधाओं को दूर करना और द्विपक्षीय आर्थिक सुरक्षा को मजबूत करना है।`;
-                }
-            }
+                    // Current affairs generation matrix using deterministic page seed multipliers
+                    let nat1 = globalNations[(globalCounter + 2) % globalNations.length];
+                    let nat2 = globalNations[(globalCounter + 5) % globalNations.length];
+                    if(nat1 === nat2) nat2 = globalNations[(globalCounter + 7) % globalNations.length];
+                    
+                    let org = globalOrgs[(globalCounter + 3) % globalOrgs.length];
+                    let topic = coreTopics[(globalCounter + 1) % coreTopics.length];
 
-            let div = document.createElement('div');
-            div.className = 'gk-item';
-            div.innerHTML = `
-                <div class="gk-question">📌 <b>Q${questionCounter}.</b> ${finalQuestion}</div>
-                <button class="answer-btn" onclick="toggleGkValue(${questionCounter})">👁️ Check Hidden AI Explanation</button>
-                <div class="gk-answer" id="gkBlockAns_${questionCounter}">${finalAnswer}</div>
-            `;
-            container.appendChild(div);
+                    if (globalCounter % 2 === 0) {
+                        qText = `[वैश्विक सूचकांक] हाल ही में ${org} द्वारा जारी वार्षिक रैंकिंग इंडेक्स में, '${topic}' के क्रियान्वयन में कौन सा देश शीर्ष स्थान पर रहा है? (सत्र: ${month} ${timeline})`;
+                        ansText = `<b>उत्तर: इस सूचकांक में ${nat1} प्रथम स्थान पर रहा है, जबकि ${nat2} दूसरे स्थान पर रहा।</b><br>रिपोर्ट के अनुसार, भारत ने इस तकनीकी सुधार नीति और बुनियादी ढांचे के विकास में पिछले वर्ष की तुलना में बेहतर सुधार किया है।`;
+                    } else {
+                        qText = `[वैश्विक नीति] ${month} ${timeline} के आधिकारिक दस्तावेजों के अनुसार, ${nat1} और ${nat2} ने किस महत्वपूर्ण विषय अथवा '${topic}' को लेकर एक बड़े रणनीतिक सहयोग समझौते पर हस्ताक्षर किए हैं?`;
+                        ansText = `<b>उत्तर: दोनों देशों के बीच '${topic}' पर ऐतिहासिक सुरक्षा समझौता हुआ है।</b><br>इसका उद्देश्य बहुपक्षीय व्यापार को बढ़ावा देना, तकनीकी विशेषज्ञता साझा करना और हिंद-प्रशांत क्षेत्र में आर्थिक स्थिरता सुनिश्चित करना है।`;
+                    }
+                }
+
+                let div = document.createElement('div');
+                div.className = 'gk-item';
+                div.innerHTML = `
+                    <div class="gk-question">📌 <b>Q${globalCounter}.</b> ${qText}</div>
+                    <button class="answer-btn" onclick="togglePageAnswer(${globalCounter})">👁️ Read Page Solution</button>
+                    <div class="gk-answer" id="bookAnswer_${globalCounter}">${ansText}</div>
+                `;
+                container.appendChild(div);
+            }
+            
+            // Auto scroll smoothly back to the top of the book card upon flipping
+            document.querySelector('.book-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
-        function toggleGkValue(id) {
-            const ansEl = document.getElementById(`gkBlockAns_${id}`);
+        function togglePageAnswer(id) {
+            const ansEl = document.getElementById(`bookAnswer_${id}`);
             ansEl.style.display = (ansEl.style.display === 'block') ? 'none' : 'block';
         }
 
@@ -345,7 +379,7 @@
         }
 
         window.onload = function() {
-            generateAIQuestionsList(); 
+            renderBookPage(); // Initial Compile of Book Page 1 View
             renderJobsMatrix("all"); 
         };
     </script>
