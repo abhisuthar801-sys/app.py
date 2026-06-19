@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sarkari Result & AI Smart Book - Abhishek Suthar Edition</title>
+    <title>Sarkari Result & AI Smart Book - Abhishek Suthar Premium Edition</title>
     
     <!-- Real Mobile App Fullscreen Configuration -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,9 +18,11 @@
             --sarkari-blue: #1e3a8a;
             --premium-gold: #eab308;
             --success: #10b981;
-            --bg-light: #f1f5f9;
+            --bg-light: #f4f1ea; 
             --card-bg: #ffffff;
-            --text-dark: #1e293b;
+            --text-dark: #2c3e50;
+            --antique-page: #fbf6ef; 
+            --book-border: #e6dcc5;
         }
 
         body {
@@ -53,6 +55,59 @@
 
         .container { max-width: 1050px; margin: 0 auto; padding: 15px; }
 
+        /* NEW: PREMIUM FOLLOWERS & TOTAL VIEWS TRACKER PANEL */
+        .stats-tracker-card {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border: 1px solid #334155;
+        }
+        .stats-box {
+            display: flex;
+            gap: 25px;
+        }
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--premium-gold);
+        }
+        .follow-btn {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .follow-btn.followed {
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+        }
+
         /* Time Filter Matrix Box */
         .time-filter-card {
             background: var(--card-bg); padding: 14px; border-radius: 12px;
@@ -66,55 +121,59 @@
             outline: none; cursor: pointer; background-color: #f8fafc;
         }
 
-        /* PREMIUM DYNAMIC DIGITAL BOOK CARD LAYOUT */
+        /* PREMIUM REAL ANTIQUE BOOK THEME LAYOUT */
         .book-card {
-            background: #fffdf6; border-radius: 16px; padding: 22px;
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.02), 0 8px 24px rgba(0,0,0,0.06); 
-            border: 1px solid #e6dfc7; border-left: 8px solid #8b5cf6;
-            margin-bottom: 25px; position: relative;
+            background-color: var(--antique-page); 
+            border-radius: 12px; 
+            padding: 24px 24px 24px 35px; 
+            box-shadow: 0 12px 28px rgba(0,0,0,0.08), inset 0 0 40px rgba(230,220,197,0.3); 
+            border: 1px solid var(--book-border);
+            margin-bottom: 25px; 
+            position: relative;
         }
         .book-spine-line {
-            position: absolute; left: 10px; top: 0; bottom: 0; width: 1px; background: rgba(0,0,0,0.04);
+            position: absolute; left: 18px; top: 0; bottom: 0; width: 4px; 
+            background: linear-gradient(90deg, rgba(0,0,0,0.08), rgba(0,0,0,0.01) 50%, rgba(255,255,255,0.15) 100%);
+            border-right: 1px solid rgba(0,0,0,0.05);
         }
         .book-header-panel {
             display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 2px dashed #cbd5e1; padding-bottom: 10px; margin-bottom: 18px;
+            border-bottom: 1px dashed #c8bca6; padding-bottom: 10px; margin-bottom: 18px;
         }
-        .book-title { color: #5b21b6; font-size: 1.1rem; font-weight: 900; margin: 0; }
-        .page-badge { background-color: #8b5cf6; color: white; padding: 3px 10px; border-radius: 15px; font-weight: 700; font-size: 0.8rem; }
+        .book-title { color: #5c4033; font-size: 1.05rem; font-weight: 800; margin: 0; letter-spacing: 0.3px; }
+        .page-badge { background-color: #8c6d53; color: white; padding: 3px 10px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; }
 
         .gk-list { display: flex; flex-direction: column; gap: 12px; }
-        .gk-item { background: #ffffff; border: 1px solid #e2e8f0; padding: 14px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.01); }
-        
-        /* Font size reduced here perfectly */
-        .gk-question { font-size: 0.95rem; font-weight: 700; color: #1e293b; margin-bottom: 10px; line-height: 1.5; }
+        .gk-item { 
+            background: #fffdfa; border: 1px solid #ebdcb9; padding: 14px; border-radius: 6px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02); 
+        }
+        .gk-question { font-size: 0.95rem; font-weight: 700; color: #2c3e50; margin-bottom: 10px; line-height: 1.5; }
         
         .answer-btn {
-            background-color: #8b5cf6; color: white; border: none; padding: 6px 12px;
-            border-radius: 6px; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: all 0.2s;
+            background-color: #8c6d53; color: white; border: none; padding: 6px 12px;
+            border-radius: 4px; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: all 0.2s;
         }
-        .answer-btn:hover { background-color: #7c3aed; }
+        .answer-btn:hover { background-color: #6e4e37; }
         
-        /* Font size reduced for solutions too */
         .gk-answer {
-            margin-top: 10px; padding: 10px 12px; background-color: #f0fdf4;
-            border-left: 3px solid var(--success); border-radius: 6px; color: #166534;
+            margin-top: 10px; padding: 10px 12px; background-color: #f4fcf6;
+            border-left: 3px solid var(--success); border-radius: 4px; color: #1e522f;
             font-weight: 600; display: none; line-height: 1.5; font-size: 0.85rem;
         }
 
-        /* Real Page Navigation Bar Grid */
         .book-navigation-panel {
             display: flex; justify-content: space-between; align-items: center;
-            margin-top: 20px; border-top: 2px dashed #cbd5e1; padding-top: 14px;
+            margin-top: 20px; border-top: 1px dashed #c8bca6; padding-top: 14px;
         }
         .nav-book-btn {
-            background: linear-gradient(135deg, #1e3a8a, #1d4ed8); color: white; border: none;
-            padding: 10px 18px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.85rem;
-            box-shadow: 0 3px 8px rgba(30, 58, 138, 0.15); transition: all 0.2s;
+            background: linear-gradient(135deg, #4a3525, #6e4e37); color: white; border: none;
+            padding: 9px 16px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 0.85rem;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1); transition: all 0.2s;
         }
         .nav-book-btn:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; box-shadow: none; }
 
-        /* Dynamic Category Quick Filters */
+        /* Quick Filters */
         .filter-section {
             background: var(--card-bg); padding: 12px; border-radius: 12px;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-bottom: 20px;
@@ -126,7 +185,7 @@
         }
         .filter-btn.active, .filter-btn:hover { background: var(--sarkari-blue); color: white; border-color: var(--sarkari-blue); }
 
-        /* Asli Sarkari Result 3-Column Dashboard Matrix */
+        /* Jobs Matrix */
         .portal-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 25px;
         }
@@ -160,19 +219,36 @@
     <!-- Top Real-time Ticker Bar -->
     <div class="ticker-bar">
         <div class="ticker-text">
-            📖 DIGITAL BOOK EDITION: पन्ना-वार अनंत सामान्य ज्ञान सक्रिय || 5 Sawaal Per Page Compact Font Counter Active || Powered by ABHISHEK SUTHAR!
+            📢 LIVE TRACKER: अभिषेक सुथार ऑफिशियल ऑडियंस डैशबोर्ड सक्रिय || कुल फॉलोअर्स एवं व्यूज लाइव ट्रैकिंग मेट्रिक्स ऑन!
         </div>
     </div>
 
     <!-- Luxury Portal Navbar Header -->
     <div class="header">
-        <h1>SARKARI RESULT & <span>AI SMART BOOK</span></h1>
-        <p>🎯 Abhishek Suthar Interactive Compact Page Learning Portal 🎯</p>
+        <h1>SARKARI RESULT & <span>AI ANTIQUE BOOK</span></h1>
+        <p>🎯 Abhishek Suthar Interactive Premium Book Theme Layout 🎯</p>
     </div>
 
     <div class="container">
 
-        <!-- STEP 1: TIME CONTROLS (ALL 12 MONTHS ADDED PERFECTLY) -->
+        <!-- NEW STEP: LIVE AUDIENCE STATS TRACKER DASHBOARD -->
+        <div class="stats-tracker-card">
+            <div class="stats-box">
+                <div class="stat-item">
+                    <span class="stat-label">👀 Total Views</span>
+                    <span class="stat-value" id="viewCountEl">1,24,580</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">👥 Followers</span>
+                    <span class="stat-value" id="followerCountEl">12,450</span>
+                </div>
+            </div>
+            <button class="follow-btn" id="followBtn" onclick="handleFollowAction()">
+                🔔 Follow Portal
+            </button>
+        </div>
+
+        <!-- STEP 1: TIME CONTROLS -->
         <div class="card time-filter-card">
             <h3 style="margin-top:0; color: #1e3a8a; font-size: 0.95rem; margin-bottom: 10px;">📅 कालखंड चयन ग्रिड (Select Month & Year):</h3>
             <div class="time-grid">
@@ -199,21 +275,19 @@
             </div>
         </div>
 
-        <!-- STEP 2: INTERACTIVE DIGITAL BOOK MODULE (Compact Akshar View) -->
+        <!-- STEP 2: INTERACTIVE DIGITAL BOOK MODULE -->
         <div class="book-card">
             <div class="book-spine-line"></div>
             
             <div class="book-header-panel">
-                <h3 class="book-title">📖 वैश्विक ज्ञानकोष - कॉम्पैक्ट एडिशन</h3>
+                <h3 class="book-title">📖 वैश्विक ज्ञानकोष - पुस्तकालय एडिशन</h3>
                 <span class="page-badge" id="pageNumberDisplay">Page 1</span>
             </div>
 
-            <!-- Content Container -->
             <div class="gk-list" id="bookPageContainer">
                 <!-- Loaded dynamically via JS -->
             </div>
 
-            <!-- Page Flip Panel -->
             <div class="book-navigation-panel">
                 <button class="nav-book-btn" id="prevPageBtn" onclick="flipPage(-1)">◀️ Previous Page</button>
                 <button class="nav-book-btn" id="nextPageBtn" onclick="flipPage(1)">Next Page ▶️</button>
@@ -254,38 +328,69 @@
 
     <script>
         let currentPage = 1;
+        
+        // Dynamic Live Audience Dashboard Logic (Simulated and Saved in Browser Memory)
+        let totalViews = parseInt(localStorage.getItem('abhishek_portal_views')) || 124580;
+        let totalFollowers = parseInt(localStorage.getItem('abhishek_portal_followers')) || 12450;
+        let isFollowed = localStorage.getItem('abhishek_portal_is_followed') === 'true';
+
+        // Increment views automatically on every entry page refresh
+        totalViews += Math.floor(Math.random() * 4) + 1;
+        localStorage.setItem('abhishek_portal_views', totalViews);
 
         const globalNations = ["भारत", "अमेरिका", "रूस", "ब्रिटेन", "फ्रांस", "जर्मनी", "जापान", "कनाडा", "ऑस्ट्रेलिया", "इटली"];
         const globalOrgs = ["संयुक्त राष्ट्र (UN)", "विश्व बैंक", "अंतर्राष्ट्रीय मुद्रा कोष (IMF)", "यूनेस्को", "नासा (NASA)", "इसरो (ISRO)", "डब्ल्यूएचओ (WHO)"];
         const coreTopics = ["आर्टिफिशियल इंटेलिजेंस रेगुलेशन", "ग्रीन हाइड्रोजन एनर्जी ग्रिड", "ग्लोबल वार्मिंग नियंत्रण संधि", "क्वांटम नेटवर्क सुरक्षा", "साइबर थ्रेट मैनेजमेंट", "अंतरिक्ष मलबे का निपटारा"];
 
         const staticHistoryPool = [
-            { q: "मौर्य राजवंश के प्रसिद्ध शासक सम्राट अशोक ने किस ऐतिहासिक युद्ध के बाद बौद्ध धर्म को अपनाया था?", a: "<b>उत्तर: कलिंग युद्ध (261 ईसा पूर्व)।</b><br>कलिंग युद्ध में हुए भीषण नरसंहार को देखकर अशोक का हृदय परिवर्तन हुआ। उन्होंने शांति का मार्ग अपनाया।" },
-            { q: "भारतीय राष्ट्रीय कांग्रेस (INC) के प्रथम अधिवेशन की अध्यक्षता 1885 में किसने की थी और यह कहाँ हुआ था?", a: "<b>उत्तर: व्योमेश चंद्र बनर्जी (स्थान: बॉम्बे)।</b><br>यह अधिवेशन गोकुलदास तेजपाल संस्कृत कॉलेज में आयोजित किया गया था, जिसमें कुल 72 प्रतिनिधियों ने भाग लिया था।" },
-            { q: "प्रसिद्ध चीनी यात्री 'ह्वेनसांग' (Hiuen Tsang) ने किस उत्तर भारतीय सम्राट के शासनकाल में भारत की यात्रा की थी?", a: "<b>उत्तर: सम्राट हर्षवर्धन।</b><br>ह्वेनसांग ने नालंदा विश्वविद्यालय में बौद्ध धर्म का अध्ययन किया।" },
-            { q: "1916 के प्रसिद्ध 'लखनऊ समझौते' (Lucknow Pact) का मुख्य ऐतिहासिक महत्व क्या था?", a: "<b>उत्तर: कांग्रेस के दोनों धड़ों (नरम दल-गरम दल) और मुस्लिम लीग का एक मंच पर आना।</b><br>इस अधिवेशन की अध्यक्षता अंबिका चरण मजूमदार ने की थी।" },
-            { q: "भारतीय पुरातत्व सर्वेक्षण (ASI) के प्रथम महानिदेशक कौन थे जिन्हें भारत में पुरातत्व का जनक कहा जाता है?", a: "<b>उत्तर: सर अलेक्जेंडर कनिंघम।</b><br>उन्होंने 1861 में ब्रिटिश काल के दौरान भारत के ऐतिहासिक स्थलों की खुदाई शुरू करवाई थी।" }
+            { q: "मौрь राजवंश के प्रसिद्ध शासक सम्राट अशोक ने किस ऐतिहासिक युद्ध के बाद बौद्ध धर्म को अपनाया था?", a: "<b>उत्तर: कलिंग युद्ध (261 ईसा पूर्व)।</b><br>कलिंग युद्ध में हुए भीषण नरसंहार को देखकर अशोक का हृदय परिवर्तन हुआ। उन्होंने शांति का मार्ग अपनाया।" },
+            { q: "भारतीय राष्ट्रीय कांग्रेस (INC) के प्रथम अधिवेशन की अध्यक्षता 1885 में किसने की थी?", a: "<b>उत्तर: व्योमेश चंद्र बनर्जी (स्थान: बॉम्बे)।</b><br>यह अधिवेशन गोकुलदास तेजपाल संस्कृत कॉलेज में आयोजित किया गया था।" },
+            { q: "प्रसिद्ध चीनी यात्री 'ह्वेनसांग' (Hiuen Tsang) ने किस उत्तर भारतीय सम्राट के शासनकाल में भारत की यात्रा की थी?", a: "<b>उत्तर: सम्राट हर्षवर्धन।</b><br>ह्वेनसांग ने नालंदा विश्वविद्यालय में बौद्ध धर्म का अध्ययन किया।" }
         ];
 
         const portalData = {
             jobs: [
                 { title: "रेलवे RRB तकनीशियन भर्ती ऑनलाइन फॉर्म 2026", cat: "railway", tag: "new" },
                 { title: "एसएससी CGL भर्ती परीक्षा ऑनलाइन फॉर्म 2026", cat: "ssc", tag: "new" },
-                { title: "यूपी पुलिस सब-इंस्पेक्टर (SI) बम्पर भर्ती 2026", cat: "police", tag: "new" },
-                { title: "एसबीआई (SBI) बैंक पीओ भर्ती फॉर्म 2026", cat: "bank", tag: "update" },
-                { title: "रेलवे NTPC ग्रेजुएट लेवल भर्ती 2026", cat: "railway", tag: "new" }
+                { title: "यूपी पुलिस सब-इंस्पेक्टर (SI) बम्पर भर्ती 2026", cat: "police", tag: "new" }
             ],
             admit: [
                 { title: "एसएससी CHSL परीक्षा एडमिट कार्ड 2026", cat: "ssc", tag: "new" },
-                { title: "रेलवे ALP परीक्षा सिटी इंटिमेशन लिंक 2026", cat: "railway", tag: "update" },
-                { title: "बिहार police कांस्टेबल परीक्षा प्रवेश पत्र 2026", cat: "police", tag: "last" }
+                { title: "रेलवे ALP परीक्षा सिटी इंटिमेशन लिंक 2026", cat: "railway", tag: "update" }
             ],
             results: [
                 { title: "यूपी पुलिस कांस्टेबल परीक्षा फाइनल रिजल्ट 2026", cat: "police", tag: "new" },
-                { title: "एसएससी जीडी (GD) कांस्टेबल मेरिट लिस्ट घोषित", cat: "ssc", tag: "update" },
                 { title: "आरआरबी (RRB) ग्रुप डी परीक्षा परिणाम 2026", cat: "railway", tag: "new" }
             ]
         };
+
+        function updateAudienceUI() {
+            document.getElementById('viewCountEl').innerText = totalViews.toLocaleString('en-IN');
+            document.getElementById('followerCountEl').innerText = totalFollowers.toLocaleString('en-IN');
+            
+            const followBtn = document.getElementById('followBtn');
+            if (isFollowed) {
+                followBtn.innerText = "✅ Following";
+                followBtn.classList.add('followed');
+            } else {
+                followBtn.innerText = "🔔 Follow Portal";
+                followBtn.classList.remove('followed');
+            }
+        }
+
+        function handleFollowAction() {
+            if (!isFollowed) {
+                totalFollowers++;
+                isFollowed = true;
+                alert("🎉 Thank you! You are now following Abhishek Suthar's Official Portal. Notification alerts activated.");
+            } else {
+                totalFollowers--;
+                isFollowed = false;
+            }
+            localStorage.setItem('abhishek_portal_followers', totalFollowers);
+            localStorage.setItem('abhishek_portal_is_followed', isFollowed);
+            updateAudienceUI();
+        }
 
         function resetBookToPageOne() {
             currentPage = 1;
@@ -320,17 +425,16 @@
                 } else {
                     let nat1 = globalNations[(globalCounter + 2) % globalNations.length];
                     let nat2 = globalNations[(globalCounter + 5) % globalNations.length];
-                    if(nat1 === nat2) nat2 = globalNations[(globalCounter + 7) % globalNations.length];
                     
                     let org = globalOrgs[(globalCounter + 3) % globalOrgs.length];
                     let topic = coreTopics[(globalCounter + 1) % coreTopics.length];
 
                     if (globalCounter % 2 === 0) {
                         qText = `[वैश्विक सूचकांक] हाल ही में ${org} द्वारा जारी वार्षिक रैंकिंग इंडेक्स में, '${topic}' के क्रियान्वयन में कौन सा देश शीर्ष स्थान पर रहा है? (${monthText} ${timeline})`;
-                        ansText = `<b>उत्तर: इस सूचकांक में ${nat1} प्रथम स्थान पर रहा है, जबकि ${nat2} दूसरे स्थान पर रहा।</b><br>रिपोर्ट के अनुसार, भारत ने इस नीति और बुनियादी ढांचे के विकास में पिछले वर्ष की तुलना में काफी बेहतर सुधार किया है।`;
+                        ansText = `<b>उत्तर: इस सूचकांक में ${nat1} प्रथम स्थान पर रहा है, जबकि ${nat2} दूसरे स्थान पर रहा।</b><br>भारत ने इस नीति विकास में पिछले वर्ष की तुलना में काफी बेहतर सुधार किया है।`;
                     } else {
                         qText = `[वैश्विक नीति] ${monthText} ${timeline} के आधिकारिक दस्तावेजों के अनुसार, ${nat1} और ${nat2} ने किस महत्वपूर्ण विषय अथवा '${topic}' को लेकर एक बड़े रणनीतिक सहयोग समझौते पर हस्ताक्षर किए हैं?`;
-                        ansText = `<b>उत्तर: दोनों देशों के बीच '${topic}' पर ऐतिहासिक सुरक्षा और व्यापार समझौता हुआ है।</b><br>इसका उद्देश्य बहुपक्षीय सहयोग को बढ़ावा देना और क्षेत्र में आर्थिक स्थिरता सुनिश्चित करना है।`;
+                        ansText = `<b>उत्तर: दोनों देशों के बीच '${topic}' पर ऐतिहासिक सुरक्षा और व्यापार समझौता हुआ है।</b>`;
                     }
                 }
 
@@ -343,12 +447,10 @@
                 `;
                 container.appendChild(div);
             }
-            
-            document.querySelector('.book-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
         function togglePageAnswer(id) {
-            const ansEl = document.getElementById(`bookAnswer_${id}`);
+            const ansEl = document.getElementById::`bookAnswer_${id}`);
             ansEl.style.display = (ansEl.style.display === 'block') ? 'none' : 'block';
         }
 
@@ -385,6 +487,7 @@
         }
 
         window.onload = function() {
+            updateAudienceUI(); // Setup Followers and View metrics
             renderBookPage(); 
             renderJobsMatrix("all"); 
         };
