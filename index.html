@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sarkari Result & AI Smart Book - Abhishek Suthar Antique Edition</title>
     
-    <!-- Real Mobile App Fullscreen Configuration -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
@@ -34,7 +33,6 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Top Live Flash Ticker */
         .ticker-bar {
             background: linear-gradient(90deg, #b91c1c, var(--sarkari-red));
             color: white; padding: 6px 12px; font-weight: bold; font-size: 0.85rem;
@@ -43,7 +41,6 @@
         .ticker-text { display: inline-block; padding-left: 100%; animation: textScroll 25s linear infinite; }
         @keyframes textScroll { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
 
-        /* Luxury Real Header */
         .header {
             background: linear-gradient(135deg, var(--sarkari-blue), #1d4ed8);
             color: white; padding: 16px; text-align: center;
@@ -55,7 +52,6 @@
 
         .container { max-width: 1050px; margin: 0 auto; padding: 15px; }
 
-        /* CLEAN TOP ACTION BAR FOR YOUTUBE */
         .action-tracker-bar {
             background: linear-gradient(135deg, #1e293b, #0f172a);
             padding: 12px 20px; border-radius: 12px; margin-bottom: 20px;
@@ -65,7 +61,6 @@
         }
         .bar-notice { font-size: 0.9rem; color: #94a3b8; font-weight: 700; letter-spacing: 0.3px; }
 
-        /* Premium YouTube Button Style with Channel Name Text */
         .yt-coaching-btn {
             background: #ff0000; color: white; border: none; padding: 10px 20px;
             border-radius: 25px; font-weight: 800; font-size: 0.85rem; cursor: pointer;
@@ -86,7 +81,6 @@
             outline: none; cursor: pointer; background-color: #f8fafc;
         }
 
-        /* ANTIQUE BOOK THEME LAYOUT */
         .book-card {
             background-color: var(--antique-page); border-radius: 12px; padding: 24px 24px 24px 35px; 
             box-shadow: 0 12px 28px rgba(0,0,0,0.08), inset 0 0 40px rgba(230,220,197,0.3); border: 1px solid var(--book-border);
@@ -131,7 +125,6 @@
         }
         .nav-book-btn:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; box-shadow: none; }
 
-        /* Dynamic Job Filters */
         .filter-section {
             background: var(--card-bg); padding: 12px; border-radius: 12px;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-bottom: 20px;
@@ -143,7 +136,6 @@
         }
         .filter-btn.active, .filter-btn:hover { background: var(--sarkari-blue); color: white; border-color: var(--sarkari-blue); }
 
-        /* Sarkari Result Columns */
         .portal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 25px; }
         .portal-column { background: var(--card-bg); border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; overflow: hidden; }
         .column-header { color: white; padding: 10px; font-size: 1rem; font-weight: 800; text-align: center; }
@@ -171,7 +163,7 @@
 
     <div class="ticker-bar">
         <div class="ticker-text">
-            📢 PORTAL STABLE: Kamra Coaching Ganganagar यूट्यूब चैनल ब्रांड लिंक लाइव सक्रिय!
+            🚀 PORTAL FINALIZED: Kamra Coaching Ganganagar यूट्यूब चैनल और पूर्णतः स्वचालित ज्ञानकोष स्थिर रूप से सक्रिय!
         </div>
     </div>
 
@@ -182,10 +174,8 @@
 
     <div class="container">
 
-        <!-- CLEAN ACTION BAR WIHOUT STATS VISITOR ELEMENTS -->
         <div class="action-tracker-bar">
             <div class="bar-notice">📢 Join Our Official YouTube Learning Channel:</div>
-            <!-- YouTube Button with Full Name -->
             <a href="https://www.youtube.com/@KamraCoachingGanganagar" target="_blank" class="yt-coaching-btn">
                 <svg class="yt-icon" viewBox="0 0 24 24">
                     <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.016 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
@@ -194,7 +184,7 @@
             </a>
         </div>
 
-        <!-- STEP 1: TIME CONTROLS -->
+        <!-- TIME CONTROLS -->
         <div class="card time-filter-card">
             <h3 style="margin-top:0; color: #1e3a8a; font-size: 0.95rem; margin-bottom: 10px;">📅 कालखंड चयन ग्रिड (Select Month & Year):</h3>
             <div class="time-grid">
@@ -221,8 +211,8 @@
             </div>
         </div>
 
-        <!-- STEP 2: BOOK MODULE -->
-        <div class="book-card">
+        <!-- BOOK MODULE -->
+        <div class="book-card" id="bookCardSection">
             <div class="book-spine-line"></div>
             
             <div class="book-header-panel">
@@ -238,7 +228,7 @@
             </div>
         </div>
 
-        <!-- STEP 3: LATEST JOBS FILTERS -->
+        <!-- LATEST JOBS FILTERS -->
         <div class="filter-section">
             <button class="filter-btn active" onclick="filterCategory('all')">🔥 All Updates</button>
             <button class="filter-btn" onclick="filterCategory('railway')">🚂 Railway Jobs</button>
@@ -247,7 +237,7 @@
             <button class="filter-btn" onclick="filterCategory('bank')">🏦 Banking Core</button>
         </div>
 
-        <!-- STEP 4: SARKARI RESULT TABLES -->
+        <!-- SARKARI RESULT TABLES -->
         <div class="portal-grid">
             <div class="portal-column">
                 <div class="column-header col-jobs">🔥 Latest Jobs 2026</div>
@@ -280,10 +270,11 @@
         const staticHistoryPool = [
             { q: "मौर्य राजवंश के प्रसिद्ध शासक सम्राट अशोक ने किस ऐतिहासिक युद्ध के बाद बौद्ध धर्म को अपनाया था?", a: "<b>उत्तर: कलिंग युद्ध (261 ईसा पूर्व)।</b><br>कलिंग युद्ध में हुए भीषण नरसंहार को देखकर अशोक का हृदय परिवर्तन हुआ। उन्होंने शांति का मार्ग अपनाया।" },
             { q: "भारतीय राष्ट्रीय कांग्रेस (INC) के प्रथम अधिवेशन की अध्यक्षता 1885 में किसने की थी?", a: "<b>उत्तर: व्योमेश चंद्र बनर्जी (स्थान: बॉम्बे)।</b><br>यह अधिवेशन गोकुलदास तेजपाल संस्कृत कॉलेज में आयोजित किया गया था।" },
-            { q: "प्रसिद्ध चीनी यात्री 'ह्वेनसांग' ने किस उत्तर भारतीय सम्राट के शासनकाल में भारत की यात्रा की थी?", a: "<b>उत्तर: सम्राट हर्षवर्धन।</b><br>ह्वेनसांग ने नालंदा विश्वविद्यालय में बौद्ध धर्म का अध्ययन किया।" }
+            { q: "प्रसिद्ध चीनी यात्री 'ह्वेनसांग' ने किस उत्तर भारतीय सम्राट के शासनकाल में भारत की यात्रा की थी?", a: "<b>उत्तर: सम्राट हर्षवर्धन।</b><br>ह्वेनसांग ने नालंदा विश्वविद्यालय में बौद्ध धर्म का अध्ययन किया।" },
+            { q: "1916 के प्रसिद्ध 'लखनऊ समझौते' (Lucknow Pact) का मुख्य ऐतिहासिक महत्व क्या था?", a: "<b>उत्तर: कांग्रेस के दोनों धड़ों (नरम दल-गरम दल) और मुस्लिम लीग का एक मंच पर आना।</b>" },
+            { q: "भारतीय पुरातत्व सर्वेक्षण (ASI) के प्रथम महानिदेशक कौन थे जिन्हें भारत में पुरातत्व का जनक कहा जाता है?", a: "<b>उत्तर: सर अलेक्जेंडर कनिंघम।</b><br>उन्होंने 1861 में ऐतिहासिक स्थलों की खुदाई शुरू करवाई थी।" }
         ];
 
-        // DYNAMIC PORTAL DATA (Apne mutabik badalne ke liye niche edit karein)
         const portalData = {
             jobs: [
                 { title: "रेलवे RRB तकनीशियन भर्ती ऑनलाइन फॉर्म 2026", cat: "railway", tag: "new" },
@@ -309,6 +300,9 @@
             currentPage += direction;
             if(currentPage < 1) currentPage = 1;
             renderBookPage();
+            
+            // Fix: Page turn karne par screen automatically top par scroll ho jayegi smoothly
+            document.getElementById('bookCardSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function renderBookPage() {
@@ -331,11 +325,14 @@
                     qText = `[इतिहास खंड] ${poolItem.q}`;
                     ansText = poolItem.a;
                 } else {
-                    let nat1 = globalNations[(globalCounter + 2) % globalNations.length];
-                    let nat2 = globalNations[(globalCounter + 5) % globalNations.length];
+                    // Seed multiplier changed dynamically according to dropdown selection states
+                    let seedBase = globalCounter + monthSelect.selectedIndex + parseInt(timeline || 2026);
+                    let nat1 = globalNations[(seedBase + 2) % globalNations.length];
+                    let nat2 = globalNations[(seedBase + 5) % globalNations.length];
+                    if(nat1 === nat2) nat2 = globalNations[(seedBase + 7) % globalNations.length];
                     
-                    let org = globalOrgs[(globalCounter + 3) % globalOrgs.length];
-                    let topic = coreTopics[(globalCounter + 1) % coreTopics.length];
+                    let org = globalOrgs[(seedBase + 3) % globalOrgs.length];
+                    let topic = coreTopics[(seedBase + 1) % coreTopics.length];
 
                     if (globalCounter % 2 === 0) {
                         qText = `[वैश्विक सूचकांक] हाल ही में ${org} द्वारा जारी वार्षिक रैंकिंग इंडेक्स में, '${topic}' के क्रियान्वयन में कौन सा देश शीर्ष स्थान पर रहा है? (${monthText} ${timeline})`;
