@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Master PRO</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; margin: 0; padding: 0; }
+        .navbar { background-color: #1e3a8a; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 1.2rem; }
+        .lang-btn { background-color: #3b82f6; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9rem; }
+        .container { padding: 20px; max-width: 600px; margin: 0 auto; }
+        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; border-top: 5px solid #1e3a8a; }
+        .gk-card { background-color: #e0f2fe; border-top-color: #0284c7; }
+        .job-card { background-color: #fef3c7; border-top-color: #d97706; }
+        h3 { margin-top: 0; color: #1e3a8a; }
+        .option-btn { display: block; width: 100%; text-align: left; padding: 12px; margin: 8px 0; border: 1px solid #cbd5e1; border-radius: 8px; background: #fff; cursor: pointer; font-size: 1rem; transition: 0.2s; }
+        .option-btn:hover { background: #f1f5f9; }
+        .result { padding: 12px; border-radius: 8px; margin-top: 15px; display: none; font-weight: bold; }
+        .footer { text-align: center; margin-top: 40px; padding: 15px; background-color: #e0f2fe; border: 1px solid #bae6fd; border-radius: 10px; color: #1e3a8a; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <span>⚡ Math Master PRO</span>
+        <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">English</button>
+    </div>
+
+    <div class="container">
+        <!-- Welcome Message -->
+        <h2 id="welcome">नमस्ते, राहुल! 👋 आज क्या सीखेंगे?</h2>
+
+        <!-- Daily GK -->
+        <div class="card gk-card">
+            <h3 id="gkTitle">🗓️ रोज़ाना जीके और राय</h3>
+            <p id="gkContent">1. भारत ने नया मौसम उपग्रह लॉन्च किया।<br>2. RBI रेपो रेट 6.5% पर बरकरार।</p>
+        </div>
+
+        <!-- Job Alerts -->
+        <div class="card job-card">
+            <h3 id="jobTitle">🔔 नयी सरकारी नौकरियां</h3>
+            <p id="jobContent">🆕 रेलवे RRB तकनीशियन भर्ती 2026<br>कुल पद: 6,565 | अंतिम तिथि: 30 जून 2026</p>
+        </div>
+
+        <!-- Math Quiz -->
+        <div class="card">
+            <h3 id="quizTitle">🔢 गणित अभ्यास (Percentage)</h3>
+            <p id="quizQuestion" style="font-size: 1.1rem; font-weight: bold;">Q. 120 का 25% क्या होगा?</p>
+            <button class="option-btn" onclick="checkAnswer(this, '20')">20</button>
+            <button class="option-btn" onclick="checkAnswer(this, '30')">30</button>
+            <button class="option-btn" onclick="checkAnswer(this, '40')">40</button>
+            <button class="option-btn" onclick="checkAnswer(this, '50')">50</button>
+            <div id="resultBox" class="result"></div>
+        </div>
+
+        <!-- Branding Footer -->
+        <div class="footer">
+            🐾 POWERED BY BILLU 🐾
+        </div>
+    </div>
+
+    <script>
+        let isHindi = true;
+
+        const content = {
+            hi: {
+                welcome: "नमस्ते, राहुल! 👋 आज क्या सीखेंगे?",
+                gkTitle: "🗓️ रोज़ाना जीके और राय",
+                gkContent: "1. भारत ने नया मौसम उपग्रह लॉन्च किया।<br>2. RBI रेपो रेट 6.5% पर बरकरार।",
+                jobTitle: "🔔 नयी सरकारी नौकरियां",
+                jobContent: "🆕 रेलवे RRB तकनीशियन भर्ती 2026<br>कुल पद: 6,565 | अंतिम तिथि: 30 जून 2026",
+                quizTitle: "🔢 गणित अभ्यास (Percentage)",
+                quizQuestion: "Q. 120 का 25% क्या होगा?",
+                correct: "🟢 बिल्कुल सही उत्तर!",
+                wrong: "🔴 गलत उत्तर! फिर कोशिश करें।"
+            },
+            en: {
+                welcome: "Hello, Rahul! 👋 What to learn today?",
+                gkTitle: "🗓️ Daily GK & Opinion",
+                gkContent: "1. India launched a new weather satellite.<br>2. RBI keeps repo rate at 6.5%.",
+                jobTitle: "🔔 Latest Job Alerts",
+                jobContent: "🆕 Railway RRB Technician Recruitment 2026<br>Total Posts: 6,565 | Last Date: 30 June 2026",
+                quizTitle: "🔢 Math Quiz (Percentage)",
+                quizQuestion: "Q. What is 25% of 120?",
+                correct: "🟢 Correct Answer!",
+                wrong: "🔴 Incorrect! Try again."
+            }
+        };
+
+        function toggleLanguage() {
+            isHindi = !isHindi;
+            const lang = isHindi ? 'hi' : 'en';
+            document.getElementById('langBtn').innerText = isHindi ? 'English' : 'Hindi';
+            document.getElementById('welcome').innerText = content[lang].welcome;
+            document.getElementById('gkTitle').innerText = content[lang].gkTitle;
+            document.getElementById('gkContent').innerHTML = content[lang].gkContent;
+            document.getElementById('jobTitle').innerText = content[lang].jobTitle;
+            document.getElementById('jobContent').innerHTML = content[lang].jobContent;
+            document.getElementById('quizTitle').innerText = content[lang].quizTitle;
+            document.getElementById('quizQuestion').innerText = content[lang].quizQuestion;
+            document.getElementById('resultBox').style.display = 'none';
+        }
+
+        function checkAnswer(btn, value) {
+            const resultBox = document.getElementById('resultBox');
+            const lang = isHindi ? 'hi' : 'en';
+            resultBox.style.display = 'block';
+            if(value === '30') {
+                resultBox.style.backgroundColor = '#d1fae5';
+                resultBox.style.color = '#065f46';
+                resultBox.style.border = '1px solid #a7f3d0';
+                resultBox.style.innerText = content[lang].correct;
+            } else {
+                resultBox.style.backgroundColor = '#fee2e2';
+                resultBox.style.color = '#991b1b';
+                resultBox.style.border = '1px solid #fecaca';
+                resultBox.style.innerText = content[lang].wrong;
+            }
+        }
+    </script>
+</body>
+</html>
