@@ -3,114 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math Master PRO - AI Grand Solution Edition</title>
+    <title>Math Master PRO - Abhishek Suthar Edition</title>
+    
+    <!-- Real Android App Fullscreen Configuration (PWA Setup) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#0f172a">
+    
     <style>
         :root {
-            --primary: #1e3a8a;
-            --primary-light: #3b82f6;
+            --primary-dark: #0f172a;
+            --premium-blue: #1e3a8a;
+            --premium-gold: #eab308;
             --success: #10b981;
             --danger: #ef4444;
-            --dark: #1e293b;
-            --bg: #f8fafc;
+            --text-main: #334155;
             --card-bg: #ffffff;
+            --bg-light: #f1f5f9;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--bg);
-            color: var(--dark);
+            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .navbar {
-            background: linear-gradient(135deg, var(--primary), #1d4ed8);
+        /* Live Scrolling Bar like Sarkari Result */
+        .ticker-wrap {
+            background-color: #d97706;
             color: white;
-            padding: 15px 25px;
+            padding: 6px 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            overflow: hidden;
+            white-space: nowrap;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .ticker-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 25s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        /* Top Luxury Navbar */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-dark), #1e293b);
+            color: white;
+            padding: 18px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-bottom: 4px solid var(--premium-gold);
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
-        .brand { font-size: 1.3rem; font-weight: 800; display: flex; align-items: center; gap: 10px;}
-        .ai-badge { background: #f59e0b; color: white; font-size: 0.75rem; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; font-weight: bold; }
-        .lang-btn { background: rgba(255, 255, 255, 0.15); color: white; border: 1px solid rgba(255, 255, 255, 0.3); padding: 8px 18px; border-radius: 30px; cursor: pointer; font-size: 0.9rem; font-weight: 600; }
-        .container { padding: 25px 20px; max-width: 680px; margin: 0 auto; }
-        
-        .card {
-            background: var(--card-bg);
-            padding: 24px;
-            border-radius: 16px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            margin-bottom: 25px;
-            border-left: 6px solid var(--primary);
+        .brand {
+            font-size: 1.4rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 0.5px;
+        }
+        .brand span { color: var(--premium-gold); }
+
+        .ai-badge {
+            background: linear-gradient(45deg, #f59e0b, var(--premium-gold));
+            color: #000;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            font-weight: 800;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
         }
 
-        .formula-card { border-left-color: var(--success); background: #f0fdf4; }
-        .solution-card { border-left-color: #a855f7; background: #faf5ff; display: none; margin-top: 15px; animation: fadeIn 0.3s ease;}
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid var(--premium-gold);
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        .lang-btn:hover { background: var(--premium-gold); color: #000; }
 
-        .topic-dropdown { width: 100%; padding: 14px; font-size: 1.05rem; font-weight: 700; border: 2px solid #cbd5e1; border-radius: 12px; background-color: white; color: var(--primary); outline: none; cursor: pointer; }
-        .quiz-box { background: #fafafa; padding: 20px; border-radius: 12px; border: 1px dashed #cbd5e1; }
-        .question-meta { font-size: 0.85rem; color: var(--primary-light); font-weight: 700; margin-bottom: 5px; text-transform: uppercase; }
-        .question-text { font-size: 1.25rem; font-weight: 700; color: var(--dark); margin-bottom: 20px; line-height: 1.6; }
-        
-        .options-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .option-btn { padding: 14px; border: 1px solid #e2e8f0; border-radius: 10px; background: #ffffff; cursor: pointer; font-size: 1rem; font-weight: 600; transition: all 0.2s ease; }
-        .option-btn:hover:not(:disabled) { background: #f1f5f9; border-color: var(--primary-light); }
-        
-        .correct-ans { background-color: var(--success) !important; color: white !important; }
-        .wrong-ans { background-color: var(--danger) !important; color: white !important; }
+        .container { padding: 25px 20px; max-width: 700px; margin: 0 auto; }
 
-        .feedback-box { margin-top: 15px; padding: 14px; border-radius: 10px; font-weight: 700; display: none; }
+        /* Luxury Cards */
+        .card {
+            background: var(--card-bg);
+            padding: 26px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background-color: var(--premium-blue);
+        }
+
+        .formula-card::before { background-color: var(--success); }
+        .formula-card { background-color: #f0fdf4; }
         
-        .btn-group { display: flex; gap: 10px; margin-top: 15px; }
-        .action-btn { background-color: var(--primary); color: white; border: none; padding: 14px 20px; border-radius: 10px; cursor: pointer; font-weight: 700; flex: 1; font-size: 1rem; }
-        .sol-btn { background-color: #a855f7; color: white; border: none; padding: 14px 20px; border-radius: 10px; cursor: pointer; font-weight: 700; flex: 1; font-size: 1rem; display: none; }
-        .sol-btn:hover { background-color: #9333ea; }
+        /* Sarkari Result Theme Card */
+        .sarkari-card::before { background-color: #ef4444; }
+        .sarkari-card { border-top: 4px solid #ef4444; }
+        .sarkari-header {
+            background-color: #ef4444; color: white; padding: 10px 15px;
+            margin: -26px -26px 20px -26px; font-weight: 800; text-align: center; font-size: 1.15rem;
+        }
+
+        .solution-card { border-left: 6px solid #a855f7; background: #faf5ff; display: none; margin-top: 15px; }
+
+        h3 { margin-top: 0; font-size: 1.25rem; font-weight: 800; color: var(--primary-dark); display: flex; align-items: center; gap: 8px; }
+
+        /* Dropdown Control */
+        .topic-dropdown {
+            width: 100%; padding: 14px; font-size: 1.05rem; font-weight: 700;
+            border: 2px solid #cbd5e1; border-radius: 14px; background-color: white;
+            color: var(--premium-blue); outline: none; cursor: pointer; transition: all 0.2s;
+        }
+        .topic-dropdown:focus { border-color: var(--premium-blue); box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.1); }
+
+        /* Quiz Box Layout */
+        .quiz-box { background: #f8fafc; padding: 22px; border-radius: 14px; border: 1px dashed #cbd5e1; }
+        .question-meta { font-size: 0.85rem; color: var(--primary-light); font-weight: 700; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .question-text { font-size: 1.3rem; font-weight: 700; color: #0f172a; margin-bottom: 22px; line-height: 1.6; }
         
-        .formula-display { font-size: 1.1rem; line-height: 1.7; color: #166534; background: rgba(255, 255, 255, 0.9); padding: 15px; border-radius: 10px; border: 1px solid #bbf7d0; }
+        .options-container { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .option-btn {
+            padding: 15px; border: 1px solid #e2e8f0; border-radius: 12px; background: #ffffff;
+            cursor: pointer; font-size: 1.05rem; font-weight: 600; transition: all 0.2s ease;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+        }
+        .option-btn:hover:not(:disabled) { background: #f1f5f9; border-color: var(--premium-blue); transform: translateY(-1px); }
+        
+        .correct-ans { background-color: var(--success) !important; color: white !important; border-color: var(--success) !important; font-weight: 700; }
+        .wrong-ans { background-color: var(--danger) !important; color: white !important; border-color: var(--danger) !important; font-weight: 700; }
+
+        .feedback-box { margin-top: 15px; padding: 14px; border-radius: 10px; font-weight: 700; display: none; text-align: center; }
+        
+        .btn-group { display: flex; gap: 12px; margin-top: 15px; }
+        .action-btn { background-color: var(--premium-blue); color: white; border: none; padding: 15px 22px; border-radius: 12px; cursor: pointer; font-weight: 700; flex: 1; font-size: 1rem; box-shadow: 0 4px 10px rgba(30, 58, 138, 0.2); transition: all 0.2s; }
+        .action-btn:hover { background-color: #1d4ed8; }
+        .sol-btn { background-color: #8b5cf6; color: white; border: none; padding: 15px 22px; border-radius: 12px; cursor: pointer; font-weight: 700; flex: 1; font-size: 1rem; box-shadow: 0 4px 10px rgba(139, 92, 246, 0.2); display: none; }
+        .sol-btn:hover { background-color: #7c3aed; }
+        
+        .formula-display { font-size: 1.1rem; line-height: 1.7; color: #166534; font-weight: 500; }
         .sol-display { font-size: 1.05rem; line-height: 1.8; color: #581c87; }
         
-        .footer { text-align: center; margin-top: 40px; padding: 20px; background: #e2e8f0; border-radius: 14px; color: #334155; font-weight: 800; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        /* Sarkari Result Grid Table Link Setup */
+        .sarkari-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+        .sarkari-link {
+            background: #fff5f5; border: 1px solid #feb2b2; padding: 12px 15px; border-radius: 10px;
+            text-decoration: none; color: #c53030; font-weight: 700; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s;
+        }
+        .sarkari-link:hover { background: #feebc8; color: #c05621; border-color: #fbd38d; }
+        .sarkari-tag { background-color: #ef4444; color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; }
+
+        /* Premium Customized Branding Footer */
+        .footer { 
+            text-align: center; 
+            margin-top: 40px; 
+            padding: 22px; 
+            background: linear-gradient(135deg, var(--primary-dark), #1e293b); 
+            border-radius: 16px; 
+            color: var(--premium-gold); 
+            font-weight: 800; 
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            border-top: 3px solid var(--premium-gold);
+        }
+        .footer div {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-top: 6px;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
 
+    <!-- Live Alerts Bar like Sarkari Result -->
+    <div class="ticker-wrap">
+        <div class="ticker-content">
+            🔥 Math Master PRO: एआई इंजन एक्टिवेटेड || रेलवे RRB तकनीशियन भर्ती 2026 आवेदन चालू हैं || UP Police Constable Result 2026 || SSC CGL Notification Out || Powered by BILLU & ABHISHEK SUTHAR!
+        </div>
+    </div>
+
     <div class="navbar">
-        <div class="brand">⚡ <span>Math Master PRO</span> <span class="ai-badge">AI Solver v4</span></div>
-        <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">English</button>
+        <div class="brand">⚡ <span>Math Master</span> PRO</div>
+        <div>
+            <span class="ai-badge" style="margin-right:10px;">By Abhishek</span>
+            <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">English</button>
+        </div>
     </div>
 
     <div class="container">
-        <!-- 1. Topic Dropdown Menu -->
-        <div class="card" style="border-left-color: var(--primary-light);">
+        <!-- Welcoming User With Admin Branding -->
+        <div style="margin-bottom: 20px; font-weight: 700; font-size: 1.1rem; color: var(--premium-blue);">
+            👋 स्वागत है! आप श्री <span style="color: #d97706;">Abhishek Suthar</span> के ऑफिशियल एआई लर्निंग पोर्टल पर हैं।
+        </div>
+
+        <!-- 1. Interactive Dropdown Topic Selector -->
+        <div class="card">
             <h3 id="selectLabel">🎯 अभ्यास का विषय चुनें (Select Topic):</h3>
             <select class="topic-dropdown" id="topicSelect" onchange="onTopicChange()">
-                <!-- Populated Dynamically -->
+                <!-- Dynamic List -->
             </select>
         </div>
 
-        <!-- 2. AI Quiz Core Box -->
+        <!-- 2. AI Quiz Core Core Unit -->
         <div class="card">
             <h3 id="quizMainTitle">🔢 लाइव एआई अभ्यास (Infinite Quiz)</h3>
             <div class="quiz-box">
                 <div class="question-meta" id="qMeta">Topic: Loading...</div>
-                <div class="question-text" id="qText">Generating AI Question...</div>
+                <div class="question-text" id="qText">Generating Custom AI Question...</div>
                 <div class="options-container" id="optionsBox"></div>
                 <div id="feedback" class="feedback-box"></div>
                 
-                <!-- Buttons Row -->
                 <div class="btn-group">
-                    <button id="solBtn" class="sol-btn" onclick="toggleSolutionView()">💡 Solution & Trick</button>
+                    <button id="solBtn" class="sol-btn" onclick="toggleSolutionView()">💡 Explanation & Trick</button>
                     <button id="nextBtn" class="action-btn" onclick="generateAIQuestion()" style="display:none;">अगला एआई प्रश्न ➡️</button>
                 </div>
 
-                <!-- 3. Dynamic Solution Card inside the Quiz Box for slick look -->
+                <!-- Solution Section Included Smoothly -->
                 <div class="card solution-card" id="solCard">
                     <h4 style="margin:0 0 10px 0; color:#6b21a8;" id="solHeading">💡 एआई व्याख्या (AI Explanation):</h4>
                     <div class="sol-display" id="solContent">Solution text...</div>
@@ -118,13 +252,25 @@
             </div>
         </div>
 
-        <!-- 4. Real-time Topic Formula Display -->
+        <!-- 3. Real-Time Dynamic Formula Sheet -->
         <div class="card formula-card">
             <h3 id="formTitle">📐 इस विषय के महत्वपूर्ण सूत्र (Topic Formulas)</h3>
             <div class="formula-display" id="formulaContent">Loading Formula...</div>
         </div>
 
-        <div class="footer">🐾 POWERED BY BILLU 🐾</div>
+        <!-- 4. Sarkari Result Custom Portal Integration -->
+        <div class="card sarkari-card">
+            <div class="sarkari-header">⚡ SarkariResult.com - Latest Jobs Alerts 2026</div>
+            <div class="sarkari-grid" id="sarkariBox">
+                <!-- Links loaded dynamically below -->
+            </div>
+        </div>
+
+        <!-- Customized Brand Footer -->
+        <div class="footer">
+            🥇 MATH MASTER PRO 🥇
+            <div>🐾 POWERED BY BILLU & ABHISHEK SUTHAR 🐾</div>
+        </div>
     </div>
 
     <script>
@@ -143,11 +289,23 @@
                 solBtnTxt: "💡 व्याख्या और ट्रिक",
                 topics: [
                     { name: "1. प्रतिशत (Percentage)", formula: "• प्रतिशत (%) = (हिस्सा / कुल) × 100<br>• संख्या में वृद्धि = मूल संख्या × (100 + वृद्धि%) / 100" },
-                    { name: "2. लाभ और हानि (Profit & Loss)", formula: "• लाभ = विक्रय मूल्य (SP) - क्रय मूल्य (CP)<br>• हानि = क्रय मूल्य (CP) - विक्रय मूल्य (SP)" },
+                    { name: "2. लाभ, हानि और छूट (Profit & Loss)", formula: "• लाभ = विक्रय मूल्य (SP) - क्रय मूल्य (CP)<br>• हानि = क्रय मूल्य (CP) - विक्रय मूल्य (SP)<br>• छूट = अंकित मूल्य (MP) - विक्रय मूल्य (SP)" },
                     { name: "3. साधारण ब्याज (Simple Interest)", formula: "• साधारण ब्याज (SI) = (मूलधन [P] × दर [R] × समय [T]) / 100" },
-                    { name: "4. औसत (Average)", formula: "• औसत (Average) = दी गई संख्याओं का कुल योग / कुल संख्याओं की संख्या" },
-                    { name: "5. अनुपात (Ratio)", formula: "• अनुपात दो भागों की परस्पर तुलना को सरलतम भिन्न रूप में दर्शाता है।" },
-                    { name: "6. संख्या और वर्ग (Numbers & Squares)", formula: "• वर्ग (Square) = संख्या × स्वयं वही संख्या (X<sup>2</sup>)" }
+                    { name: "4. चक्रवृद्धि ब्याज (Compound Interest)", formula: "• मिश्रधन (Amount) = P × (1 + R/100)<sup>T</sup><br>• CI = मिश्रधन (Amount) - मूलधन (P)" },
+                    { name: "5. औसत (Average)", formula: "• औसत (Average) = कुल संख्याओं का योग / कुल संख्याओं की संख्या" },
+                    { name: "6. अनुपात और समानुपात (Ratio & Proportion)", formula: "• यदि A:B = C:D, तो बाह्य पदों का गुणनफल = मध्य पदों का गुणनफल (A × D = B × C)" },
+                    { name: "7. समय और कार्य (Time & Work)", formula: "• कुल कार्य क्षमता = समय × दक्षता (Efficiency)<br>• यदि A किसी काम को X दिन में करे तो उसका 1 दिन का काम = 1/X" },
+                    { name: "8. चाल, दूरी और समय (Speed & Distance)", formula: "• चाल (Speed) = दूरी / समय<br>• किमी/घंटा को मी/सेकंड में बदलने के लिए 5/18 से गुणा करें।" },
+                    { name: "9. सरलीकरण और ल.स./म.स. (LCM & HCF)", formula: "• पहली संख्या × दूसरी संख्या = LCM × HCF<br>• हमेशा BODMAS नियम क्रम का पालन करें।" },
+                    { name: "10. संख्या और वर्ग (Numbers & Squares)", formula: "• वर्ग (Square) = संख्या × स्वयं वही संख्या (X<sup>2</sup>)<br>• प्राकृत संख्याओं का योग = [n × (n + 1)] / 2" },
+                    { name: "11. बीजगणित (Algebra)", formula: "• (a + b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup><br>• (a - b)<sup>2</sup> = a<sup>2</sup> - 2ab + b<sup>2</sup>" },
+                    { name: "12. क्षेत्रमिति (Mensuration/Geometry)", formula: "• आयत क्षेत्रफल = लंबाई × चौड़ाई<br>• वर्ग क्षेत्रफल = भुजा × भुजा<br>• वृत्त क्षेत्रफल = πr<sup>2</sup>" }
+                ],
+                jobs: [
+                    { title: "रेलवे RRB तकनीशियन भर्ती ऑनलाइन फॉर्म 2026", tag: "New" },
+                    { title: "यूपी पुलिस कांस्टेबल एडमिट कार्ड / एग्जाम सिटी 2026", tag: "Admit Card" },
+                    { title: "एसएससी CGL ऑनलाइन भर्ती फॉर्म 2026", tag: "Latest Job" },
+                    { title: "केंद्रीय शिक्षक पात्रता परीक्षा (CTET) रिजल्ट 2026", tag: "Result" }
                 ]
             },
             en: {
@@ -160,11 +318,23 @@
                 solBtnTxt: "💡 Solution & Trick",
                 topics: [
                     { name: "1. Percentage", formula: "• Percentage (%) = (Part / Total) × 100" },
-                    { name: "2. Profit & Loss", formula: "• Profit = Selling Price (SP) - Cost Price (CP)<br>• Loss = Cost Price (CP) - Selling Price (SP)" },
+                    { name: "2. Profit, Loss & Discount", formula: "• Profit = SP - CP | Loss = CP - SP<br>• Discount = Marked Price (MP) - Selling Price (SP)" },
                     { name: "3. Simple Interest", formula: "• Simple Interest (SI) = (P × R × T) / 100" },
-                    { name: "4. Average", formula: "• Average = Sum of all values / Total number of values" },
-                    { name: "5. Ratio", formula: "• Ratio is the simplest fraction form comparing two components." },
-                    { name: "6. Numbers & Squares", formula: "• Square = Number × Itself (X<sup>2</sup>)" }
+                    { name: "4. Compound Interest", formula: "• Amount (A) = P × (1 + R/100)<sup>T</sup><br>• CI = Amount - Principal" },
+                    { name: "5. Average", formula: "• Average = Sum of all values / Total count of values" },
+                    { name: "6. Ratio & Proportion", formula: "• If A:B = C:D, then Product of Extremes = Product of Means (A × D = B × C)" },
+                    { name: "7. Time & Work", formula: "• Total Work = Time × Efficiency<br>• If A completes a task in X days, A's 1-day work = 1/X" },
+                    { name: "8. Speed, Distance & Time", formula: "• Speed = Distance / Time<br>• Multiply by 5/18 to convert km/h to m/s." },
+                    { name: "9. Simplification & LCM/HCF", formula: "• Product of two numbers = LCM × HCF<br>• Follow BODMAS mathematical precedence ordering always." },
+                    { name: "10. Numbers & Squares", formula: "• Square = Number × Itself<br>• Sum of first n natural numbers = [n × (n + 1)] / 2" },
+                    { name: "11. Algebra", formula: "• (a + b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup><br>• (a - b)<sup>2</sup> = a<sup>2</sup> - 2ab + b<sup>2</sup>" },
+                    { name: "12. Mensuration/Geometry", formula: "• Rectangle Area = Length × Width<br>• Square Area = Side × Side<br>• Circle Area = πr<sup>2</sup>" }
+                ],
+                jobs: [
+                    { title: "Railway RRB Technician 2026 Apply Online Open.", tag: "New" },
+                    { title: "UP Police Constable Exam City / Admit Card 2026", tag: "Admit Card" },
+                    { title: "SSC CGL Online Recruitment Form 2026", tag: "Latest Job" },
+                    { title: "Central Teacher Eligibility Test (CTET) Result 2026", tag: "Result" }
                 ]
             }
         };
@@ -197,8 +367,6 @@
             
             let qHi = "", qEn = "", ans = 0;
             let topicName = appData[lang].topics[selectValue].name;
-
-            // Hide previous solution card instantly
             document.getElementById('solCard').style.display = 'none';
 
             switch(selectValue) {
@@ -206,73 +374,103 @@
                     let base = [100, 200, 300, 500, 150][Math.floor(Math.random() * 5)];
                     let pVal = [10, 20, 25, 50][Math.floor(Math.random() * 4)];
                     ans = (base * pVal) / 100;
-                    qHi = `Q. ${base} का ${pVal}% कितना होगा?`; 
-                    qEn = `Q. What is ${pVal}% of ${base}?`;
-                    
-                    generatedSolution.hi = `<b>सूत्र विधि:</b> (${base} × ${pVal}) / 100 = ${ans}<br><b>AI शार्ट ट्रिक:</b> सीधा 10% निकालें या भिन्न (Fraction) बदलें। जैसे 25% का मतलब चौथा हिस्सा होता है (${base} / 4 = ${ans})।`;
-                    generatedSolution.en = `<b>Formula Method:</b> (${base} × ${pVal}) / 100 = ${ans}<br><b>AI Short Trick:</b> Convert percentage to basic fraction. Since 25% means 1/4th of any number, simply do ${base} / 4 = ${ans}.`;
+                    qHi = `Q. ${base} का ${pVal}% कितना होगा?`; qEn = `Q. What is ${pVal}% of ${base}?`;
+                    generatedSolution.hi = `<b>फार्मूला:</b> (${base} × ${pVal}) / 100 = ${ans}<br><b>AI शार्ट ट्रिक:</b> 25% यानी सीधे संख्या का चौथा हिस्सा कर दें (${base}/4 = ${ans})।`;
+                    generatedSolution.en = `<b>Formula:</b> (${base} × ${pVal}) / 100 = ${ans}<br><b>AI Short Trick:</b> 25% corresponds to 1/4th. Divide directly by 4 to get ${ans}.`;
                     break;
-
                 case 1: // Profit & Loss
-                    let cost = [200, 400, 500, 1000][Math.floor(Math.random() * 4)];
-                    let pPct = [10, 20, 50][Math.floor(Math.random() * 3)];
-                    let profitAmt = (cost * pPct / 100);
-                    ans = cost + profitAmt;
-                    qHi = `Q. एक वस्तु का क्रय मूल्य ₹${cost} है। यदि इसे ${pPct}% लाभ पर बेचा जाए, तो विक्रय मूल्य (Selling Price) क्या होगा?`;
-                    qEn = `Q. The Cost Price of an item is ₹${cost}. If sold at a ${pPct}% profit, find its Selling Price?`;
-                    
-                    generatedSolution.hi = `<b>सूत्र विधि:</b> SP = CP × (100 + लाभ%) / 100 = ${cost} × (100 + ${pPct}) / 100 = ${ans}<br><b>AI शार्ट ट्रिक:</b> ₹${cost} का सीधे ${pPct}% मन में निकालें (जो कि ₹${profitAmt} है) और उसे मूल मूल्य में जोड़ दें (${cost} + ${profitAmt} = ${ans})।`;
-                    generatedSolution.en = `<b>Formula Method:</b> SP = CP × (100 + Profit%) / 100 = ${cost} × (100 + ${pPct}) / 100 = ${ans}<br><b>AI Short Trick:</b> Calculate ${pPct}% of ₹${cost} mentally (which is ₹${profitAmt}) and add it to original price (${cost} + ${profitAmt} = ${ans}).`;
+                    let cost = [200, 400, 800, 1000][Math.floor(Math.random() * 4)];
+                    ans = cost + (cost * 25 / 100);
+                    qHi = `Q. एक वस्तु ₹${cost} में खरीदी गई। 25% लाभ कमाने के लिए उसे कितने मूल्य (Selling Price) पर बेचना होगा?`;
+                    qEn = `Q. An item was bought for ₹${cost}. To make a 25% profit, what should be its Selling Price?`;
+                    generatedSolution.hi = `<b>फार्मूला:</b> ${cost} × (100 + 25) / 100 = ${ans}<br><b>AI शार्ट ट्रिक:</b> 25% लाभ यानी क्रय मूल्य का 1/4 हिस्सा। ₹${cost} का 1/4 = ${cost/4}। मूलधन में जोड़ें: ${cost} + ${cost/4} = ${ans}।`;
+                    generatedSolution.en = `<b>Formula:</b> ${cost} × (125/100) = ${ans}<br><b>AI Short Trick:</b> 25% profit means adding 1/4 of Cost Price. ${cost} + ${cost/4} = ${ans}.`;
                     break;
-
                 case 2: // Simple Interest
                     let p = [1000, 2000, 5000][Math.floor(Math.random() * 3)];
                     let r = [5, 10][Math.floor(Math.random() * 2)];
                     let t = [2, 3][Math.floor(Math.random() * 2)];
                     ans = (p * r * t) / 100;
-                    qHi = `Q. ₹${p} का ${r}% वार्षिक दर से ${t} वर्ष का साधारण ब्याज (SI) क्या होगा?`;
-                    qEn = `Q. Calculate Simple Interest on ₹${p} at a ${r}% rate per annum for ${t} years?`;
-                    
-                    generatedSolution.hi = `<b>सूत्र विधि:</b> SI = (P × R × T) / 100 = (${p} × ${r} × ${t}) / 100 = ${ans}<br><b>AI शार्ट ट्रिक:</b> दर और समय का आपस में गुणा कर लें (${r}% × ${t} = ${r*t}%)। अब सीधे मूलधन का ${r*t}% निकालें, उत्तर बिना पेन के आ जाएगा।`;
-                    generatedSolution.en = `<b>Formula Method:</b> SI = (P × R × T) / 100 = (${p} × ${r} × ${t}) / 100 = ${ans}<br><b>AI Short Trick:</b> Multiply Rate and Time directly (${r}% × ${t} = ${r*t}%). Now just extract ${r*t}% of principal amount instantly.`;
+                    qHi = `Q. ₹${p} का ${r}% की दर से ${t} वर्ष का साधारण ब्याज (SI) क्या होगा?`;
+                    qEn = `Q. Calculate Simple Interest on ₹${p} at ${r}% rate per annum for ${t} years?`;
+                    generatedSolution.hi = `<b>फार्मूला:</b> SI = (P × R × T) / 100 = (${p} × ${r} × ${t}) / 100 = ${ans}<br><b>AI शार्ट ट्रिक:</b> दर और समय का गुणा करें (${r}×${t} = ${r*t}%)। मूलधन का सीधे ${r*t}% निकालें = ${ans}।`;
+                    generatedSolution.en = `<b>Formula:</b> SI = (P × R × T) / 100 = ${ans}<br><b>AI Short Trick:</b> Multiply Rate and Time (${r}×${t} = ${r*t}%). Find ${r*t}% of principal instantly.`;
                     break;
-
-                case 4: // Ratio
-                    let multiplier = Math.floor(Math.random() * 8) + 2;
-                    ans = 4 * multiplier;
-                    let totalVal = 7 * multiplier;
-                    qHi = `Q. ₹${totalVal} को दो भागों में 3:4 के अनुपात में बांटा जाता है। बड़ा भाग कितना होगा?`;
-                    qEn = `Q. ₹${totalVal} is split into 3:4 ratio. What is the value of the larger part?`;
-                    
-                    generatedSolution.hi = `<b>सूत्र विधि:</b> कुल अनुपात भाग = 3 + 4 = 7 भाग। इसलिए 1 भाग = ${totalVal} / 7 = ${multiplier}। बड़ा भाग (4 भाग) = 4 × ${multiplier} = ${ans}<br><b>AI शार्ट ट्रिक:</b> कुल राशि अनुपात के कुल योग (7) का गुणांक है। सीधे देखें 7 बराबर ${totalVal} तो 4 बराबर ${ans}।`;
-                    generatedSolution.en = `<b>Formula Method:</b> Total units = 3 + 4 = 7 units. Therefore, 1 unit = ${totalVal} / 7 = ${multiplier}. Larger part (4 units) = 4 × ${multiplier} = ${ans}<br><b>AI Short Trick:</b> Check 7 units = ${totalVal}, so 1 unit is clearly ${multiplier}. Multiply directly by 4 to get ${ans}.`;
+                case 3: // Compound Interest
+                    ans = 210;
+                    qHi = `Q. ₹1000 का 10% वार्षिक दर से 2 वर्ष का चक्रवृद्धि ब्याज (CI) कितना होगा?`;
+                    qEn = `Q. Find Compound Interest on ₹1000 at 10% per annum for 2 years?`;
+                    generatedSolution.hi = `<b>फार्मूला:</b> Amount = 1000 × (1.1)<sup>2</sup> = 1210. CI = 1210 - 1000 = 210<br><b>AI शार्ट ट्रिक:</b> 10% दर का 2 वर्ष का प्रभावी (Successive) ब्याज दर 21% होता है। 1000 का 21% = 210।`;
+                    generatedSolution.en = `<b>Formula:</b> Amount = 1000 × (1.1)<sup>2</sup> = 1210. CI = 1210 - 1000 = 210<br><b>AI Short Trick:</b> Successive rate for 10% for 2 years is 21%. 21% of 1000 = 210.`;
                     break;
-
-                case 3: // Average
+                case 4: // Average
                     let a1 = Math.floor(Math.random() * 15) + 5; let a2 = a1 + 5; let a3 = a1 + 10;
                     ans = (a1 + a2 + a3) / 3;
                     qHi = `Q. संख्याओं ${a1}, ${a2}, और ${a3} का औसत (Average) क्या होगा?`;
                     qEn = `Q. What is the average of numbers: ${a1}, ${a2}, and ${a3}?`;
-                    
-                    generatedSolution.hi = `<b>सूत्र विधि:</b> कुल योग / कुल संख्या = (${a1} + ${a2} + ${a3}) / 3 = ${ans}<br><b>AI शार्ट ट्रिक:</b> जब संख्याओं के बीच का अंतर समान हो (जैसे यहाँ 5 का गैप है), तो हमेशा **बीच वाली संख्या** ही डायरेक्ट औसत (Average) होती है। यहाँ बिना जोड़े सीधे उत्तर ${ans} है।`;
-                    generatedSolution.en = `<b>Formula Method:</b> Sum / Count = (${a1} + ${a2} + ${a3}) / 3 = ${ans}<br><b>AI Short Trick:</b> When consecutive numbers have an equal difference gap, the **middle number** is always the average. No need to calculate! Result is instantly ${ans}.`;
+                    generatedSolution.hi = `<b>फार्मूला:</b> कुल योग / 3 = ${ans}<br><b>AI शार्ट ट्रिक:</b> यदि संख्याओं का अंतर समान हो, तो हमेशा बीच वाली संख्या (${a2}) ही डायरेक्ट औसत होती है।`;
+                    generatedSolution.en = `<b>Formula:</b> Sum / Count = ${ans}<br><b>AI Short Trick:</b> Since numbers have equal gaps, the middle element (${a2}) is always the definitive average.`;
                     break;
-
-                case 5: // Numbers & Squares
-                default:
-                    let num = Math.floor(Math.random() * 10) + 6; // 6-15
+                case 5: // Ratio & Proportion
+                    let m = Math.floor(Math.random() * 5) + 3;
+                    ans = 4 * m;
+                    qHi = `Q. यदि दो संख्याओं का अनुपात 3:4 है और उनका कुल योग ${7 * m} है, तो बड़ी संख्या बताएं?`;
+                    qEn = `Q. Two numbers are in ratio 3:4 and their sum is ${7 * m}. Find the larger number?`;
+                    generatedSolution.hi = `<b>फार्मूला:</b> 7 यूनिट = ${7*m} तो 1 यूनिट = ${m}। बड़ी संख्या (4 यूनिट) = 4 × ${m} = ${ans}।<br><b>AI शार्ट ट्रिक:</b> कुल भाग को योग से भाग दें और सीधे बड़े अनुपात गुणांक 4 से मल्टिप्लाई कर दें।`;
+                    generatedSolution.en = `<b>Formula:</b> 7 units = ${7*m} -> 1 unit = ${m}. Larger part = 4 × ${m} = ${ans}.<br><b>AI Short Trick:</b> Divide total by sum of ratio units and multiply instantly by 4.`;
+                    break;
+                case 6: // Time & Work
+                    ans = 6;
+                    qHi = `Q. A किसी कार्य को 10 दिन में तथा B उसे 15 दिन में पूरा करता है। दोनों मिलकर उस कार्य को कितने दिन में करेंगे?`;
+                    qEn = `Q. A can do a work in 10 days and B in 15 days. How many days to complete together?`;
+                    generatedSolution.hi = `<b>फार्मूला:</b> (A × B) / (A + B) = (10 × 15) / (10 + 15) = 150 / 25 = 6 दिन।<br><b>AI शार्ट ट्रिक:</b> एलसीएम विधि का प्रयोग करें, कुल कार्य = 30运行. दक्षता = 3+2 = 5 यूनिट। दिन = 30/5 = 6।`;
+                    generatedSolution.en = `<b>Formula:</b> (A × B) / (A + B) = (10 × 15) / 25 = 6 days.<br><b>AI Short Trick:</b> Total work by LCM = 30. Efficiency sum = 3+2=5. Days = 30/5 = 6.`;
+                    break;
+                case 7: // Speed Distance Time
+                    let spd = [40, 60, 80][Math.floor(Math.random() * 3)];
+                    let tm = [2, 3][Math.floor(Math.random() * 2)];
+                    ans = spd * tm;
+                    qHi = `Q. एक car की चाल ${spd} किमी/घंटा है। वह ${tm} घंटे में कितनी दूरी (Distance) तय करेगी?`;
+                    qEn = `Q. A car drives at ${spd} km/h. How much distance will it cover in ${tm} hours?`;
+                    generatedSolution.hi = `<b>फार्मूला:</b> दूरी = चाल × समय = ${spd} × ${tm} = ${ans} किमी।<br><b>AI शार्ट trick:</b> सीधा गुणा है, हर घंटे ${spd} किमी तो ${tm} घंटे में = ${ans}।`;
+                    generatedSolution.en = `<b>Formula:</b> Distance = Speed × Time = ${spd} × ${tm} = ${ans} km.<br><b>AI Short Trick:</b> Simple direct logic. ${spd} km per hour equals ${ans} km in ${tm} hours.`;
+                    break;
+                case 8: // LCM & HCF
+                    ans = 60;
+                    qHi = `Q. संख्याओं 12, 15, और 20 का लघुत्तम समापवर्त्य (LCM) क्या होगा?`;
+                    qEn = `Q. What is the Least Common Multiple (LCM) of 12, 15, and 20?`;
+                    generatedSolution.hi = `<b>फार्मूला:</b> गुणनखंड विधि से सबसे छोटी सांझा भाज्य संख्या = 60।<br><b>AI शार्ट ट्रिक:</b> सबसे बड़ी संख्या 20 का पहाड़ा पढ़ें। 20 (12 से नहीं कटता), 40 (15 से नहीं), 60 (तीनों से कटता है)। LCM = 60।`;
+                    generatedSolution.en = `<b>Formula:</b> Smallest common multiple for factorization method is 60.<br><b>AI Short Trick:</b> Pick the largest number (20) and read its table. 60 is the first number divisible by all. LCM = 60.`;
+                    break;
+                case 9: // Numbers & Squares
+                    let num = Math.floor(Math.random() * 6) + 10; // 10-15
                     ans = num * num;
                     qHi = `Q. संख्या ${num} का वर्ग (Square) कितना होता है?`;
                     qEn = `Q. What is the square of the number ${num}?`;
-                    
-                    generatedSolution.hi = `<b>सूत्र विधि:</b> ${num} × ${num} = ${ans}<br><b>AI शार्ट ट्रिक:</b> 1 से 25 तक के वर्ग हमेशा जबानी याद रखें ताकि परीक्षा में गुणा करने का कीमती समय बच सके।`;
-                    generatedSolution.en = `<b>Formula Method:</b> ${num} × ${num} = ${ans}<br><b>AI Short Trick:</b> Always memorize squares up to 25 to save time during competitive exams.`;
+                    generatedSolution.hi = `<b>फार्मूला:</b> ${num} × ${num} = ${ans}<br><b>AI शार्ट ट्रिक:</b> प्रतियोगी परीक्षाओं के लिए 1 से 25 तक के वर्ग याद होने आवश्यक हैं।`;
+                    generatedSolution.en = `<b>Formula:</b> ${num} × ${num} = ${ans}<br><b>AI Short Trick:</b> Keep squares up to 25 memorized for super fast speed.`;
+                    break;
+                case 10: // Algebra
+                    let x = Math.floor(Math.random() * 5) + 3;
+                    ans = x + 4;
+                    qHi = `Q. यदि x - 4 = ${x} है, तो x का सही मान ज्ञात करें?`;
+                    qEn = `Q. If x - 4 = ${x}, find the value of x?`;
+                    generatedSolution.hi = `<b>फार्मूला:</b> x = ${x} + 4 = ${ans} (पक्षांतरण करने पर माइनस प्लस बन जाता है)।<br><b>AI शार्ट ट्रिक:</b> किस संख्या में से 4 घटाने पर ${x} मिलेगा? सीधा उत्तर है ${ans}।`;
+                    generatedSolution.en = `<b>Formula:</b> Shift -4 to other side -> x = ${x} + 4 = ${ans}.<br><b>AI Short Trick:</b> What number minus 4 equals ${x}? It is obviously ${ans}.`;
+                    break;
+                case 11: // Mensuration
+                default:
+                    let len = [6, 10, 12][Math.floor(Math.random() * 3)];
+                    ans = len * 5;
+                    qHi = `Q. एक आयत (Rectangle) की लंबाई ${len} सेमी और चौड़ाई 5 सेमी है। इसका क्षेत्रफल क्या होगा?`;
+                    qEn = `Q. The length of a rectangle is ${len} cm and width is 5 cm. Find its Area?`;
+                    generatedSolution.hi = `<b>फार्मूला:</b> क्षेत्रफल = लंबाई × चौड़ाई = ${len} × 5 = ${ans} वर्ग सेमी।<br><b>AI शार्ट ट्रिक:</b> सीधा मन में दोनों भुजाओं का गुणा कर दें।`;
+                    generatedSolution.en = `<b>Formula:</b> Area = Length × Width = ${len} × 5 = ${ans} cm<sup>2</sup>.<br><b>AI Short Trick:</b> Mentally multiply sides directly.`;
                     break;
             }
 
             currentCorrectAnswer = ans.toString();
 
-            // Set dynamic answers distribution
             let opSet = new Set([currentCorrectAnswer]);
             while(opSet.size < 4) {
                 let dev = (Math.floor(Math.random() * 3) + 1) * (Math.random() > 0.5 ? 2 : -2);
@@ -282,7 +480,7 @@
 
             let opArr = Array.from(opSet).sort(() => Math.random() - 0.5);
 
-            document.getElementById('qMeta').innerText = "AI Module: " + topicName;
+            document.getElementById('qMeta').innerText = "AI System Block: " + topicName;
             document.getElementById('qText').innerText = isHindi ? qHi : qEn;
 
             let opHtml = '';
@@ -320,21 +518,14 @@
                 });
             }
             
-            // Show action buttons
             document.getElementById('solBtn').style.display = 'block';
             document.getElementById('nextBtn').style.display = 'block';
-            
-            // Inject content to solution box
             document.getElementById('solContent').innerHTML = isHindi ? generatedSolution.hi : generatedSolution.en;
         }
 
         function toggleSolutionView() {
             const card = document.getElementById('solCard');
-            if(card.style.display === 'block') {
-                card.style.display = 'none';
-            } else {
-                card.style.display = 'block';
-            }
+            card.style.display = (card.style.display === 'block') ? 'none' : 'block';
         }
 
         function renderStaticUI() {
@@ -347,6 +538,16 @@
             document.getElementById('nextBtn').innerText = appData[lang].nextBtnTxt;
 
             populateDropdown();
+            
+            let sarkariHtml = '';
+            appData[lang].jobs.forEach(job => {
+                sarkariHtml += `<a href="https://www.sarkariresult.com" target="_blank" class="sarkari-link">
+                                    <span>📢 ${job.title}</span>
+                                    <span class="sarkari-tag">${job.tag}</span>
+                                </a>`;
+            });
+            document.getElementById('sarkariBox').innerHTML = sarkariHtml;
+
             const selectValue = parseInt(document.getElementById('topicSelect').value || "0");
             document.getElementById('formulaContent').innerHTML = appData[lang].topics[selectValue].formula;
         }
@@ -357,7 +558,6 @@
             generateAIQuestion();
         }
 
-        // Initialize App
         renderStaticUI();
         generateAIQuestion();
     </script>
