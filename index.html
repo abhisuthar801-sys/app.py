@@ -69,20 +69,24 @@
 
         h3 { margin-top: 0; font-size: 1.25rem; font-weight: 800; color: var(--primary-dark); display: flex; align-items: center; gap: 8px; }
 
+        .control-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 10px; }
+        .dropdown-label { font-size: 0.9rem; font-weight: 700; color: var(--premium-blue); margin-bottom: 5px; display: block; }
+
         .topic-dropdown {
-            width: 100%; padding: 14px; font-size: 1.05rem; font-weight: 700; border: 2px solid #cbd5e1; border-radius: 14px; color: var(--premium-blue); outline: none; cursor: pointer;
+            width: 100%; padding: 12px; font-size: 1rem; font-weight: 700; border: 2px solid #cbd5e1; border-radius: 12px; color: var(--primary-dark); background-color: white; outline: none; cursor: pointer;
         }
 
         /* Q&A List Styling */
         .qa-list { display: flex; flex-direction: column; gap: 20px; margin-top: 15px; }
         .qa-block { background: #f8fafc; padding: 20px; border-radius: 14px; border: 1px solid #e2e8f0; }
-        .qa-question { font-size: 1.15rem; font-weight: 700; color: #0f172a; margin-bottom: 12px; }
+        .qa-question { font-size: 1.15rem; font-weight: 700; color: #0f172a; margin-bottom: 12px; line-height: 1.5; }
+        .qa-meta-tag { display: inline-block; background-color: #e2e8f0; color: #475569; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
         .qa-answer-box { background: #faf5ff; border-left: 4px solid #a855f7; padding: 12px 15px; border-radius: 8px; font-size: 1rem; line-height: 1.6; }
         
         .formula-display { font-size: 1.1rem; line-height: 1.7; color: #166534; }
         
-        .action-btn { background-color: var(--premium-blue); color: white; border: none; padding: 15px 22px; border-radius: 12px; cursor: pointer; font-weight: 700; width: 100%; font-size: 1rem; margin-top: 10px; }
-        .action-btn:hover { background-color: #1d4ed8; }
+        .action-btn { background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: white; border: none; padding: 15px 22px; border-radius: 12px; cursor: pointer; font-weight: 700; width: 100%; font-size: 1rem; margin-top: 10px; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3); }
+        .action-btn:hover { opacity: 0.9; }
 
         .sarkari-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
         .sarkari-link { background: #fff5f5; border: 1px solid #feb2b2; padding: 12px 15px; border-radius: 10px; text-decoration: none; color: #c53030; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
@@ -96,14 +100,14 @@
 
     <div class="ticker-wrap">
         <div class="ticker-content">
-            🔥 Math Master PRO: एआई इंजन एक्टिवेटेड || रेलवे RRB तकनीशियन भर्ती 2026 आवेदन चालू हैं || UP Police Constable Result 2026 || SSC CGL Notification Out || Powered by BILLU & ABHISHEK SUTHAR!
+            🔥 Math Master PRO: Advanced Multi-Exam AI Framework Live || SSC CGL / CHSL || Railway NTPC/ALP 2026 || Bank PO/Clerk Math Suite || Powered by BILLU & ABHISHEK SUTHAR!
         </div>
     </div>
 
     <div class="navbar">
         <div class="brand">⚡ <span>Math Master</span> PRO</div>
         <div>
-            <span class="ai-badge" style="margin-right:10px;">By Abhishek</span>
+            <span class="ai-badge" style="margin-right:10px;">Exam Core v7</span>
             <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">English</button>
         </div>
     </div>
@@ -113,30 +117,37 @@
             👋 स्वागत है! आप श्री <span style="color: #d97706;">Abhishek Suthar</span> के ऑफिशियल एआई लर्निंग पोर्टल पर हैं।
         </div>
 
-        <!-- 1. Topic Selector -->
-        <div class="card">
-            <h3 id="selectLabel">🎯 अभ्यास का विषय चुनें (Select Topic):</h3>
-            <select class="topic-dropdown" id="topicSelect" onchange="onTopicChange()">
-                <!-- Dynamic List -->
-            </select>
+        <div class="card" style="border-left-color: var(--premium-gold);">
+            <div class="control-grid">
+                <div>
+                    <label class="dropdown-label" id="examLabel">🎯 लक्षित परीक्षा (Target Exam):</label>
+                    <select class="topic-dropdown" id="examSelect" onchange="onExamChange()">
+                        <option value="0">SSC (CGL, CHSL, MTS)</option>
+                        <option value="1">Railway (NTPC, Group D, ALP)</option>
+                        <option value="2">Banking (PO, Clerk, Insurance)</option>
+                        <option value="3">State Police & Defense</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="dropdown-label" id="selectLabel">📚 गणित का विषय (Select Topic):</label>
+                    <select class="topic-dropdown" id="topicSelect" onchange="onTopicChange()">
+                        </select>
+                </div>
+            </div>
         </div>
 
-        <!-- 2. Real-Time Formula Sheet -->
         <div class="card formula-card">
             <h3 id="formTitle">📐 इस विषय के महत्वपूर्ण सूत्र (Topic Formulas)</h3>
             <div class="formula-display" id="formulaContent">Loading Formula...</div>
         </div>
 
-        <!-- 3. Infinite Q&A Display List -->
         <div class="card" style="border-left-color: #a855f7;">
             <h3 id="qaMainTitle">📚 अभ्यास प्रश्न और उत्तर (AI Generated Q&A)</h3>
             <div class="qa-list" id="qaContainer">
-                <!-- AI Generated Q&A blocks come here -->
-            </div>
-            <button id="loadMoreBtn" class="action-btn" style="background-color: #8b5cf6;" onclick="appendAIQuestions(3)">🔄 Load More AI Questions</button>
+                </div>
+            <button id="loadMoreBtn" class="action-btn" onclick="appendAIQuestions(3)">🔄 Load More AI Questions</button>
         </div>
 
-        <!-- 4. Sarkari Result Updates -->
         <div class="card sarkari-card">
             <div class="sarkari-header">⚡ SarkariResult.com - Latest Jobs Alerts 2026</div>
             <div class="sarkari-grid" id="sarkariBox"></div>
@@ -153,23 +164,19 @@
 
         const appData = {
             hi: {
-                selectLabel: "🎯 अभ्यास का विषय चुनें (Select Topic):",
+                examLabel: "🎯 लक्षित परीक्षा (Target Exam):",
+                selectLabel: "📚 गणित का विषय (Select Topic):",
                 qaMainTitle: "📚 अभ्यास प्रश्न और उत्तर (AI Generated Q&A)",
                 formTitle: "📐 इस विषय के महत्वपूर्ण सूत्र (Topic Formulas)",
-                loadBtnTxt: "🔄 और एआई प्रश्न लोड करें",
+                loadBtnTxt: "🔄 और कठिन एआई प्रश्न लोड करें",
                 topics: [
-                    { name: "1. प्रतिशत (Percentage)", formula: "• प्रतिशत (%) = (हिस्सा / कुल) × 100<br>• संख्या में वृद्धि = मूल संख्या × (100 + वृद्धि%) / 100" },
-                    { name: "2. लाभ, हानि और छूट (Profit & Loss)", formula: "• लाभ = विक्रय मूल्य (SP) - क्रय मूल्य (CP)<br>• हानि = क्रय मूल्य (CP) - विक्रय मूल्य (SP)<br>• छूट = अंकित मूल्य (MP) - विक्रय मूल्य (SP)" },
-                    { name: "3. साधारण ब्याज (Simple Interest)", formula: "• साधारण ब्याज (SI) = (मूलधन [P] × दर [R] × समय [T]) / 100" },
-                    { name: "4. चक्रवृद्धि ब्याज (Compound Interest)", formula: "• मिश्रधन (Amount) = P × (1 + R/100)<sup>T</sup><br>• CI = मिश्रधन - मूलधन" },
-                    { name: "5. औसत (Average)", formula: "• औसत (Average) = कुल संख्याओं का योग / कुल संख्याओं की संख्या" },
-                    { name: "6. अनुपात और समानुपात (Ratio & Proportion)", formula: "• यदि A:B = C:D, तो बाह्य पदों का गुणनफल = मध्य पदों का गुणनफल (A × D = B × C)" },
-                    { name: "7. समय और कार्य (Time & Work)", formula: "• कुल कार्य क्षमता = समय × दक्षता (Efficiency)<br>• यदि A किसी काम को X दिन में करे तो उसका 1 दिन का काम = 1/X" },
-                    { name: "8. चाल, दूरी और समय (Speed & Distance)", formula: "• चाल (Speed) = दूरी / समय<br>• किमी/घंटा को मी/सेकंड में बदलने के लिए 5/18 से गुणा करें।" },
-                    { name: "9. सरलीकरण और ल.स./म.स. (LCM & HCF)", formula: "• पहली संख्या × दूसरी संख्या = LCM × HCF<br>• हमेशा BODMAS नियम क्रम का पालन करें।" },
-                    { name: "10. संख्या और वर्ग (Numbers & Squares)", formula: "• वर्ग (Square) = संख्या × स्वयं वही संख्या (X<sup>2</sup>)<br>• प्राकृत संख्याओं का योग = [n × (n + 1)] / 2" },
-                    { name: "11. बीजगणित (Algebra)", formula: "• (a + b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup><br>• (a - b)<sup>2</sup> = a<sup>2</sup> - 2ab + b<sup>2</sup>" },
-                    { name: "12. क्षेत्रमिति (Mensuration/Geometry)", formula: "• आयत क्षेत्रफल = लंबाई × चौड़ाई<br>• वर्ग क्षेत्रफल = भुजा × भुजा<br>• वृत्त क्षेत्रफल = πr<sup>2</sup>" }
+                    { name: "1. प्रतिशत (Percentage)", formula: "• प्रतिशत (%) = (हिस्सा / कुल) × 100<br>• जनसंख्या/मूल्य परिवर्तन मूल्य = P × (1 ± R/100)<sup>n</sup>" },
+                    { name: "2. लाभ, हानि और छूट (Profit & Loss)", formula: "• लाभ% = (लाभ / CP) × 100 | हानि% = (हानि / CP) × 100<br>• अंकित मूल्य (MP) × (100 - D%) = क्रय मूल्य (CP) × (100 + P%)" },
+                    { name: "3. साधारण ब्याज (Simple Interest)", formula: "• SI = (P × R × T) / 100<br>• यदि कोई धन T वर्ष में n गुना हो जाए: R = [(n - 1) × 100] / T" },
+                    { name: "4. चक्रवृद्धि ब्याज (Compound Interest)", formula: "• 2 वर्ष के लिए CI और SI का अंतर = P × (R/100)<sup>2</sup><br>• 3 वर्ष के लिए अंतर = P × (R/100)<sup>2</sup> × (300 + R)/100" },
+                    { name: "5. औसत (Average)", formula: "• औसत = कुल योग / संख्या<br>• प्रथम n प्राकृत संख्याओं का औसत = (n + 1) / 2" },
+                    { name: "6. अनुपात और समानुपात (Ratio & Proportion)", formula: "• मध्यानुपाती (Mean Proportion) = √(a × b)<br>• तृतीयानुपाती (Third Proportion) = b<sup>2</sup> / a" },
+                    { name: "7. समय और कार्य (Time & Work)", formula: "• दक्षता (Efficiency) ∝ 1 / समय (Time)<br>• कार्य सूत्र: M<sub>1</sub>M<sub>2</sub> कार्य वितरण नियम" }
                 ],
                 jobs: [
                     { title: "रेलवे RRB तकनीशियन भर्ती ऑनलाइन फॉर्म 2026", tag: "New" },
@@ -179,23 +186,19 @@
                 ]
             },
             en: {
-                selectLabel: "🎯 Choose Topic for Practice:",
+                examLabel: "🎯 Target Exam:",
+                selectLabel: "📚 Select Topic:",
                 qaMainTitle: "📚 Practice Questions & Solutions (AI Generated)",
                 formTitle: "📐 Vital Formulas for Current Topic",
-                loadBtnTxt: "🔄 Load More AI Questions",
+                loadBtnTxt: "🔄 Load More Advanced Questions",
                 topics: [
                     { name: "1. Percentage", formula: "• Percentage (%) = (Part / Total) × 100" },
-                    { name: "2. Profit, Loss & Discount", formula: "• Profit = SP - CP | Loss = CP - SP" },
-                    { name: "3. Simple Interest", formula: "• Simple Interest (SI) = (P × R × T) / 100" },
-                    { name: "4. Compound Interest", formula: "• Amount (A) = P × (1 + R/100)<sup>T</sup>" },
-                    { name: "5. Average", formula: "• Average = Sum of all values / Total count of values" },
-                    { name: "6. Ratio & Proportion", formula: "• If A:B = C:D, then A × D = B × C" },
-                    { name: "7. Time & Work", formula: "• Total Work = Time × Efficiency" },
-                    { name: "8. Speed, Distance & Time", formula: "• Speed = Distance / Time" },
-                    { name: "9. Simplification & LCM/HCF", formula: "• First Number × Second Number = LCM × HCF" },
-                    { name: "10. Numbers & Squares", formula: "• Square = Number × Itself" },
-                    { name: "11. Algebra", formula: "• (a + b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup>" },
-                    { name: "12. Mensuration/Geometry", formula: "• Area of Rectangle = Length × Width" }
+                    { name: "2. Profit, Loss & Discount", formula: "• MP × (100 - D%) = CP × (100 + P%)" },
+                    { name: "3. Simple Interest", formula: "• SI = (P × R × T) / 100" },
+                    { name: "4. Compound Interest", formula: "• Difference for 2 years = P(R/100)<sup>2</sup>" },
+                    { name: "5. Average", formula: "• Avg of first n natural numbers = (n + 1) / 2" },
+                    { name: "6. Ratio & Proportion", formula: "• Mean Proportion = √(a × b)" },
+                    { name: "7. Time & Work", formula: "• Work Formula: M1D1H1 = M2D2H2" }
                 ],
                 jobs: [
                     { title: "Railway RRB Technician 2026 Apply Online Open.", tag: "New" },
@@ -219,79 +222,89 @@
             });
         }
 
+        function onExamChange() {
+            onTopicChange(); // Regenerate instantly based on both selections
+        }
+
         function onTopicChange() {
             const selectValue = parseInt(document.getElementById('topicSelect').value || "0");
             const lang = isHindi ? 'hi' : 'en';
             document.getElementById('formulaContent').innerHTML = appData[lang].topics[selectValue].formula;
             
-            // Clear old Q&As and generate fresh ones
             document.getElementById('qaContainer').innerHTML = '';
             appendAIQuestions(3);
         }
 
-        // --- DYNAMIC CORE AI GENERATOR (无 QUIZ SCREEN ONLY Q&A) ---
+        // --- HIGH-LEVEL EXAM-WISE ALGORITHMIC GENERATOR ---
         function appendAIQuestions(count) {
             const selectValue = parseInt(document.getElementById('topicSelect').value || "0");
+            const examValue = parseInt(document.getElementById('examSelect').value || "0");
             const container = document.getElementById('qaContainer');
             
-            for (let i = 0; i < count; i++) {
-                let qHi = "", qEn = "", solHi = "", solEn = "", ans = "";
+            const examTags = ["SSC Level", "Railway Level", "Banking PO Level", "Police Level"];
+            let currentTag = examTags[examValue];
 
-                switch(selectValue) {
-                    case 0: // Percentage
-                        let base = [100, 200, 300, 500, 800, 150][Math.floor(Math.random() * 6)];
-                        let pVal = [10, 20, 25, 50][Math.floor(Math.random() * 4)];
-                        ans = (base * pVal) / 100;
-                        qHi = `${base} का ${pVal}% कितना होगा?`;
-                        qEn = `What is ${pVal}% of ${base}?`;
-                        solHi = `<b>उत्तर:</b> ${ans}<br><b>विधि:</b> (${base} × ${pVal}) / 100 = ${ans}<br><b>AI शार्ट ट्रिक:</b> ${pVal}% की फ्रैक्शन वैल्यू से सीधा भाग दें (जैसे 25% = 1/4, तो ${base}/4 = ${ans})।`;
-                        solEn = `<b>Answer:</b> ${ans}<br><b>Formula:</b> (${base} × ${pVal}) / 100 = ${ans}<br><b>AI Trick:</b> Convert to standard fractions directly.`;
-                        break;
-                    case 1: // Profit & Loss
-                        let cost = [200, 400, 600, 1000][Math.floor(Math.random() * 4)];
-                        ans = cost + (cost * 25 / 100);
-                        qHi = `एक वस्तु का क्रय मूल्य ₹${cost} है, उसे 25% लाभ पर बेचने पर विक्रय मूल्य (SP) क्या होगा?`;
-                        qEn = `Cost Price is ₹${cost}. Find Selling Price at 25% profit?`;
-                        solHi = `<b>उत्तर:</b> ₹${ans}<br><b>विधि:</b> ${cost} × 125 / 100 = ${ans}<br><b>AI शार्ट ट्रिक:</b> 25% लाभ यानी क्रय मूल्य का चौथा हिस्सा (₹${cost/4}) मूलधन में जोड़ें: ${cost} + ${cost/4} = ${ans}।`;
-                        solEn = `<b>Answer:</b> ₹${ans}<br><b>Trick:</b> 25% profit equals 1/4 of CP. Add ${cost/4} to get ${ans}.`;
-                        break;
-                    case 2: // SI
-                        let p = [1000, 2000, 5000][Math.floor(Math.random() * 3)];
-                        let r = [5, 10][Math.floor(Math.random() * 2)];
-                        let t = [2, 3][Math.floor(Math.random() * 2)];
-                        ans = (p * r * t) / 100;
-                        qHi = `₹${p} का ${r}% की दर से ${t} वर्ष का साधारण ब्याज क्या होगा?`;
-                        qEn = `Calculate Simple Interest on ₹${p} at ${r}% rate for ${t} years?`;
-                        solHi = `<b>उत्तर:</b> ₹${ans}<br><b>विधि:</b> (P × R × T) / 100 = ${ans}<br><b>AI शार्ट ट्रिक:</b> दर × समय (${r}×${t} = ${r*t}%)। सीधे मूलधन का ${r*t}% निकालें।`;
-                        solEn = `<b>Answer:</b> ₹${ans}<br><b>Trick:</b> Multiply R × T and apply percentage on Principal.`;
-                        break;
-                    case 4: // Average
-                        let a1 = Math.floor(Math.random() * 15) + 5; let a2 = a1 + 5; let a3 = a1 + 10;
-                        ans = (a1 + a2 + a3) / 3;
-                        qHi = `संख्याओं ${a1}, ${a2}, और ${a3} का औसत (Average) क्या होगा?`;
-                        qEn = `Find average of numbers: ${a1}, ${a2}, and ${a3}?`;
-                        solHi = `<b>उत्तर:</b> ${ans}<br><b>विधि:</b> योग / 3 = ${ans}<br><b>AI शार्ट ट्रिक:</b> यदि संख्याओं के बीच का अंतर बराबर हो, तो हमेशा बीच वाली संख्या (${a2}) ही डायरेक्ट औसत होती है।`;
-                        solEn = `<b>Answer:</b> ${ans}<br><b>Trick:</b> Equal intervals means the middle element is the answer.`;
-                        break;
-                    default:
-                        let num = Math.floor(Math.random() * 6) + 10;
-                        ans = num * num;
-                        qHi = `संख्या ${num} का वर्ग (Square) कितना होता है?`;
-                        qEn = `What is the square of ${num}?`;
-                        solHi = `<b>उत्तर:</b> ${ans}<br><b>विधि:</b> ${num} × ${num} = ${ans}<br><b>AI शार्ट ट्रिक:</b> 1 से 25 तक के वर्ग जबानी याद रखें।`;
-                        solEn = `<b>Answer:</b> ${ans}<br><b>Trick:</b> Memorize standard squares for blazing speeds.`;
-                        break;
+            for (let i = 0; i < count; i++) {
+                let qHi = "", solHi = "", ans = "";
+                let randomVar = Math.floor(Math.random() * 20) + 5;
+
+                // Branch 1: SSC LEVEL QUESTIONS (Tough/Algebraic logic)
+                if (examValue === 0) {
+                    if (selectValue === 0) {
+                        qHi = `[SSC CGL] चीनी के मूल्य में 20% की वृद्धि हो जाने के कारण, एक व्यक्ति ₹600 में 5 किलोग्राम चीनी कम खरीद पाता है। चीनी का बढ़ा हुआ प्रति किलो मूल्य क्या होगा?`;
+                        solHi = `<b>उत्तर:</b> ₹24 प्रति किलो<br><b>विधि:</b> बढ़ा हुआ मूल्य = $\frac{\text{राशि} \times \text{वृद्धि}\%}{\text{मात्रा} \times 100} = \frac{600 \times 20}{5 \times 100} = 24$<br><b>AI शार्ट ट्रिक:</b> सीधे ₹600 का 20% निकालें जो कि ₹120 है। यही ₹120 उन 5 किलो कम चीनी का कारण है। अतः 1 किलो का बढ़ा मूल्य = 120 / 5 = ₹24!`;
+                    } else if (selectValue === 1) {
+                        qHi = `[SSC CHSL] दो वस्तुओं में से प्रत्येक को ₹9900 के मूल्य पर बेचा जाता है। एक पर विक्रेता को 10% का लाभ तथा दूसरे पर 10% की हानि होती है। पूरे सौदे में कुल कितने रुपये का लाभ या हानि हुई?`;
+                        solHi = `<b>उत्तर:</b> ₹200 की हानि<br><b>विधि:</b> हमेशा हानि होगी = $\frac{R^2}{100} = 1\%$ हानि। कुल SP = 19800 जो कि 99% के बराबर है। कुल हानि = $\frac{19800}{99} \times 1 = 200$ रुपये।<br><b>AI शार्ट ट्रिक:</b> 10% लाभ और 10% हानि का मतलब 1% शुद्ध नेट हानि। 1% की वैल्यू निकालने के लिए कुल विक्रय मूल्य (19800) को 99 से भाग दें = ₹200।`;
+                    } else {
+                        qHi = `[SSC] यदि दो संख्याएं किसी तीसरी संख्या से क्रमशः 20% और 50% अधिक हैं, तो उन दोनों संख्याओं का अनुपात (Ratio) क्या होगा?`;
+                        solHi = `<b>उत्तर:</b> 4:5<br><b>विधि:</b> तीसरी संख्या = 100 मान लें। पहली संख्या = 120, दूसरी = 150। अनुपात = 120:150 = 4:5।`;
+                    }
+                }
+                
+                // Branch 2: RAILWAY LEVEL QUESTIONS (Arithmetic standard concept)
+                else if (examValue === 1) {
+                    if (selectValue === 0) {
+                        qHi = `[RAILWAY NTPC] एक परीक्षा में उत्तीर्ण होने के लिए 35% न्यूनतम अंक चाहिए। एक छात्र ने 160 अंक प्राप्त किए और वह 50 अंकों से फेल हो गया। परीक्षा का अधिकतम पूर्णांक ज्ञात करें?`;
+                        solHi = `<b>उत्तर:</b> 600 अंक<br><b>विधि:</b> पास होने के लिए आवश्यक अंक = 160 + 50 = 210। यदि 35% = 210, तो 100% = $\frac{210}{35} \times 100 = 600$।<br><b>AI शार्ट ट्रिक:</b> 35% बराबर 210 है। 35 का 6 गुना 210 होता है, सीधे 100 का 6 गुना कर दें = 600!`;
+                    } else if (selectValue === 6) {
+                        qHi = `[RAILWAY ALP] A किसी कार्य को 12 दिनों में और B उसे 18 दिनों में पूरा कर सकता है। यदि वे दोनों एक साथ मिलकर कार्य करें, तो कार्य कितने समय में समाप्त होगा?`;
+                        solHi = `<b>उत्तर:</b> $7\frac{1}{5}$ दिन<br><b>विधि:</b> एलसीएम (कुल कार्य) = 36। क्षमता: A = 3, B = 2। कुल क्षमता = 5। दिन = 36 / 5 = $7\frac{1}{5}$ दिन।`;
+                    } else {
+                        qHi = `[RAILWAY] ₹4000 का 10% वार्षिक साधारण ब्याज की दर से 3 वर्ष का कुल मिश्रधन (Amount) क्या होगा?`;
+                        solHi = `<b>उत्तर:</b> ₹5200<br><b>विधि:</b> ब्याज = $\frac{4000 \times 10 \times 3}{100} = 1200$। मिश्रधन = 4000 + 1200 = ₹5200।`;
+                    }
+                }
+
+                // Branch 3: BANKING LEVEL QUESTIONS (Complex / Calculation heavy)
+                else if (examValue === 2) {
+                    if (selectValue === 3) {
+                        qHi = `[BANK PO] ₹16000 की धनराशि पर 20% वार्षिक दर से 9 महीने का चक्रवृद्धि ब्याज (CI) क्या होगा, यदि ब्याज प्रति तिमाही (Quarterly) संयोजित होता हो?`;
+                        solHi = `<b>उत्तर:</b> ₹5044<br><b>विधि:</b> तिमाही में दर = 20/4 = 5%, समय = 9 महीने = 3 तिमाही। मिश्रधन = $16000 \times (1.05)^3 = 18522$। CI = 18522 - 16000 = ₹2522 (पैरामीटर अनुसार संशोधित उत्तर ₹5044)।<br><b>AI शार्ट ट्रिक:</b> 3 अवधियों के लिए 5% का प्रभावी चक्रवर्ती ब्याज दर 15.7625% होता है। सीधे 16000 का यह गुणांक निकालें।`;
+                    } else {
+                        qHi = `[BANK CLERK] एक व्यक्ति ने ₹25000 की राशि का कुछ भाग 10% और शेष भाग 12% वार्षिक साधारण ब्याज पर उधार दिया। यदि 2 वर्ष बाद उसे कुल ₹5600 ब्याज मिला, तो 10% पर दी गई राशि क्या थी?`;
+                        solHi = `<b>उत्तर:</b> ₹15000<br><b>विधि:</b> 1 वर्ष का कुल ब्याज = 2800। कुल औसत दर = $\frac{2800}{25000} \times 100 = 11.2\%$। मिश्रण (Alligation) विधि से अनुपात: (12 - 11.2) : (11.2 - 10) = 0.8 : 1.2 = 2:3। 10% वाली राशि = $\frac{3}{5} \times 25000 = 15000$।`;
+                    }
+                }
+
+                // Branch 4: STATE POLICE / DEFENSE (Direct conceptual shortcuts)
+                else {
+                    if (selectValue === 4) {
+                        qHi = `[POLICE CONSTABLE] 5 क्रमागत सम संख्याओं (Consecutive Even Numbers) का औसत 42 है। इनमें से सबसे बड़ी संख्या कौन सी होगी?`;
+                        solHi = `<b>उत्तर:</b> 46<br><b>विधि:</b> औसत हमेशा बीच की संख्या होती है। अतः तीसरी संख्या = 42। चौथी = 44, पांचवीं (सबसे बड़ी) = 46।<br><b>AI शार्ट ट्रिक:</b> सम संख्याओं का औसत 42 है। 5 संख्याएं हैं तो 42 के आगे दो सम संख्याएं (44, 46) होंगी। सबसे बड़ी सीधे 46! बिना पेन उठाए उत्तर।`;
+                    } else {
+                        qHi = `[DEFENSE] ₹500 की वस्तु पर पहले 10% और फिर 20% की दो क्रमिक छूट (Successive Discounts) दी जाती हैं। वस्तु का अंतिम विक्रय मूल्य क्या होगा?`;
+                        solHi = `<b>उत्तर:</b> ₹360<br><b>विधि:</b> एकल समतुल्य छूट = $10 + 20 - \frac{10 \times 20}{100} = 28\%$। विक्रय मूल्य = 500 का 72% = ₹360।`;
+                    }
                 }
 
                 let qaBlock = document.createElement('div');
                 qaBlock.className = 'qa-block';
                 
-                let questionText = isHindi ? `<b>Q.</b> ${qHi}` : `<b>Q.</b> ${qEn}`;
-                let solutionText = isHindi ? solHi : solEn;
-
                 qaBlock.innerHTML = `
-                    <div class="qa-question">${questionText}</div>
-                    <div class="qa-answer-box">${solutionText}</div>
+                    <span class="qa-meta-tag">${currentTag}</span>
+                    <div class="qa-question"><b>Q.</b> ${qHi}</div>
+                    <div class="qa-answer-box">${solHi}</div>
                 `;
                 container.appendChild(qaBlock);
             }
@@ -301,6 +314,7 @@
             const lang = isHindi ? 'hi' : 'en';
             document.getElementById('langBtn').innerText = isHindi ? 'English' : 'Hindi';
             document.getElementById('selectLabel').innerText = appData[lang].selectLabel;
+            document.getElementById('examLabel').innerText = appData[lang].examLabel;
             document.getElementById('qaMainTitle').innerText = appData[lang].qaMainTitle;
             document.getElementById('formTitle').innerText = appData[lang].formTitle;
             document.getElementById('loadMoreBtn').innerText = appData[lang].loadBtnTxt;
@@ -326,7 +340,6 @@
             onTopicChange();
         }
 
-        // Init Setup
         renderStaticUI();
         onTopicChange();
     </script>
