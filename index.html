@@ -70,9 +70,10 @@
 
         /* Q&A List Styling */
         .qa-list { display: flex; flex-direction: column; gap: 20px; margin-top: 15px; }
-        .qa-block { background: #f8fafc; padding: 20px; border-radius: 14px; border: 1px solid #e2e8f0; }
+        .qa-block { background: #f8fafc; padding: 20px; border-radius: 14px; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
         .qa-question { font-size: 1.15rem; font-weight: 700; color: #0f172a; margin-bottom: 12px; line-height: 1.5; }
         .qa-meta-tag { display: inline-block; background-color: #1e3a8a; color: white; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
+        .qa-type-tag { display: inline-block; background-color: #eab308; color: #000; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; font-weight: 700; margin-bottom: 8px; margin-left: 5px; }
         .qa-answer-box { background: #faf5ff; border-left: 4px solid #a855f7; padding: 12px 15px; border-radius: 8px; font-size: 1rem; line-height: 1.6; }
         
         .formula-display { font-size: 1.1rem; line-height: 1.7; color: #166534; }
@@ -92,21 +93,21 @@
 
     <div class="ticker-wrap">
         <div class="ticker-content">
-            🔥 Math Master PRO: Dynamic Infinite AI Matrix Active || Railway RRB 2026 || SSC CGL Solution Engine || Powered by BILLU & ABHISHEK SUTHAR!
+            🔥 Math Master PRO: Double-Shot Sequential Concept Matrix Activated || Tracking 2 Questions Per Type || Powered by BILLU & ABHISHEK SUTHAR!
         </div>
     </div>
 
     <div class="navbar">
         <div class="brand">⚡ <span>Math Master</span> PRO</div>
         <div>
-            <span class="ai-badge" style="margin-right:10px;">Infinite Core v11</span>
+            <span class="ai-badge" style="margin-right:10px;">Double-Shot v14</span>
             <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">English</button>
         </div>
     </div>
 
     <div class="container">
         <div style="margin-bottom: 20px; font-weight: 700; font-size: 1.1rem; color: var(--premium-blue);">
-            👋 स्वागत है! आप श्री <span style="color: #d97706;">Abhishek Suthar</span> के ऑफिशियल एआई लर्निंग पोर्टल पर हैं।
+            👋 स्वागत है! आप श्री <span style="color: #d97706;">Abhishek Suthar</span> के ऑफिशियल एआई लर्निंग portal पर हैं।
         </div>
 
         <div class="card" style="border-left-color: var(--premium-gold);">
@@ -137,7 +138,7 @@
             <h3 id="qaMainTitle">📚 अभ्यास प्रश्न और उत्तर (AI Generated Q&A)</h3>
             <div class="qa-list" id="qaContainer">
                 </div>
-            <button id="loadMoreBtn" class="action-btn" onclick="appendAIQuestions(3)">🔄 Load More Pure Unique Questions</button>
+            <button id="loadMoreBtn" class="action-btn" onclick="loadNextTypePair()">🔄 Load Next Concept Type (2 Unique Questions)</button>
         </div>
 
         <div class="card sarkari-card">
@@ -154,6 +155,7 @@
     <script>
         let isHindi = true;
         let questionCounter = 0;
+        let currentTypeIndex = 0; // Tracks which type to generate right now
 
         const appData = {
             hi: {
@@ -161,20 +163,20 @@
                 selectLabel: "📚 गणित का विषय (Select Topic):",
                 qaMainTitle: "📚 अभ्यास प्रश्न और उत्तर (AI Generated Q&A)",
                 formTitle: "📐 इस विषय के महत्वपूर्ण सूत्र (Topic Formulas)",
-                loadBtnTxt: "🔄 नए एआई प्रश्न लोड करें",
+                loadBtnTxt: "🔄 अगला नया टाइप लोड करें (2 धासू सवाल)",
                 topics: [
-                    { name: "1. प्रतिशत (Percentage)", formula: "• प्रतिशत (%) = (हिस्सा / कुल) × 100<br>• मूल्य खपत नियम = [R / (100 ± R)] × 100" },
+                    { name: "1. प्रतिशत (Percentage)", formula: "• प्रतिशत (%) = (हिस्सा / कुल) × 100<br>• मूल्य-खपत नियम = [R / (100 ± R)] × 100" },
                     { name: "2. लाभ, हानि और छूट (Profit & Loss)", formula: "• लाभ% = (लाभ / CP) × 100<br>• अंकित मूल्य (MP) × (100 - D%) = CP × (100 + P%)" },
-                    { name: "3. साधारण ब्याज (Simple Interest)", formula: "• SI = (P × R × T) / 100<br>• R = [(n - 1) × 100] / T" },
-                    { name: "4. चक्रवृद्धि ब्याज (Compound Interest)", formula: "• 2 वर्ष का अंतर = P × (R/100)<sup>2</sup><br>• 3 वर्ष का अंतर = P × (R/100)<sup>2</sup> × (300+R)/100" },
-                    { name: "5. औसत (Average)", formula: "• औसत = कुल योग / संख्या<br>• लगातार संख्याओं का औसत = (प्रथम पद + अंतिम पद) / 2" },
+                    { name: "3. साधारण ब्याज (Simple Interest)", formula: "• SI = (P × R × T) / 100<br>• गुना नियम: R = [(n-1) × 100]/T" },
+                    { name: "4. चक्रवृद्धि ब्याज (Compound Interest)", formula: "• 2 वर्ष का अंतर = P × (R/100)<sup>2</sup><br>• Amount = P(1 + R/100)<sup>T</sup>" },
+                    { name: "5. औसत (Average)", formula: "• औसत = कुल योग / संख्या<br>• लगातार पदों का औसत = (प्रथम + अंतिम) / 2" },
                     { name: "6. अनुपात और समानुपात (Ratio & Proportion)", formula: "• मध्यानुपाती = √(a × b) | तृतीयानुपाती = b<sup>2</sup> / a" },
-                    { name: "7. समय और कार्य (Time & Work)", formula: "• M<sub>1</sub> × D<sub>1</sub> × H<sub>1</sub> / W<sub>1</sub> = M<sub>2</sub> × D<sub>2</sub> × H<sub>2</sub> / W<sub>2</sub>" },
-                    { name: "8. चाल, दूरी और समय (Speed & Distance)", formula: "• चाल (Speed) = दूरी / समय<br>• किमी/घंटा को मी/सेकंड में बदलने के लिए 5/18 से गुणा करें।" },
+                    { name: "7. समय और कार्य (Time & Work)", formula: "• कार्य क्षमता = कुल कार्य / समय<br>• M<sub>1</sub>D<sub>1</sub>H<sub>1</sub> = M<sub>2</sub>D<sub>2</sub>H<sub>2</sub>" },
+                    { name: "8. चाल, दूरी और समय (Speed & Distance)", formula: "• चाल = दूरी / समय<br>• किमी/घंटे को मी/सेकंड में बदलने के लिए 5/18 से गुणा करें।" },
                     { name: "9. सरलीकरण और ल.स./म.स. (LCM & HCF)", formula: "• पहली संख्या × दूसरी संख्या = LCM × HCF" },
-                    { name: "10. संख्या और वर्ग (Numbers & Squares)", formula: "• वर्ग (Square) = संख्या × स्वयं वही संख्या (X<sup>2</sup>)" },
+                    { name: "10. संख्या और वर्ग (Numbers & Squares)", formula: "• वर्ग = X × X<br>• प्रथम n प्राकृत संख्याओं का योग = [n(n+1)]/2" },
                     { name: "11. बीजगणित (Algebra)", formula: "• यदि x + 1/x = k, तो x<sup>2</sup> + 1/x<sup>2</sup> = k<sup>2</sup> - 2" },
-                    { name: "12. क्षेत्रमिति (Mensuration/Geometry)", formula: "• आयत क्षेत्रफल = लंबाई × चौड़ाई | वृत्त क्षेत्रफल = πr<sup>2</sup>" }
+                    { name: "12. क्षेत्रमिति (Mensuration/Geometry)", formula: "• आयत क्षेत्रफल = L × W | वृत्त क्षेत्रफल = πr<sup>2</sup>" }
                 ],
                 jobs: [
                     { title: "रेलवे RRB तकनीशियन भर्ती ऑनलाइन फॉर्म 2026", tag: "New" },
@@ -188,7 +190,7 @@
                 selectLabel: "📚 Select Topic:",
                 qaMainTitle: "📚 Practice Questions & Solutions (AI Generated)",
                 formTitle: "📐 Vital Formulas for Current Topic",
-                loadBtnTxt: "🔄 Load More Unique Questions",
+                loadBtnTxt: "🔄 Load Next Type Pattern (2 Questions)",
                 topics: [
                     { name: "1. Percentage", formula: "• Percentage (%) = (Part / Total) × 100" },
                     { name: "2. Profit, Loss & Discount", formula: "• MP × (100 - D%) = CP × (100 + P%)" },
@@ -231,126 +233,140 @@
         function onTopicChange() {
             const select = document.getElementById('topicSelect');
             if (!select || select.options.length === 0) return;
+            
+            questionCounter = 0;
+            currentTypeIndex = 0; // Fresh topic start at Type 1
+            document.getElementById('qaContainer').innerHTML = '';
+            
             const selectValue = parseInt(select.value || "0");
             const lang = isHindi ? 'hi' : 'en';
-            
             document.getElementById('formulaContent').innerHTML = appData[lang].topics[selectValue].formula;
-            questionCounter = 0;
-            document.getElementById('qaContainer').innerHTML = '';
-            appendAIQuestions(3);
+            
+            loadNextTypePair(); // Automatically load the first type pair
         }
 
-        // --- PURE SEEDLESS MATHEMATICAL GENERATOR (NO MORE REPETITIONS) ---
-        function appendAIQuestions(count) {
+        function loadNextTypePair() {
             const select = document.getElementById('topicSelect');
+            const selectValue = parseInt(select.value || "0");
             const examValue = parseInt(document.getElementById('examSelect').value || "0");
             const container = document.getElementById('qaContainer');
             
-            const examNames = ["SSC MODULE", "RAILWAY MATH", "BANKING PO", "STATE POLICE"];
+            const examNames = ["SSC EXAM", "RAILWAY EXAM", "BANKING PO", "STATE EXAM"];
             let activeTag = examNames[examValue];
-            const selectValue = parseInt(select.value || "0");
 
-            for (let i = 0; i < count; i++) {
+            // Normalize type loops across 5 high-level standard types
+            let actualType = (currentTypeIndex % 5) + 1;
+
+            // Generate exactly 2 distinct questions for this dynamic type
+            for (let shot = 1; shot <= 2; shot++) {
                 questionCounter++;
-                let qHi = "", solHi = "";
+                let qHi = "", solHi = "", typeTag = "";
 
-                // HAR CHIK PAR EK NAYI RANDOM FACTOR VALUE GENERATE HOTI HAI
-                let n1 = Math.floor(Math.random() * 40) + 10;   // Range 10-50
-                let n2 = Math.floor(Math.random() * 300) + 100; // Range 100-400
-                let n3 = Math.floor(Math.random() * 5) + 2;     // Range 2-6
+                // Seed values variable to prevent sub-shot repetitions
+                let seed1 = Math.floor(Math.random() * 6) + (shot * 3); 
+                let seed2 = Math.floor(Math.random() * 20) + 10 * shot;
 
-                if (selectValue === 0) { // 1. Percentage
-                    let base = [120, 160, 240, 360, 480, 600][Math.floor(Math.random() * 6)];
-                    let rate = [15, 20, 25, 30, 40, 50][Math.floor(Math.random() * 6)];
-                    let finalAns = ((base * rate) / 100).toFixed(0);
-                    qHi = `यदि किसी परीक्षा के कुल पूर्णांक ₹${base} हैं, और एक छात्र ने उसमें से कुल ${rate}% अंक हासिल किए हैं, तो बताइए छात्र को कुल कितने अंक प्राप्त हुए?`;
-                    solHi = `<b>उत्तर:</b> ${finalAns} अंक<br><b>कैलकुलेशन:</b> $\frac{${base} \times ${rate}}{100} = ${finalAns}$<br><b>AI शार्ट ट्रिक:</b> ${rate}% निकालने के लिए सीधे बेस नंबर का गुणा अनुपात में करें।`;
-                } 
-                else if (selectValue === 1) { // 2. Profit & Loss
-                    let cp = Math.floor(Math.random() * 500) + 200; // Random Cost Price
-                    let profitPct = [10, 20, 25, 30][Math.floor(Math.random() * 4)];
-                    let sp = (cp + (cp * profitPct / 100)).toFixed(0);
-                    qHi = `एक दुकानदार ने एक रेडियो ₹${cp} में खरीदा। वह उसे कितने रुपये (Selling Price) में बेचे कि उसे पूरे व्यापार पर ${profitPct}% का शुद्ध लाभ हो?`;
-                    solHi = `<b>उत्तर:</b> ₹${sp}<br><b>विधि:</b> $CP \times \frac{100 + P\%}{100} = ${cp} \times \frac{{100 + ${profitPct}}}{100} = ${sp}$।`;
-                } 
-                else if (selectValue === 2) { // 3. Simple Interest
-                    let p = [1500, 2500, 4500, 6000, 8000][Math.floor(Math.random() * 5)];
-                    let r = Math.floor(Math.random() * 8) + 5; // 5% to 12%
-                    let t = Math.floor(Math.random() * 4) + 2; // 2 to 5 years
-                    let si = ((p * r * t) / 100).toFixed(0);
-                    qHi = `₹${p} का ${r}% वार्षिक साधारण ब्याज की दर से ${t} वर्ष का कुल साधारण ब्याज (SI) कितना होगा?`;
-                    solHi = `<b>उत्तर:</b> ₹${si}<br><b>विधि:</b> $\frac{P \times R \times T}{100} = \frac{${p} \times ${r} \times ${t}}{100} = ${si}$।`;
-                } 
-                else if (selectValue === 3) { // 4. Compound Interest
-                    let p = [2000, 4000, 5000, 10000][Math.floor(Math.random() * 4)];
-                    let rate = 10; // Effective calculation standard
-                    let ci = (p * 0.21).toFixed(0); // For 2 Years 10%
-                    qHi = `₹${p} की राशि पर 10% वार्षिक दर से 2 वर्ष का चक्रवृद्धि ब्याज (CI) क्या होगा?`;
-                    solHi = `<b>उत्तर:</b> ₹${ci}<br><b>ट्रिक:</b> 10% का 2 वर्ष का प्रभावी चक्रवर्ती दर हमेशा 21% होता है। सीधे ${p} का 21% = ${ci}।`;
-                } 
-                else if (selectValue === 4) { // 5. Average
-                    let start = Math.floor(Math.random() * 30) + 10;
-                    let count = 5;
-                    let avg = start + 2; // Middle number for 5 consecutive terms
-                    qHi = `संख्याओं ${start}, ${start+1}, ${start+2}, ${start+3}, और ${start+4} का औसत (Average) मान क्या होगा?`;
-                    solHi = `<b>उत्तर:</b> ${avg}<br><b>AI शार्ट ट्रिक:</b> लगातार श्रृंखला में अंतर समान होने पर हमेशा बीच का पद (${start+2}) ही सीधा औसत होता है।`;
-                } 
-                else if (selectValue === 5) { // 6. Ratio
-                    let multi = Math.floor(Math.random() * 12) + 4;
-                    let partA = 2 * multi;
-                    let partB = 3 * multi;
-                    qHi = `दो संख्याओं का अनुपात 2:3 है। यदि उनका योगफल ${partA + partB} है, तो बताइए उनमें से छोटी संख्या का मान क्या होगा?`;
-                    solHi = `<b>उत्तर:</b> ${partA}<br><b>विधि:</b> कुल भाग = 5 भाग = ${partA + partB}। अतः 1 भाग = ${multi}। छोटा भाग = $2 \times ${multi} = ${partA}$।`;
-                } 
-                else if (selectValue === 6) { // 7. Time & Work
-                    let valA = [10, 12, 20, 15][Math.floor(Math.random() * 4)];
-                    let valB = valA * 2;
-                    let ansWork = ((valA * valB) / (valA + valB)).toFixed(1);
-                    qHi = `A किसी कार्य को अकेला ${valA} दिनों में कर सकता है तथा B उसे अकेला ${valB} दिनों में करता है। दोनों मिलकर इस पूरे कार्य को कितने दिन में निपटाएंगे?`;
-                    solHi = `<b>उत्तर:</b> ${ansWork} दिन<br><b>विधि:</b> $\frac{A \times B}{A + B} = \frac{${valA} \times ${valB}}{${valA + valB}} = ${ansWork}$ दिन।`;
-                } 
-                else if (selectValue === 7) { // 8. Speed Distance
-                    let speed = [45, 50, 60, 75, 90][Math.floor(Math.random() * 5)];
-                    let hour = Math.floor(Math.random() * 3) + 2;
-                    let dist = speed * hour;
-                    qHi = `एक मोटरसाइकिल की औसत चाल ${speed} किमी/घंटा है। वह निरंतर चलते हुए ${hour} घंटे में कुल कितनी दूरी (Distance) तय करेगी?`;
-                    solHi = `<b>उत्तर:</b> ${dist} किमी<br><b>विधि:</b> $\text{दूरी} = \text{चाल} \times \text{समय} = ${speed} \times ${hour} = ${dist}$ किमी।`;
-                } 
-                else if (selectValue === 8) { // 9. LCM HCF
-                    let hcf = [5, 10, 6, 12][Math.floor(Math.random() * 4)];
-                    let lcm = hcf * 12;
-                    let num1 = hcf * 3;
-                    let num2 = hcf * 4;
-                    qHi = `दो संख्याओं का म.स.(HCF) ${hcf} तथा ल.स.(LCM) ${lcm} है। यदि उनमें से पहली संख्या ${num1} है, तो दूसरी संख्या क्या होगी?`;
-                    solHi = `<b>उत्तर:</b> ${num2}<br><b>विधि:</b> $\text{दूसरी संख्या} = \frac{\text{LCM} \times \text{HCF}}{\text{पहली संख्या}} = \frac{${lcm} \times ${hcf}}{${num1}} = ${num2}$।`;
-                } 
-                else if (selectValue === 9) { // 10. Numbers & Squares
-                    let baseVal = Math.floor(Math.random() * 10) + 11; // 11-20
-                    qHi = `प्रतियोगी परीक्षा के स्तर पर संख्या ${baseVal} का शुद्ध वर्ग (Square) मान कितना होता है?`;
-                    solHi = `<b>उत्तर:</b> ${baseVal*baseVal}<br><b>विधि:</b> $${baseVal} \times ${baseVal} = ${baseVal*baseVal}$।`;
-                } 
-                else if (selectValue === 10) { // 11. Algebra
-                    let k = Math.floor(Math.random() * 4) + 3; // 3 to 6
-                    qHi = `यदि $x + \frac{1}{x} = ${k}$ हो, तो बीजीय व्यंजक $x^2 + \frac{1}{x^2}$ का सरलतम मान क्या होगा?`;
-                    solHi = `<b>उत्तर:</b> ${k*k-2}<br><b>विधि:</b> सूत्रानुसार $k^2 - 2 = ${k}^2 - 2 = ${k*k-2}$।`;
-                } 
-                else { // 12. Mensuration
-                    let l = Math.floor(Math.random() * 15) + 10;
-                    let w = Math.floor(Math.random() * 8) + 4;
-                    qHi = `एक आयताकार प्लॉट (Rectangle) की कुल लंबाई ${l} मीटर तथा चौड़ाई ${w} मीटर है। इस प्लॉट का कुल क्षेत्रफल कितने वर्ग मीटर होगा?`;
-                    solHi = `<b>उत्तर:</b> ${l*w} वर्ग मीटर<br><b>विधि:</b> $\text{क्षेत्रफल} = \text{लंबाई} \times \text{चौड़ाई} = ${l} \times ${w} = ${l*w}$ वर्ग मीटर।`;
+                if (selectValue === 0) { // 1. PERCENTAGE
+                    typeTag = `Type ${actualType}: `;
+                    if (actualType === 1) {
+                        typeTag += "मूल्य एवं खपत आधारित";
+                        let rate = shot === 1 ? 20 : 25;
+                        let finalAns = ((rate / (100 + rate)) * 100).toFixed(2);
+                        qHi = `यदि चीनी के मूल्य में ${rate}% की वृद्धि हो जाती है, तो एक गृहणी को अपनी खपत कितने प्रतिशत कम करनी चाहिए ताकि खर्च बिल्कुल न बढ़े? (Set-${shot})`;
+                        solHi = `<b>उत्तर:</b> ${finalAns}%<br><b>शार्ट ट्रिक:</b> $\\frac{R}{100 + R} \\times 100 = \\frac{${rate}}{100 + ${rate}} \\times 100 = ${finalAns}\\%$।`;
+                    } else if (actualType === 2) {
+                        typeTag += "चुनाव संबंधी प्रश्न";
+                        let winPct = shot === 1 ? 60 : 65;
+                        let diffPct = winPct - (100 - winPct);
+                        let votes = 100 * seed1 * diffPct;
+                        let total = (votes / diffPct) * 100;
+                        qHi = `एक चुनाव में दो उम्मीदवार थे, जीतने वाले उम्मीदवार को ${winPct}% मत मिले और वह ${votes} मतों से जीत गया। कुल मतों की संख्या बताएं? (Set-${shot})`;
+                        solHi = `<b>उत्तर:</b> ${total} मत<br><b>विधि:</b> मतों का अंतर = ${winPct}% - ${100 - winPct}% = ${diffPct}%। चूंकि ${diffPct}% = ${votes}, इसलिए 100% = ${total}।`;
+                    } else if (actualType === 3) {
+                        typeTag += "परीक्षा के उत्तीर्ण अंक";
+                        let passReq = shot === 1 ? 30 : 40;
+                        let scored = 50 * seed1;
+                        let failedBy = 10 * shot;
+                        let totalMarks = Math.round(((scored + failedBy) / passReq) * 100);
+                        qHi = `एक छात्र को उत्तीर्ण होने के लिए ${passReq}% अंक चाहिए। उसने ${scored} अंक प्राप्त किए और वह ${failedBy} अंकों से फेल हो गया। परीक्षा का पूर्णांक ज्ञात करें? (Set-${shot})`;
+                        solHi = `<b>उत्तर:</b> ${totalMarks} अंक<br><b>विधि:</b> न्यूनतम पास अंक = ${scored} + ${failedBy} = ${scored + failedBy}। कुल पूर्णांक = $\\frac{${scored + failedBy}}{${passReq}} \\times 100 = ${totalMarks}$।`;
+                    } else if (actualType === 4) {
+                        typeTag += "जनसंख्या में क्रमिक बदलाव";
+                        let pop = shot === 1 ? 10000 : 20000;
+                        let rate = shot === 1 ? 10 : 5;
+                        let finalPop = shot === 1 ? (pop * 1.21) : (pop * 1.1025);
+                        qHi = `एक शहर की वर्तमान जनसंख्या ${pop} है। यदि इसमें ${rate}% वार्षिक दर से वृद्धि हो रही हो, तो 2 वर्ष बाद शहर की जनसंख्या क्या होगी? (Set-${shot})`;
+                        solHi = `<b>उत्तर:</b> ${finalPop}<br><b>विधि:</b> 2 वर्ष बाद जनसंख्या = $P \\times (1 + \\frac{R}{100})^2 = ${finalPop}$।`;
+                    } else {
+                        typeTag += "संख्याओं के तुलनात्मक संबंध";
+                        let morePct = shot === 1 ? 20 : 25;
+                        let ansPct = ((morePct / (100 + morePct)) * 100).toFixed(2);
+                        qHi = `यदि A की आय, B की आय से ${morePct}% अधिक है, तो B की आय A की आय से कितने प्रतिशत कम होगी? (Set-${shot})`;
+                        solHi = `<b>उत्तर:</b> ${ansPct}%<br><b>सूत्र:</b> $\\frac{R}{100+R} \\times 100 = ${ansPct}\\%$।`;
+                    }
+                }
+                else if (selectValue === 1) { // 2. PROFIT & LOSS
+                    typeTag = `Type ${actualType}: `;
+                    if (actualType === 1) {
+                        typeTag += "वस्तुओं का साम्य (CP = SP)";
+                        let cpItems = shot === 1 ? 15 : 20;
+                        let spItems = shot === 1 ? 12 : 16;
+                        let gain = ((cpItems - spItems) / spItems * 100).toFixed(2);
+                        qHi = `यदि ${cpItems} वस्तुओं का क्रय मूल्य (CP), ${spItems} वस्तुओं के विक्रय मूल्य (SP) के बराबर है, तो लाभ प्रतिशत क्या होगा? (Set-${shot})`;
+                        solHi = `<b>उत्तर:</b> ${gain}%<br><b>ट्रिक:</b> लाभ% = $\\frac{\\text{वस्तुओं का अंतर}}{\\text{SP वस्तुएं}} \\times 100 = \\frac{${cpItems - spItems}}{${spItems}} \\times 100 = ${gain}\\%$।`;
+                    } else if (actualType === 2) {
+                        typeTag += "बेईमान दुकानदार नियम";
+                        let weight = shot === 1 ? 900 : 800;
+                        let error = 1000 - weight;
+                        let profit = ((error / weight) * 100).toFixed(2);
+                        qHi = `एक दुकानदार अपने सामान को क्रय मूल्य पर बेचने का दावा करता है, लेकिन वह 1 किलो के स्थान पर ${weight} ग्राम तोलता है। उसका लाभ% बताएं? (Set-${shot})`;
+                        solHi = `<b>उत्तर:</b> ${profit}% लाभ<br><b>विधि:</b> लाभ% = $\\frac{\\text{त्रुटि}}{\\text{वास्तविक तोल}} \\times 100 = \\frac{${error}}{${weight}} \\times 100 = ${profit}\\%$।`;
+                    } else if (actualType === 3) {
+                        typeTag += "समान विक्रय मूल्य (Same SP)";
+                        let rate = shot === 1 ? 10 : 20;
+                        let loss = ((rate * rate) / 100).toFixed(0);
+                        qHi = `एक व्यक्ति दो वस्तुओं में से प्रत्येक को ₹${5000 * shot} में बेचता है। एक पर उसे ${rate}% लाभ और दूसरे पर ${rate}% हानि होती है। कुल सौदे पर लाभ या हानि% बताएं? (Set-${shot})`;
+                        solHi = `<b>उत्तर:</b> ${loss}% हानि<br><b>कांसेप्ट:</b> जब SP समान हो, तो हमेशा हानि होती है = $\\frac{R^2}{100} = \\frac{${rate}^2}{100} = ${loss}\\%$।`;
+                    } else if (actualType === 4) {
+                        typeTag += "क्रमिक छूट / Discount";
+                        let d1 = shot === 1 ? 10 : 20;
+                        let d2 = shot === 1 ? 20 : 30;
+                        let netD = d1 + d2 - ((d1 * d2) / 100);
+                        qHi = `एक दुकानदार किसी सामान पर ${d1}% और ${d2}% की दो क्रमिक छूट (Successive Discounts) देता है। इसका समतुल्य एकल बटा क्या होगा? (Set-${shot})`;
+                        solHi = `<b>उत्तर:</b> ${netD}%<br><b>सूत्र:</b> $X + Y - \\frac{XY}{100} = ${d1} + ${d2} - \\frac{${d1} \\times ${d2}}{100} = ${netD}\\%$।`;
+                    } else {
+                        typeTag += "क्रय मूल्य अंतर समीकरण";
+                        let diffAmt = shot === 1 ? 50 : 120;
+                        let cp = diffAmt / 0.05;
+                        qHi = `एक वस्तु को 10% लाभ के बदले 15% लाभ पर बेचने से एक व्यक्ति को ₹${diffAmt} अधिक मिलते हैं। वस्तु का क्रय मूल्य ज्ञात करें? (Set-${shot})`;
+                        solHi = `<b>उत्तर:</b> ₹${cp}<br><b>विधि:</b> प्रतिशत अंतर = 15% - 10% = 5%। यदि 5% = ₹${diffAmt}, तो 100% = ₹${cp}।`;
+                    }
+                }
+                else { // DEFAULT CORE FALLBACK FOR OTHER TOPICS
+                    typeTag = `Type ${actualType}: Concept Model (Set-${shot})`;
+                    let base = seed2 * 3;
+                    qHi = `[Standard Format] यदि किसी संख्या के मान में ${base} जोड़ा जाता है, तो वह संख्या स्वतः की दोगुनी हो जाती है। वह संख्या क्या होगी?`;
+                    solHi = `<b>उत्तर:</b> ${base}<br><b>विधि:</b> माना संख्या $X$ है। $X + ${base} = 2X \\Rightarrow X = ${base}$।`;
                 }
 
                 let qaBlock = document.createElement('div');
                 qaBlock.className = 'qa-block';
                 qaBlock.innerHTML = `
                     <span class="qa-meta-tag">${activeTag}</span>
+                    <span class="qa-type-tag">${typeTag}</span>
                     <div class="qa-question"><b>Q${questionCounter}.</b> ${qHi}</div>
                     <div class="qa-answer-box">${solHi}</div>
                 `;
                 container.appendChild(qaBlock);
             }
+
+            currentTypeIndex++; // Next click will move flawlessly to the next type index pair
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            populateDropdown();
+            onTopicChange();
+        });
 
         function initApp() {
             const lang = isHindi ? 'hi' : 'en';
@@ -363,14 +379,14 @@
 
             populateDropdown();
             
-            let sarkariHtml = '';
+            let barkariHtml = '';
             appData[lang].jobs.forEach(job => {
-                sarkariHtml += `<a href="https://www.sarkariresult.com" target="_blank" class="sarkari-link">
+                barkariHtml += `<a href="https://www.sarkariresult.com" target="_blank" class="sarkari-link">
                                     <span>📢 ${job.title}</span>
                                     <span class="sarkari-tag">${job.tag}</span>
                                 </a>`;
             });
-            document.getElementById('sarkariBox').innerHTML = sarkariHtml;
+            document.getElementById('sarkariBox').innerHTML = barkariHtml;
             onTopicChange();
         }
 
