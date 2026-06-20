@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sarkari Result & AI Smart Book - Abhishek Suthar Antique Edition</title>
+    <title>Sarkari Result, AI Book & Newspaper Portal - Abhishek Suthar Edition</title>
     
-    <!-- Mobile App Configuration -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
@@ -22,7 +21,7 @@
             --card-bg: #ffffff;
             --text-dark: #2c3e50;
             --antique-page: #fbf6ef; 
-            --paper-page: #f5f5f5; 
+            --paper-page: #f2f2f0; 
             --book-border: #e6dcc5;
         }
 
@@ -30,8 +29,7 @@
             font-family: 'Segoe UI', Roboto, sans-serif;
             background-color: var(--bg-light);
             color: var(--text-dark);
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -61,15 +59,14 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 1px solid #334155;
             flex-wrap: wrap; gap: 10px;
         }
-        .bar-notice { font-size: 0.9rem; color: #94a3b8; font-weight: 700; letter-spacing: 0.3px; }
+        .bar-notice { font-size: 0.9rem; color: #94a3b8; font-weight: 700; }
 
         .yt-coaching-btn {
             background: #ff0000; color: white; border: none; padding: 10px 20px;
             border-radius: 25px; font-weight: 800; font-size: 0.85rem; cursor: pointer;
             text-decoration: none; display: flex; align-items: center; gap: 8px;
-            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3); transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
         }
-        .yt-coaching-btn:hover { background: #cc0000; transform: scale(1.03); }
         .yt-icon { width: 16px; height: 16px; fill: currentColor; }
 
         .time-filter-card {
@@ -79,92 +76,103 @@
         .time-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .filter-select {
             width: 100%; padding: 10px; font-size: 0.9rem; font-weight: 700;
-            border: 2px solid #cbd5e1; border-radius: 8px; color: var(--primary-dark);
-            outline: none; cursor: pointer; background-color: #f8fafc;
+            border: 2px solid #cbd5e1; border-radius: 8px; background-color: #f8fafc;
+            outline: none; cursor: pointer;
         }
 
+        /* SECTION 1: ANTIQUE BOOK CARD STYLE */
         .book-card {
             background-color: var(--antique-page); border-radius: 12px; padding: 24px 24px 24px 35px; 
-            box-shadow: 0 12px 28px rgba(0,0,0,0.08); border: 1px solid var(--book-border);
-            margin-bottom: 25px; position: relative; transition: all 0.3s ease;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.06); border: 1px solid var(--book-border);
+            margin-bottom: 25px; position: relative;
         }
-        
-        .book-card.newspaper-mode {
-            background-color: var(--paper-page); border: 2px double #7f8c8d; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
         .book-spine-line {
             position: absolute; left: 18px; top: 0; bottom: 0; width: 4px; 
-            background: linear-gradient(90deg, rgba(0,0,0,0.08), rgba(0,0,0,0.01) 50%, rgba(255,255,255,0.15) 100%);
-            border-right: 1px solid rgba(0,0,0,0.05);
+            background: linear-gradient(90deg, rgba(0,0,0,0.06), rgba(0,0,0,0.01) 50%, rgba(255,255,255,0.1) 100%);
+            border-right: 1px solid rgba(0,0,0,0.04);
         }
-        .newspaper-mode .book-spine-line { display: none; }
-
         .book-header-panel {
             display: flex; justify-content: space-between; align-items: center;
             border-bottom: 1px dashed #c8bca6; padding-bottom: 10px; margin-bottom: 18px;
         }
-        .newspaper-mode .book-header-panel {
-            flex-direction: column; border-bottom: 3px double #333; padding-bottom: 5px; margin-bottom: 15px;
-        }
-
         .book-title { color: #5c4033; font-size: 1.05rem; font-weight: 800; margin: 0; }
-        .newspaper-mode .book-title {
-            font-family: 'Georgia', serif; font-size: 1.6rem; font-weight: 900; color: #111; letter-spacing: 1px; text-transform: uppercase;
-        }
-
-        .newspaper-meta { display: none; font-size: 0.75rem; font-weight: 700; color: #555; width: 100%; text-align: center; border-top: 1px solid #333; margin-top: 5px; padding-top: 3px; }
-        .newspaper-mode .newspaper-meta { display: block; }
-
         .page-badge { background-color: #8c6d53; color: white; padding: 3px 10px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; }
-        .newspaper-mode .page-badge { background-color: #333; font-size: 0.7rem; margin-top: 5px; }
+
+        /* SECTION 2: NEWSPAPER CONTAINER (SEPARATED) */
+        .newspaper-card {
+            background-color: #ffffff; border: 1px dashed #7f8c8d; border-radius: 8px;
+            padding: 20px; margin-bottom: 25px; cursor: pointer; position: relative;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .newspaper-card.touched-active {
+            background-color: var(--paper-page);
+            border: 3px double #111111;
+            transform: scale(1.01);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .paper-main-header {
+            text-align: center; border-bottom: 3px double #222; padding-bottom: 6px; margin-bottom: 15px;
+        }
+        .paper-main-title {
+            font-family: 'Georgia', serif; font-size: 1.5rem; font-weight: 900; color: #111;
+            letter-spacing: 1px; margin: 0; text-transform: uppercase;
+        }
+        .paper-meta-text { font-size: 0.75rem; font-weight: 700; color: #444; text-transform: uppercase; margin-top: 4px; }
+        
+        .paper-touch-hint {
+            position: absolute; right: 15px; top: 15px; font-size: 0.7rem; font-weight: 900;
+            background-color: #ff0000; color: white; padding: 2px 8px; border-radius: 10px;
+            animation: pulseHint 1.5s infinite;
+        }
+        @keyframes pulseHint { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
 
         .gk-list { display: flex; flex-direction: column; gap: 12px; }
         
-        .gk-item { background: #fffdfa; border: 1px solid #ebdcb9; padding: 14px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
-        .newspaper-mode .gk-item {
-            background: #fff; border: none; border-bottom: 1px solid #ccc; padding: 12px; box-shadow: none; border-radius: 4px;
+        /* Two column alignment inside newspaper view */
+        .newspaper-card.touched-active .gk-list {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(45%, 1fr)); gap: 15px;
+        }
+
+        .gk-item { background: #fffdfa; border: 1px solid #ebdcb9; padding: 14px; border-radius: 6px; }
+        .newspaper-card.touched-active .gk-item {
+            background: #ffffff; border: none; border-bottom: 1px solid #aaa; padding: 10px 0; border-radius: 0;
         }
 
         .gk-question { font-size: 0.95rem; font-weight: 700; color: #2c3e50; margin-bottom: 10px; line-height: 1.5; }
-        .newspaper-mode .gk-question { font-size: 0.95rem; color: #000; font-family: 'Times New Roman', serif; }
+        .newspaper-card.touched-active .gk-question { font-family: 'Times New Roman', serif; color: #000; }
         
         .answer-btn {
             background-color: #8c6d53; color: white; border: none; padding: 6px 12px;
-            border-radius: 4px; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: all 0.2s;
+            border-radius: 4px; font-weight: 700; font-size: 0.8rem; cursor: pointer;
         }
-        .answer-btn:hover { background-color: #6e4e37; }
-        .newspaper-mode .answer-btn { background-color: #444; font-size: 0.8rem; }
+        .newspaper-card.touched-active .answer-btn { background-color: #222; border-radius: 0; }
         
         .gk-answer {
             margin-top: 10px; padding: 10px 12px; background-color: #f4fcf6;
             border-left: 3px solid var(--success); border-radius: 4px; color: #1e522f;
             font-weight: 600; display: none; line-height: 1.5; font-size: 0.85rem;
         }
-        .newspaper-mode .gk-answer { background-color: #f9f9f9; border-left: 3px solid #333; color: #222; }
 
         .book-navigation-panel {
             display: flex; justify-content: space-between; align-items: center;
             margin-top: 20px; border-top: 1px dashed #c8bca6; padding-top: 14px;
         }
-        .newspaper-mode .book-navigation-panel { border-top: 2px solid #333; }
-
         .nav-book-btn {
             background: linear-gradient(135deg, #4a3525, #6e4e37); color: white; border: none;
             padding: 9px 16px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 0.85rem;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.1); transition: all 0.2s;
         }
-        .nav-book-btn:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; box-shadow: none; }
-        .newspaper-mode .nav-book-btn { background: #222; border-radius: 0; }
+        .nav-book-btn:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; }
 
+        /* Sarkari Result UI */
         .filter-section {
             background: var(--card-bg); padding: 12px; border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-bottom: 20px;
-            display: flex; gap: 8px; overflow-x: auto; white-space: nowrap;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-bottom: 20px; display: flex; gap: 8px; overflow-x: auto;
         }
         .filter-btn {
             background: #f1f5f9; color: var(--text-dark); border: 1px solid #cbd5e1;
-            padding: 8px 14px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;
+            padding: 8px 14px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 0.85rem;
         }
         .filter-btn.active, .filter-btn:hover { background: var(--sarkari-blue); color: white; border-color: var(--sarkari-blue); }
 
@@ -176,13 +184,11 @@
         .col-result { background: linear-gradient(135deg, #dc2626, #ef4444); }
 
         .link-list { padding: 8px; list-style: none; margin: 0; display: flex; flex-direction: column; gap: 6px; }
-        .link-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; transition: all 0.2s ease; }
+        .link-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; }
         .link-item a { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; text-decoration: none; color: #1e293b; font-weight: 600; font-size: 0.85rem; }
-        .link-item:hover { background: #f0fdf4; border-color: #34d399; transform: translateX(2px); }
         .job-tag { font-size: 0.65rem; padding: 2px 5px; border-radius: 4px; color: white; font-weight: bold; text-transform: uppercase; }
         .tag-new { background-color: #ef4444; }
         .tag-update { background-color: #3b82f6; }
-        .tag-last { background-color: #64748b; }
 
         .footer {
             background: linear-gradient(135deg, var(--primary-dark), #1e293b); color: var(--premium-gold);
@@ -195,13 +201,13 @@
 
     <div class="ticker-bar">
         <div class="ticker-text">
-            🚀 FIXED & STABLE: अभिषेक सुथार ऑफिशियल वेब इंजन पूरी तरह ठीक कर दिया गया है। सभी प्रश्न लोड हो चुके हैं।
+            🚀 2-SEPARATED PANELS: ग्लोबल बुक (ऊपर) और डेली इंडियन अखबार (नीचे) को पूरी तरह अलग-अलग सेट कर दिया गया है!
         </div>
     </div>
 
     <div class="header">
-        <h1>SARKARI RESULT & <span>AI ANTIQUE BOOK</span></h1>
-        <p>🎯 Abhishek Suthar Interactive Premium Book Theme Layout 🎯</p>
+        <h1>SARKARI RESULT & <span>AI SMART HUB</span></h1>
+        <p>🎯 Abhishek Suthar Premium Separated Educational Framework 🎯</p>
     </div>
 
     <div class="container">
@@ -216,16 +222,15 @@
             </a>
         </div>
 
-        <!-- TIME CONTROLS -->
+        <!-- GLOBAL BOOK FILTERS -->
         <div class="card time-filter-card">
-            <h3 style="margin-top:0; color: #1e3a8a; font-size: 0.95rem; margin-bottom: 10px;">📅 कालखंड चयन ग्रिड (Select Month & Year):</h3>
+            <h3 style="margin-top:0; color: #1e3a8a; font-size: 0.95rem; margin-bottom: 10px;">📅 ग्लोबल बुक कालखंड फ़िल्टर (Global Book Filter):</h3>
             <div class="time-grid">
                 <select class="filter-select" id="yearSelect" onchange="resetBookToPageOne()">
-                    <option value="2026">Current Affairs: 2026 (Global)</option>
-                    <option value="india_live">Daily Indian Current Affairs (भारत विशेष) 📰</option>
-                    <option value="2025">Current Affairs: 2025</option>
-                    <option value="2024">Current Affairs: 2024</option>
-                    <option value="history">इतिहास एवं संस्कृति (History Core)</option>
+                    <option value="2026">Global Affairs: 2026</option>
+                    <option value="2025">Global Affairs: 2025</option>
+                    <option value="2024">Global Affairs: 2024</option>
+                    <option value="history">ऐतिहासिक काल (History Core)</option>
                 </select>
                 <select class="filter-select" id="monthSelect" onchange="resetBookToPageOne()">
                     <option value="jan">January (जनवरी)</option>
@@ -244,35 +249,49 @@
             </div>
         </div>
 
-        <!-- DYNAMIC BOOK CARD SECTION -->
+        <!-- 📚 SECTION 1: GLOBAL ANTIQUE BOOK MODULE (UPAR) -->
         <div class="book-card" id="bookCardSection">
             <div class="book-spine-line"></div>
-            
             <div class="book-header-panel">
-                <h3 class="book-title" id="panelMainTitle">📖 वैश्विक ज्ञानकोष - पुस्तकालय एडिशन</h3>
-                <div class="newspaper-meta" id="paperMetaBar">THE DAILY INDIA GAZETTE • LIVE NEWSPAPER</div>
+                <h3 class="book-title">📖 वैश्विक ज्ञानकोष - पुस्तकालय एडिशन</h3>
                 <span class="page-badge" id="pageNumberDisplay">Page 1</span>
             </div>
-
             <div class="gk-list" id="bookPageContainer"></div>
-
             <div class="book-navigation-panel">
                 <button class="nav-book-btn" id="prevPageBtn" onclick="flipPage(-1)">◀️ Previous Page</button>
-                <span id="newspaperPageNum" style="font-weight:700; font-size:0.85rem; color:#444;"></span>
                 <button class="nav-book-btn" id="nextPageBtn" onclick="flipPage(1)">Next Page ▶️</button>
             </div>
         </div>
 
-        <!-- LATEST JOBS FILTERS -->
+
+        <!-- 📰 SECTION 2: SEPARATED DAILY HINDI/INDIAN NEWSPAPER MODULE (NICHE) -->
+        <div class="newspaper-card" id="newspaperSection" onclick="triggerNewspaperTouch()">
+            <div class="paper-touch-hint" id="touchHintBadge">Touch to Open Newspaper 📰</div>
+            
+            <div class="paper-main-header">
+                <h2 class="paper-main-title">THE DAILY INDIA GAZETTE</h2>
+                <div class="paper-meta-text" id="paperDateMeta">LIVE NATIONAL PAPER • NEW DELHI</div>
+            </div>
+
+            <div class="gk-list" id="newspaperContentContainer">
+                <!-- Indian current affairs loaded dynamically -->
+            </div>
+            
+            <div class="book-navigation-panel" style="margin-top:15px; padding-top:10px;">
+                <span style="font-size:0.75rem; font-weight:800; color:#555;">📰 दैनिक स्व-अपडेटिंग भारतीय खंड</span>
+                <button class="nav-book-btn" style="background:#222; font-size:0.75rem; padding:6px 12px;" onclick="refreshNewspaperGrid(event)">🔄 Change News</button>
+            </div>
+        </div>
+
+
+        <!-- SARKARI RESULT JOBS ROW -->
         <div class="filter-section">
             <button class="filter-btn active" onclick="filterCategory('all')">🔥 All Updates</button>
             <button class="filter-btn" onclick="filterCategory('railway')">🚂 Railway Jobs</button>
             <button class="filter-btn" onclick="filterCategory('ssc')">⚡ SSC Jobs</button>
             <button class="filter-btn" onclick="filterCategory('police')">👮 Police & Defense</button>
-            <button class="filter-btn" onclick="filterCategory('bank')">🏦 Banking Core</button>
         </div>
 
-        <!-- SARKARI RESULT TABLES -->
         <div class="portal-grid">
             <div class="portal-column">
                 <div class="column-header col-jobs">🔥 Latest Jobs 2026</div>
@@ -289,7 +308,7 @@
         </div>
 
         <div class="footer">
-            🥇 SARKARI RESULT & AI INTERACTIVE BOOK 🥇
+            🥇 SARKARI RESULT & SEPARATED DUAL FRAME ENGINE 🥇
             <div>🐾 DESIGNED & POWERED BY BILLU & ABHISHEK SUTHAR 🐾</div>
         </div>
 
@@ -297,19 +316,20 @@
 
     <script>
         let currentPage = 1;
+        let paperSeed = 1;
 
         const globalNations = ["भारत", "अमेरिका", "रूस", "ब्रिटेन", "फ्रांस", "जर्मनी", "जापान", "कनाडा", "ऑस्ट्रेलिया", "इटली"];
-        const globalOrgs = ["संयुक्त राष्ट्र (UN)", "विश्व बैंक", "अंतर्राष्ट्रीय मुद्रा कोष (IMF)", "यूनेस्को", "नासा (NASA)", "इसरो (ISRO)", "डब्ल्यूएचओ (WHO)"];
-        const coreTopics = ["आर्टिफिशियल इंटेलिजेंस रेगुलेशन", "ग्रीन हाइड्रोजन एनर्जी ग्रिड", "ग्लोबल वार्मिंग नियंत्रण संधि", "क्वांटम नेटवर्क सुरक्षा", "साइबर थ्रेट मैनेजमेंट", "अंतरिक्ष मलबे का निपटारा"];
+        const globalOrgs = ["संयुक्त राष्ट्र (UN)", "विश्व बैंक", "अंतर्राष्ट्रीय मुद्रा कोष (IMF)", "यूनेस्को", "नासा (NASA)", "इसरो (ISRO)"];
+        const coreTopics = ["आर्टिफिशियल इंटेलिजेंस रेगुलेशन", "ग्रीन हाइड्रोजन एनर्जी ग्रिड", "ग्लोबल वार्मिंग नियंत्रण संधि", "क्वांटम नेटवर्क सुरक्षा", "साइबर थ्रेट मैनेजमेंट"];
 
-        const indianStates = ["राजस्थान", "उत्तर Pradesh", "मध्य प्रदेश", "बिहार", "हरियाणा", "पंजाब", "गुजरात", "महाराष्ट्र"];
-        const indianMinistries = ["रक्षा मंत्रालय", "रेल मंत्रालय", "शिक्षा मंत्रालय", "वित्त मंत्रालय", "गृह मंत्रालय", "सड़क परिवहन मंत्रालय"];
-        const indianSchemes = ["डिजिटल इंडिया मिशन 3.0", "पीएम सूर्यघर मुफ्त बिजली योजना", "लखपति दीदी कार्यक्रम", "आयुष्मान भारत योजना", "अमृत भारत स्टेशन योजना"];
+        const indianStates = ["राजस्थान", "उत्तर प्रदेश", "मध्य प्रदेश", "बिहार", "हरियाणा", "पंजाब", "गुजरात", "महाराष्ट्र"];
+        const indianMinistries = ["रक्षा मंत्रालय", "रेल मंत्रालय", "शिक्षा मंत्रालय", "वित्त मंत्रालय", "गृह मंत्रालय"];
+        const indianSchemes = ["डिजिटल इंडिया मिशन 3.0", "पीएम सूर्यघर मुफ्त बिजली योजना", "लखपति दीदी कार्यक्रम", "आयुष्मान भारत स्वास्थ्य योजना", "अमृत भारत स्टेशन नीति"];
 
         const staticHistoryPool = [
-            { q: "मौर्य राजवंश के प्रसिद्ध शासक सम्राट अशोक ने किस ऐतिहासिक युद्ध के बाद बौद्ध धर्म को अपनाया था?", a: "<b>उत्तर: कलिंग युद्ध (261 ईसा पूर्व)।</b><br>कलिंग युद्ध में हुए भीषण नरसंहार को देखकर अशोक का हृदय परिवर्तन हुआ। उन्होंने शांति का मार्ग अपनाया।" },
-            { q: "भारतीय राष्ट्रीय कांग्रेस (INC) के प्रथम अधिवेशन की अध्यक्षता 1885 में किसने की थी?", a: "<b>उत्तर: व्योमेश चंद्र बनर्जी (स्थान: बॉम्बे)।</b><br>यह अधिवेशन गोकुलदास तेजपाल संस्कृत कॉलेज में आयोजित किया गया था।" },
-            { q: "प्रसिद्ध चीनी यात्री 'ह्वेनसांग' ने किस उत्तर भारतीय सम्राट के शासनकाल में भारत की यात्रा की थी?", a: "<b>उत्तर: सम्राट हर्षवर्धन।</b><br>ह्वेनसांग ने नालंदा विश्वविद्यालय में बौद्ध धर्म का अध्ययन किया।" }
+            { q: "मौर्य राजवंश के प्रसिद्ध शासक सम्राट अशोक ने किस ऐतिहासिक युद्ध के बाद बौद्ध धर्म को अपनाया था?", a: "<b>उत्तर: कलिंग युद्ध (261 ईसा पूर्व)।</b><br>कलिंग युद्ध में हुए भीषण नरसंहार को देखकर अशोक का हृदय परिवर्तन हुआ।" },
+            { q: "भारतीय राष्ट्रीय कांग्रेस (INC) के प्रथम अधिवेशन की अध्यक्षता 1885 में किसने की थी?", a: "<b>उत्तर: व्योमेश चंद्र बनर्जी (स्थान: बॉम्बे)।</b>" },
+            { q: "प्रसिद्ध चीनी यात्री 'ह्वेनसांग' ने किस उत्तर भारतीय सम्राट के शासनकाल में भारत की यात्रा की थी?", a: "<b>उत्तर: सम्राट हर्षवर्धन।</b>" }
         ];
 
         const portalData = {
@@ -323,10 +343,57 @@
                 { title: "रेलवे ALP परीक्षा सिटी इंटिमेशन लिंक 2026", cat: "railway", tag: "update" }
             ],
             results: [
-                { title: "यूपी पुलिस कांस्टेबल परीक्षा final रिजल्ट 2026", cat: "police", tag: "new" },
+                { title: "यूपी पुलिस कांस्टेबल परीक्षा फाइनल रिजल्ट 2026", cat: "police", tag: "new" },
                 { title: "आरआरबी (RRB) ग्रुप डी परीक्षा परिणाम 2026", cat: "railway", tag: "new" }
             ]
         };
+
+        function triggerNewspaperTouch() {
+            const paperCard = document.getElementById('newspaperSection');
+            const hint = document.getElementById('touchHintBadge');
+            
+            if(!paperCard.classList.contains('touched-active')) {
+                paperCard.classList.add('touched-active');
+                hint.innerText = "📰 Akhbar Mode Active";
+                hint.style.backgroundColor = "#10b981";
+            }
+        }
+
+        function refreshNewspaperGrid(e) {
+            e.stopPropagation(); // Stop parent layout triggers
+            paperSeed += 3;
+            compileNewspaperData();
+        }
+
+        function compileNewspaperData() {
+            const container = document.getElementById('newspaperContentContainer');
+            container.innerHTML = "";
+
+            for (let i = 1; i <= 4; i++) {
+                let dynamicIdx = i + paperSeed;
+                let state = indianStates[dynamicIdx % indianStates.length];
+                let ministry = indianMinistries[(dynamicIdx + 2) % indianMinistries.length];
+                let scheme = indianSchemes[(dynamicIdx + 1) % indianSchemes.length];
+
+                let qText = `<b>[राष्ट्रीय मुख्य समाचार]</b> हाल ही में भारत सरकार के ${ministry} द्वारा देशहित में '${scheme}' के तहत एक महत्वपूर्ण नीतिगत फैसला लिया गया है, जिससे ${state} क्षेत्र के लाखों विद्यार्थियों को सीधा लाभ मिलेगा। इसके मुख्य बिंदु क्या हैं?`;
+                let ansText = `<b>उत्तर: इस नीति से ${state} में अत्याधुनिक इंफ्रास्ट्रक्चर सेंटर स्थापित किए जाएंगे।</b><br>यह निर्णय विकास को गति देने और शिक्षा/रोजगार के अवसरों को पारदर्शी बनाने के लिए मील का पत्थर साबित होगा।`;
+
+                let div = document.createElement('div');
+                div.className = 'gk-item';
+                div.innerHTML = `
+                    <div class="gk-question">📌 ${qText}</div>
+                    <button class="answer-btn" onclick="togglePaperAnswer(event, 'paperAns_${i}')">👁️ Read Breaking News</button>
+                    <div class="gk-answer" id="paperAns_${i}">${ansText}</div>
+                `;
+                container.appendChild(div);
+            }
+        }
+
+        function togglePaperAnswer(e, id) {
+            e.stopPropagation();
+            const ansEl = document.getElementById(id);
+            ansEl.style.display = (ansEl.style.display === 'block') ? 'none' : 'block';
+        }
 
         function resetBookToPageOne() {
             currentPage = 1;
@@ -342,37 +409,14 @@
 
         function renderBookPage() {
             const container = document.getElementById('bookPageContainer');
-            const bookCard = document.getElementById('bookCardSection');
-            const mainTitle = document.getElementById('panelMainTitle');
             const timeline = document.getElementById('yearSelect').value;
             const monthSelect = document.getElementById('monthSelect');
             const monthText = monthSelect.options[monthSelect.selectedIndex].text;
-            const pageDisplay = document.getElementById('pageNumberDisplay');
-            const paperPageNum = document.getElementById('newspaperPageNum');
             
+            document.getElementById('pageNumberDisplay').innerText = `Page ${currentPage}`;
             container.innerHTML = "";
 
-            // Dynamic Styling Toggle Logic
-            if (timeline === "india_live") {
-                bookCard.classList.add('newspaper-mode');
-                mainTitle.innerText = "THE DAILY INDIA GAZETTE";
-                pageDisplay.style.display = "none";
-                paperPageNum.style.display = "inline";
-                paperPageNum.innerText = `PAGE NO. ${currentPage}`;
-            } else {
-                bookCard.classList.remove('newspaper-mode');
-                mainTitle.innerText = "📖 वैश्विक ज्ञानकोष - पुस्तकालय एडिशन";
-                pageDisplay.style.display = "inline";
-                pageDisplay.innerText = `Page ${currentPage}`;
-                paperPageNum.style.display = "none";
-            }
-
-            document.getElementById('prevPageBtn').disabled = (currentPage === 1);
-
-            // Numeric parsed variable setup to completely prevent code-freezing logic errors
-            let yearMultiplier = 2026;
-            if (timeline === "2025") yearMultiplier = 2025;
-            if (timeline === "2024") yearMultiplier = 2024;
+            let yearMultiplier = timeline === "history" ? 2026 : parseInt(timeline);
 
             for (let qIndex = 1; qIndex <= 5; qIndex++) {
                 let globalCounter = ((currentPage - 1) * 5) + qIndex;
@@ -382,50 +426,30 @@
                     let poolItem = staticHistoryPool[(globalCounter - 1) % staticHistoryPool.length];
                     qText = `[इतिहास खंड] ${poolItem.q}`;
                     ansText = poolItem.a;
-                } 
-                else if (timeline === "india_live") {
-                    let state = indianStates[(globalCounter + qIndex) % indianStates.length];
-                    let ministry = indianMinistries[(globalCounter + 2) % indianMinistries.length];
-                    let scheme = indianSchemes[(globalCounter + 1) % indianSchemes.length];
-
-                    if (globalCounter % 2 === 0) {
-                        qText = `<b>[भारत समाचार]</b> केंद्र सरकार के ${ministry} द्वारा बुनियादी ढांचे को मजबूत करने के लिए राष्ट्रीय स्तर पर '${scheme}' का नया विस्तार शुरू किया गया है, इससे कौन सा राज्य सबसे अधिक लाभान्वित होगा? (${monthText})`;
-                        ansText = `<b>उत्तर: ${state} राज्य को इस योजना के तहत विशेष बजट आवंटन प्राप्त हुआ है।</b><br>इसका उद्देश्य स्थानीय स्तर पर रोजगार को बढ़ावा देना और ग्रामीण बुनियादी ढांचे का पूर्ण विकास सुनिश्चित करना है।`;
-                    } else {
-                        qText = `<b>[राष्ट्रीय सुरक्षा / नीति]</b> हाल ही में नई दिल्ली में संपन्न हुई उच्च स्तरीय कैबिनेट बैठक में ${ministry} ने किस प्रमुख डिजिटल तकनीक या '${scheme}' के सुरक्षित क्रियान्वयन को लेकर नीति निर्देश जारी किए हैं?`;
-                        ansText = `<b>उत्तर: नीतिगत रूप से '${scheme}' को मंजूरी दी गई है।</b><br>यह कदम देश के सुरक्षा ढांचे को मजबूत बनाने में काफी सहायक साबित होगा।`;
-                    }
-                } 
-                else {
+                } else {
                     let seedBase = globalCounter + monthSelect.selectedIndex + yearMultiplier;
                     let nat1 = globalNations[(seedBase + 2) % globalNations.length];
                     let nat2 = globalNations[(seedBase + 5) % globalNations.length];
-                    if(nat1 === nat2) nat2 = globalNations[(seedBase + 7) % globalNations.length];
                     
                     let org = globalOrgs[(seedBase + 3) % globalOrgs.length];
                     let topic = coreTopics[(seedBase + 1) % coreTopics.length];
 
-                    if (globalCounter % 2 === 0) {
-                        qText = `[वैश्विक सूचकांक] हाल ही में ${org} द्वारा जारी वार्षिक रैंकिंग इंडेक्स में, '${topic}' के क्रियान्वयन में कौन सा देश शीर्ष स्थान पर रहा है? (${monthText} ${yearMultiplier})`;
-                        ansText = `<b>उत्तर: इस सूचकांक में ${nat1} प्रथम स्थान पर रहा है, जबकि ${nat2} दूसरे स्थान पर रहा।</b><br>भारत ने इस नीति विकास में पिछले वर्ष की तुलना में काफी बेहतर सुधार किया है।`;
-                    } else {
-                        qText = `[वैश्विक नीति] ${monthText} ${yearMultiplier} के आधिकारिक दस्तावेजों के अनुसार, ${nat1} और ${nat2} ने किस महत्वपूर्ण विषय अथवा '${topic}' को लेकर एक बड़े रणनीतिक सहयोग समझौते पर हस्ताक्षर किए हैं?`;
-                        ansText = `<b>उत्तर: दोनों देशों के बीच '${topic}' पर ऐतिहासिक सुरक्षा और व्यापार समझौता हुआ है।</b>`;
-                    }
+                    qText = `[वैश्विक सूचकांक] ${org} द्वारा जारी हालिया डेटा इंडेक्स में, '${topic}' के बेहतर क्रियान्वयन में कौन सा देश शीर्ष पर रहा? (${monthText} ${yearMultiplier})`;
+                    ansText = `<b>उत्तर: इस नीतिगत सूचकांक में ${nat1} प्रथम स्थान पर रहा है, जबकि ${nat2} दूसरे पायदान पर है।</b>`;
                 }
 
                 let div = document.createElement('div');
                 div.className = 'gk-item';
                 div.innerHTML = `
                     <div class="gk-question">📌 <b>Q${globalCounter}.</b> ${qText}</div>
-                    <button class="answer-btn" onclick="togglePageAnswer(${globalCounter})">👁️ Read Solution</button>
+                    <button class="answer-btn" onclick="toggleBookAnswer(${globalCounter})">👁️ Read Solution</button>
                     <div class="gk-answer" id="bookAnswer_${globalCounter}">${ansText}</div>
                 `;
                 container.appendChild(div);
             }
         }
 
-        function togglePageAnswer(id) {
+        function toggleBookAnswer(id) {
             const ansEl = document.getElementById("bookAnswer_" + id);
             ansEl.style.display = (ansEl.style.display === 'block') ? 'none' : 'block';
         }
@@ -435,11 +459,6 @@
                 const el = document.getElementById(targetId);
                 el.innerHTML = "";
                 const filtered = filterType === "all" ? arr : arr.filter(item => item.cat === filterType);
-                
-                if(filtered.length === 0) {
-                    el.innerHTML = `<li class="link-item" style="padding:10px; text-align:center; font-weight:700; color:#94a3b8; font-size:0.85rem;">No Updates</li>`;
-                    return;
-                }
                 filtered.forEach(item => {
                     let li = document.createElement('li');
                     li.className = 'link-item';
@@ -465,9 +484,10 @@
         window.onload = function() {
             const today = new Date();
             const formattedDate = today.toLocaleDateString('hi-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase();
-            document.getElementById('paperMetaBar').innerText = `THE DAILY INDIA GAZETTE • LIVE NEWSPAPER • NEW DELHI, ${formattedDate}`;
+            document.getElementById('paperDateMeta').innerText = `LIVE NATIONAL PAPER • NEW DELHI • ${formattedDate}`;
             
             renderBookPage(); 
+            compileNewspaperData();
             renderJobsMatrix("all"); 
         };
     </script>
