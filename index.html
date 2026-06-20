@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sarkari Result, AI Multi-Page Newspaper & GK Hub - Abhishek Suthar Edition</title>
+    <title>Sarkari Result & Asli AI Newspaper - Abhishek Suthar Print Edition</title>
     
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -72,41 +72,45 @@
         .paper-filter-title { font-size: 0.9rem; font-weight: 900; color: #000; margin: 0; text-transform: uppercase; }
         .time-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 10px; }
         @media (max-width: 600px) { .time-grid { grid-template-columns: 1fr; } }
-        .filter-select { width: 100%; padding: 10px; font-size: 0.85rem; font-weight: 700; border: 2px solid #000; background-color: #fff; }
+        .filter-select { width: 100%; padding: 10px; font-size: 0.85rem; font-weight: 700; border: 2px solid #000; background-color: #fff; outline: none; }
 
-        /* REAL PRINT NEWSPAPER DESIGN SHEET */
+        /* 📰 REAL HARDCOPY PRINT NEWSPAPER CANVAS SHEET */
         .newspaper-sheet {
             background-color: #ffffff; border: 4px solid #000; padding: 25px; margin-bottom: 30px;
             box-shadow: 6px 6px 0px rgba(0,0,0,0.15);
         }
         .paper-main-header { text-align: center; border-bottom: 5px double #000; padding-bottom: 5px; margin-bottom: 12px; }
-        .paper-main-title { font-family: 'Times New Roman', serif; font-size: 2.8rem; font-weight: 900; color: #000; text-transform: uppercase; line-height: 1; }
+        .paper-main-title { font-family: 'Times New Roman', serif; font-size: 3rem; font-weight: 900; color: #000; text-transform: uppercase; line-height: 1; letter-spacing: -1px; }
         .paper-meta-bar { display: flex; justify-content: space-between; border-top: 1px solid #000; border-bottom: 1px solid #000; padding: 4px 10px; margin-top: 8px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
-        .paper-page-category-banner { background-color: #000; color: #fff; text-align: center; padding: 6px; font-size: 0.85rem; font-weight: 900; font-family: sans-serif; margin-bottom: 18px; }
+        .paper-page-category-banner { background-color: #000; color: #fff; text-align: center; padding: 6px; font-size: 0.85rem; font-weight: 900; font-family: sans-serif; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 1px; }
 
-        .newspaper-layout-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
-        @media (max-width: 800px) { .newspaper-layout-grid { grid-template-columns: 1fr; gap: 15px; } }
+        /* Column Grid like a Real Paper Sheet */
+        .newspaper-layout-grid { display: grid; grid-template-columns: 2.2fr 1fr; gap: 24px; }
+        @media (max-width: 850px) { .newspaper-layout-grid { grid-template-columns: 1fr; gap: 20px; } }
         
-        .major-stories-column { padding-right: 15px; }
-        @media (min-width: 801px) { .major-stories-column { border-right: 1px solid #ccc; } }
+        .major-stories-column { padding-right: 10px; }
+        @media (min-width: 851px) { .major-stories-column { border-right: 1px solid #000; } }
         
-        .short-snippets-column { background-color: #fcfcf9; padding: 14px; border: 1px solid #ddd; }
-        .briefs-header { font-family: sans-serif; font-size: 0.85rem; font-weight: 900; background: #222; color: #fff; padding: 4px; text-align: center; margin-bottom: 12px; text-transform: uppercase; }
+        .short-snippets-column { background-color: #fdfdfa; padding: 14px; border: 1px solid #000; }
+        .briefs-header { font-family: sans-serif; font-size: 0.85rem; font-weight: 900; background: #000; color: #fff; padding: 6px; text-align: center; margin-bottom: 14px; text-transform: uppercase; }
 
-        .major-article { border-bottom: 1px solid #ddd; padding-bottom: 14px; margin-bottom: 14px; }
+        /* No buttons, text is fully printed on the sheet */
+        .major-article { border-bottom: 1px solid #111; padding-bottom: 16px; margin-bottom: 16px; }
         .major-article:last-child { border-bottom: none; }
-        .major-headline { font-size: 1.25rem; font-weight: 900; color: #000; margin: 0 0 8px 0; line-height: 1.3; }
-        .major-body { font-size: 0.95rem; color: #222; line-height: 1.5; text-align: justify; }
+        .major-headline { font-size: 1.4rem; font-weight: 900; color: #000; margin: 0 0 10px 0; line-height: 1.25; font-family: 'Times New Roman', serif; }
+        .major-body { font-size: 1rem; color: #111; line-height: 1.6; text-align: justify; margin: 0; }
 
-        .brief-item { border-bottom: 1px dashed #aaa; padding-bottom: 8px; margin-bottom: 8px; }
+        .brief-item { border-bottom: 1px dashed #333; padding-bottom: 10px; margin-bottom: 10px; }
         .brief-item:last-child { border-bottom: none; }
-        .brief-title { font-size: 0.9rem; font-weight: 800; color: #b91c1c; margin: 0 0 4px 0; }
-        .brief-text { font-size: 0.85rem; color: #333; line-height: 1.4; text-align: justify; }
+        .brief-title { font-size: 0.95rem; font-weight: 900; color: #b91c1c; margin: 0 0 5px 0; font-family: sans-serif; }
+        .brief-text { font-size: 0.85rem; color: #111; line-height: 1.5; text-align: justify; margin: 0; }
 
-        .paper-pagination-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; border-top: 4px double #000; padding-top: 12px; font-family: sans-serif; }
-        .page-turn-btn { background: #000; color: #fff; border: none; padding: 8px 16px; font-weight: 800; font-size: 0.75rem; cursor: pointer; text-transform: uppercase; }
+        .paper-pagination-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 25px; border-top: 4px double #000; padding-top: 12px; font-family: sans-serif; }
+        .page-turn-btn { background: #000; color: #fff; border: none; padding: 8px 18px; font-weight: 800; font-size: 0.75rem; cursor: pointer; text-transform: uppercase; }
+        .page-turn-btn:disabled { background: #ccc; color: #777; cursor: not-allowed; }
+        .page-status-indicator { font-weight: 900; font-size: 0.85rem; }
 
-        /* GK BOOK LAYER MODULE */
+        /* MODULE 2: RE-ADDED CURRENT GK MODULE SECTION */
         .book-card {
             background-color: var(--antique-page); border-radius: 12px; padding: 24px 24px 24px 35px; 
             box-shadow: 0 12px 28px rgba(0,0,0,0.06); border: 1px solid var(--book-border);
@@ -120,10 +124,10 @@
         .gk-item-box { background: #ffffff; border: 1px solid #ebdcb9; padding: 14px; border-radius: 6px; margin-bottom: 12px; }
         .gk-q-text { font-size: 0.95rem; font-weight: 700; color: #1e293b; margin-bottom: 8px; }
         .gk-a-text { font-size: 0.9rem; color: #059669; font-weight: 700; border-left: 3px solid #10b981; padding-left: 10px; }
-        
         .book-navigation-panel { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; border-top: 1px dashed #c8bca6; padding-top: 12px; }
         .nav-book-btn { background: linear-gradient(135deg, #4a3525, #6e4e37); color: white; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 0.85rem; }
 
+        /* Sarkari Board Grid Component Rows */
         .portal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 25px; font-family: sans-serif; }
         .portal-column { background: #fff; border-radius: 8px; border: 1px solid #cbd5e1; overflow: hidden; }
         .column-header { color: white; padding: 10px; font-size: 0.95rem; font-weight: 800; text-align: center; }
@@ -140,13 +144,13 @@
 
     <div class="ticker-bar">
         <div class="ticker-text">
-            🚀 AUTOMATED PRESS ENGINE ACTIVE: अब आपके सिलेक्टेड न्यूजपेपर के टोन और स्टाइल के अनुसार खबरें ऑटो-चेंज होंगी!
+            📰 REAL FULL PRINT EDITION ACTIVE: बिना किसी बटन के हर छोटी-बड़ी खबर पहले से ही पूरी तरह पन्नों पर छपी हुई लाइव है!
         </div>
     </div>
 
     <div class="header">
         <h1>SARKARI RESULT & <span>AI SMART HUB</span></h1>
-        <p>🎯 Abhishek Suthar Premium Dual Press Platform 🎯</p>
+        <p>🎯 Abhishek Suthar Hardcopy Print Layout Edition 🎯</p>
     </div>
 
     <div class="container">
@@ -187,6 +191,7 @@
             </div>
         </div>
 
+        <!-- NEWSPAPER GRAPHIC CANVAS -->
         <div class="newspaper-sheet" id="newspaperSection">
             <div class="paper-main-header">
                 <h2 class="paper-main-title" id="newspaperHeadlineTitle">DAINIK BHASKAR</h2>
@@ -197,10 +202,13 @@
                 </div>
             </div>
 
-            <div class="paper-page-category-banner" id="pageCategoryBanner">मुखपृष्ठ (Front Page - Major Headlines)</div>
+            <div class="paper-page-category-banner" id="pageCategoryBanner">FIRST PAGE</div>
 
             <div class="newspaper-layout-grid">
+                <!-- Left Main News Area (Fully Printed, No Toggle Buttons) -->
                 <div class="major-stories-column" id="majorStoriesContainer"></div>
+                
+                <!-- Right Side Briefs Area (Fully Printed) -->
                 <div class="short-snippets-column">
                     <div class="briefs-header" id="briefSectionHeader">📰 शहर-शहर की खबरें (Briefs)</div>
                     <div id="shortSnippetsContainer"></div>
@@ -208,12 +216,13 @@
             </div>
             
             <div class="paper-pagination-footer">
-                <button class="page-turn-btn" id="prevPaperBtn" onclick="turnPaperPage(-1)">◀️</button>
-                <span class="page-status-indicator" id="paperPageIndicator">कुल पृष्ठ: 1 / 8</span>
-                <button class="page-turn-btn" id="nextPaperBtn" onclick="turnPaperPage(1)">▶️</button>
+                <button class="page-turn-btn" id="prevPaperBtn" onclick="turnPaperPage(-1)">◀️ पिछला पन्ना</button>
+                <span class="page-status-indicator" id="paperPageIndicator">पृष्ठ संख्या: 1 / 8</span>
+                <button class="page-turn-btn" id="nextPaperBtn" onclick="turnPaperPage(1)">अगला पन्ना ▶️</button>
             </div>
         </div>
 
+        <!-- MODULE 2: INDEPENDENT CURRENT GK REFER BOOK -->
         <div class="book-card" id="bookCardSection">
             <div class="book-spine-line"></div>
             <div class="book-header-panel">
@@ -223,10 +232,12 @@
             <div id="bookPageContainer"></div>
             <div class="book-navigation-panel">
                 <button class="nav-book-btn" onclick="flipBookPage(-1)">◀️ Prev GK Page</button>
+                <span class="page-status-indicator" id="bookPageIndicator">Page: 1</span>
                 <button class="nav-book-btn" onclick="flipBookPage(1)">Next GK Page ▶️</button>
             </div>
         </div>
 
+        <!-- SARKARI BASE PANELS -->
         <div class="portal-grid">
             <div class="portal-column">
                 <div class="column-header col-jobs">🔥 Latest Jobs 2026</div>
@@ -249,7 +260,7 @@
         </div>
 
         <div class="footer">
-            🥇 SARKARI RESULT & STABLE PRINT PLATFORM 🥇
+            🥇 SARKARI RESULT & REALTIME AI NEWSPAPER CORES 🥇
             <div style="color: #64748b; font-size: 0.75rem; margin-top: 4px;">🐾 DESIGNED & POWERED BY ABHISHEK SUTHAR 🐾</div>
         </div>
 
@@ -285,29 +296,30 @@
 
         const staticHistoryPool = [
             { q: "मौर्य राजवंश के प्रसिद्ध शासक सम्राट अशोक ने किस ऐतिहासिक युद्ध के बाद बौद्ध धर्म को अपनाया था?", a: "कलिंग युद्ध (261 ईसा पूर्व)। इसके बाद सम्राट अशोक ने शांति और धम्म का मार्ग अपनाया।" },
-            { q: "भारतीय राष्ट्रीय कांग्रेस (INC) के प्रथम अधिवेशन की अध्यक्षता 1885 in किसने की थी?", a: "व्योमेश चंद्र बनर्जी ने बॉम्बे के गोकुलदास तेजपाल संस्कृत कॉलेज में की थी।" },
+            { q: "भारतीय राष्ट्रीय कांग्रेस (INC) के प्रथम अधिवेशन की अध्यक्षता 1885 में किसने की थी?", a: "व्योमेश चंद्र बनर्जी ने बॉम्बे के गोकुलदास तेजपाल संस्कृत कॉलेज में की थी।" },
             { q: "प्रसिद्ध चीनी यात्री 'ह्वेनसांग' ने किस उत्तर भारतीय सम्राट के शासनकाल में भारत की यात्रा की थी?", a: "सम्राट हर्षवर्धन के काल में नालंदा विश्वविद्यालय की यात्रा की।" },
             { q: "तराइन का प्रथम युद्ध (1191 ई.) किनके बीच लड़ा गया था?", a: "पृथ्वीराज चौहान और मोहम्मद गौरी के मध्य, जिसमें चौहान साम्राज्य की विजय हुई थी।" },
-            { q: "1942 के प्रसिद्ध भारत छोड़ो आंदोलन के दौरान महात्मा गांधी ने कौन सा नारा दिया था?", a: "मुंबई से 'करो या मरो' (Do or Die) का ऐतिहासिक नारा दिया था।" }
+            { q: "1942 के प्रसिद्ध भारत छोड़ो आंदोलन के दौरान महात्मा गांधी ने कौन सा नारा दिया था?", a: "मुंबई से 'करो या मरो' (Do or Die) का ऐतिहासिक नारा दिया था।" },
+            { q: "सिंधु घाटी सभ्यता का प्रसिद्ध बंदरगाह नगर 'लोथल' वर्तमान में भारत के किस राज्य में स्थित है?", a: "गुजरात के भाल क्षेत्र में भोगवा नदी के किनारे स्थित है।" }
         ];
 
-        // 📰 EXCLUSIVE MULTI-TONE AUTOMATED INTELLIGENT NEWS MATRIX DATABASE
+        // DYNAMIC MULTI-BRAND PRINT LOGS ENGINE
         const agencyNewsEngine = {
             dainik_bhaskar: {
-                1: { h: "भास्कर ब्रेकिंग: केंद्रीय मंत्रालय ने 'ग्रीन हाइड्रोजन मिशन 2026' के बजट को दी महा-मंजूरी, राजस्थान-MP को तगड़ा फंड", b: "<b>[विशेष ब्यूरो समीक्षा]</b> नवीन और नवीकरणीय ऊर्जा मंत्रालय ने राष्ट्रीय ग्रिड को इको-फ्रेंडली बनाने के लिए बड़ा कदम उठाया है। इस ऐतिहासिक फैसले से स्थानीय स्तर पर पर्यावरण संरचनाओं को बढ़ावा मिलेगा और युवाओं के लिए तकनीकी क्षेत्रों में बम्पर सरकारी रोजगार के रास्ते खुलेंगे।" },
-                2: { h: "ग्लोबल इन्वेस्टर्स: फ्रांस में पीएम मोदी और राष्ट्रपति मैक्रों ने किया भारतीय डिजिटल पवेलियन का भव्य आगाज़", b: "<b>[भास्कर इंटरनेशनल डेस्क]</b> भारत-फ्रांस द्विपक्षीय सांस्कृतिक और तकनीकी समझौते के तहत पेरिस और नीस शहरों में नई डिजिटल नीतियों का ब्लूप्रिंट साझा किया गया। छात्रों के लिए विदेशी तकनीकी रिसर्च प्रोजेक्ट्स का रास्ता साफ हुआ।" }
+                1: { h: "भास्कर ब्रेकिंग: केंद्रीय मंत्रालय ने 'ग्रीन हाइड्रोजन मिशन 2026' के बजट को दी महा-मंजूरी, राजस्थान-MP को तगड़ा फंड", b: "नवीन और नवीकरणीय ऊर्जा मंत्रालय ने राष्ट्रीय ग्रिड को इको-फ्रेंडली बनाने के लिए बड़ा कदम उठाया है। इस ऐतिहासिक फैसले से स्थानीय स्तर पर पर्यावरण संरचनाओं को बढ़ावा मिलेगा और युवाओं के लिए तकनीकी क्षेत्रों में बम्पर सरकारी रोजगार के रास्ते खुलेंगे। यह योजना राज्य के बुनियादी ढांचे के विकास में एक मील का पत्थर साबित होगी।" },
+                2: { h: "ग्लोबल इन्वेस्टर्स: फ्रांस में पीएम मोदी और राष्ट्रपति मैक्रों ने किया भारतीय डिजिटल पवेलियन का भव्य आगाज़", b: "भारत-फ्रांस द्विपक्षीय सांस्कृतिक और तकनीकी समझौते के तहत पेरिस और नीस शहरों में नई डिजिटल नीतियों का ब्लूप्रिंट साझा किया गया। छात्रों के लिए विदेशी तकनीकी रिसर्च प्रोजेक्ट्स का रास्ता साफ हुआ। यह समझौता वैश्विक स्तर पर भारत की स्थिति को मजबूत करेगा।" }
             },
             rajasthan_patrika: {
-                1: { h: "पत्रिका एक्सक्लूसिव: बुनियादी ढांचे को रफ्तार; सड़क परिवहन मंत्रालय ने सीमावर्ती जिलों के लिए जारी किए ₹4500 करोड़", b: "<b>[जयपुर राज्य ब्यूरो]</b> राजस्थान और पंजाब के सीमावर्ती जिलों में सामरिक और ढांचागत कनेक्टिविटी को मजबूत करने के लिए केंद्रीय कैबिनेट ने विशेष पैकेज को हरी झंडी दे दी है। इस योजना की सीधी मॉनिटरिंग खुद केंद्रीय सचिव करेंगे।" },
-                2: { h: "पत्रिका ग्लोबल: विश्व आर्थिक मंच की बैठक में डिजिटल इंडिया मिशन 3.0 को मिली दुनिया भर से बड़ी सराहना", b: "<b>[कॉर्पोरेट डेस्क]</b> भारतीय वित्तीय समावेशन और पारदर्शी बैंकिंग प्रणाली के नए स्वरूप को अंतरराष्ट्रीय स्तर पर सराहा गया है। यह समसामयिक आर्थिक घटनाक्रम आगामी मुख्य परीक्षाओं के लिए बेहद महत्वपूर्ण है।" }
+                1: { h: "पत्रिका एक्सक्लूसिव: बुनियादी ढांचे को रफ्तार; सड़क परिवहन मंत्रालय ने सीमावर्ती जिलों के लिए जारी किए ₹4500 करोड़", b: "राजस्थान और पंजाब के सीमावर्ती जिलों में सामरिक और ढांचागत कनेक्टिविटी को मजबूत करने के लिए केंद्रीय कैबिनेट ने विशेष पैकेज को हरी छंडी दे दी है। इस योजना की सीधी मॉनिटरिंग खुद केंद्रीय सचिव करेंगे। सीमावर्ती क्षेत्रों के युवाओं के लिए यह रोजगार के नए अवसर लाएगा।" },
+                2: { h: "पत्रिका ग्लोबल: विश्व आर्थिक मंच की बैठक में डिजिटल इंडिया मिशन 3.0 को मिली दुनिया भर से बड़ी सराहना", b: "भारतीय वित्तीय समावेशन और पारदर्शी बैंकिंग प्रणाली के नए स्वरूप को अंतरराष्ट्रीय स्तर पर सराहा गया है। यह समसामयिक आर्थिक घटनाक्रम आगामी मुख्य परीक्षाओं के लिए बेहद महत्वपूर्ण है। डिजिटल लेन-देन के क्षेत्र में भारत ने वैश्विक मानदंड स्थापित किए हैं।" }
             },
             dainik_jagran: {
-                1: { h: "जागरण राष्ट्रीय जागरण: गृह मंत्रालय ने सीमा सुरक्षा और क्वांटम थ्रेट मैनेजमेंट के लिए लागू की नई राष्ट्रीय नीति", b: "<b>[नई दिल्ली राष्ट्रीय प्रेस]</b> देश की आंतरिक सुरक्षा को अभेद्य बनाने के लिए उच्च स्तरीय कैबिनेट बैठक में 'अमृत सुरक्षा ग्रिड' के गठन को मंजूरी दी गई है। इसके अंतर्गत अत्याधुनिक साइबर सुरक्षा प्रशिक्षण केंद्र स्थापित किए जाएंगे।" },
-                2: { h: "सांस्कृतिक गौरव: यूनेस्को की ऐतिहासिक धरोहर सूची में शामिल हुए भारत के 3 और प्राचीन मंदिर स्थल", b: "<b>[सांस्कृतिक ब्यूरो]</b> भारतीय पुरातत्व सर्वेक्षण (ASI) के सफल प्रयासों के बाद यूनेस्को ने देश के प्राचीन कला केंद्रों को वैश्विक धरोहर के रूप में मान्यता दी है, जो कला एवं संस्कृति खंड का मुख्य हिस्सा है।" }
+                1: { h: "जागरण राष्ट्रीय: गृह मंत्रालय ने सीमा सुरक्षा और क्वांटम थ्रेट मैनेजमेंट के लिए लागू की नई राष्ट्रीय नीति", b: "देश की आंतरिक सुरक्षा को अभेद्य बनाने के लिए उच्च स्तरीय कैबिनेट बैठक में 'अमृत सुरक्षा ग्रिड' के गठन को मंजूरी दी गई है। इसके अंतर्गत अत्याधुनिक साइबर सुरक्षा प्रशिक्षण केंद्र स्थापित किए जाएंगे। यह कदम भविष्य के तकनीकी खतरों से देश की रक्षा करेगा।" },
+                2: { h: "सांस्कृतिक गौरव: यूनेस्को की ऐतिहासिक धरोहर सूची में शामिल हुए भारत के 3 और प्राचीन मंदिर स्थल", b: "भारतीय पुरातत्व सर्वेक्षण (ASI) के सफल प्रयासों के बाद यूनेस्को ने देश के प्राचीन कला केंद्रों को वैश्विक धरोहर के रूप में मान्यता दी है, जो कला एवं संस्कृति खंड का मुख्य हिस्सा है। इससे वैश्विक पर्यटन मानचित्र पर भारत का गौरव बढ़ेगा।" }
             },
             the_hindu: {
-                1: { h: "The Hindu Editorial: Ministry of Finance Outlines Robust Strategic Fiscal Allocation for State Infrastructure Extension Projects", b: "<b>[New Delhi Press Bureau]</b> According to official policy documents, the Union Government has institutionalized a comprehensive capital expenditure framework. This mandate aims to bolster technical education arrays and smart grid facilities across primary focus states." },
-                2: { h: "Global Policy Review: India and Japan Ratify Article 6.2 Mechanism of Paris Climate Accord for Carbon Credit Verification", b: "<b>[International Science Desk]</b> The bilateral Joint Crediting Mechanism (JCM) has been successfully activated. This milestone will drive clean-energy technology transfer and deep-tech research paradigms exponentially." }
+                1: { h: "The Hindu Editorial: Ministry of Finance Outlines Robust Strategic Fiscal Allocation for State Infrastructure Extension Projects", b: "According to official policy documents, the Union Government has institutionalized a comprehensive capital expenditure framework. This mandate aims to bolster technical education arrays and smart grid facilities across primary focus states. Analysts view this as a crucial step for long-term domestic productivity growth." },
+                2: { h: "Global Policy Review: India and Japan Ratify Article 6.2 Mechanism of Paris Climate Accord for Carbon Credit Verification", b: "The bilateral Joint Crediting Mechanism (JCM) has been successfully activated. This milestone will drive clean-energy technology transfer and deep-tech research paradigms exponentially between the two sovereign partners." }
             }
         };
 
@@ -323,7 +335,7 @@
             generatePrintNewspaper();
         }
 
-        // PERFECT AUTOMATED SWITCHER MATRIX BASED ON SELECTION
+        // FULL OPEN-TEXT GENERATOR (NO BUTTON BLOCKS)
         function generatePrintNewspaper() {
             const agencyKey = document.getElementById('paperAgencySelect').value;
             const year = document.getElementById('paperYearSelect').value;
@@ -350,41 +362,37 @@
             majorContainer.innerHTML = "";
             shortContainer.innerHTML = "";
 
-            // Dynamic logic checking selected paper profile
             let activeDb = agencyNewsEngine[agencyKey] || agencyNewsEngine['dainik_bhaskar'];
-            
-            // Safe fallbacks to prevent empty rendering slots
             let data1 = activeDb[1];
             let data2 = activeDb[2];
 
             if(currentPaperPage > 2) {
-                // Generates layout offsets dynamically if student turns to deeper pages
                 let offsetIdx = (currentPaperPage % 2 === 0) ? 2 : 1;
                 data1 = activeDb[offsetIdx];
                 data2 = activeDb[offsetIdx === 1 ? 2 : 1];
             }
 
-            // Article Block 1
+            // 1. Printed Main News Story 1
             let art1 = document.createElement('div');
             art1.className = 'major-article';
             art1.innerHTML = `<h3 class="major-headline">📰 ${data1.h} (${monthText} ${year})</h3><p class="major-body">${data1.b}</p>`;
             majorContainer.appendChild(art1);
 
-            // Article Block 2
+            // 2. Printed Main News Story 2
             let art2 = document.createElement('div');
             art2.className = 'major-article';
-            art2.innerHTML = `<h3 class="major-headline">📰 विश्लेषण: ${data2.h}</h3><p class="major-body">${data2.b}</p>`;
+            art2.innerHTML = `<h3 class="major-headline">📰 विशेष लेख: ${data2.h}</h3><p class="major-body">${data2.b}</p>`;
             majorContainer.appendChild(art2);
 
-            // Right side column briefs
+            // 3. Printed Small News Briefs
             for(let k = 1; k <= 4; k++) {
                 let seedValue = currentPaperPage + k + parseInt(monthSelect.value);
                 let district = localDistricts[seedValue % localDistricts.length];
                 let state = indianStates[(seedValue + 1) % indianStates.length];
                 let scheme = indianSchemes[seedValue % indianSchemes.length];
 
-                let briefTitle = `📍 ${district} न्यूज़ ट्रैक: '${scheme}' का सफल क्रियान्वयन`;
-                let briefText = `${state} के अंतर्गत आने वाले ${district} क्षेत्र में प्रशासनिक स्तर पर व्यापक सुधार देखा गया है... यह परीक्षाओं की दृष्टि से काफी महत्वपूर्ण माना जा रहा है।`;
+                let briefTitle = `📍 ${district} बुलेटिन: '${scheme}' का सफल जमीनी क्रियान्वयन`;
+                let briefText = `${state} के अंतर्गत आने वाले ${district} क्षेत्र में प्रशासनिक स्तर पर व्यापक सुधार देखा गया है। नोडल अधिकारियों के अनुसार इसे आगामी प्रतियोगी परीक्षाओं की तैयारी कर रहे विद्यार्थियों के लिए विशेष रूप से उपयोगी घटनाक्रम माना जा रहा है।`;
 
                 let briefDiv = document.createElement('div');
                 briefDiv.className = 'brief-item';
@@ -404,10 +412,12 @@
         function renderBookPage() {
             const container = document.getElementById('bookPageContainer');
             const pageDisplay = document.getElementById('pageNumberDisplay');
+            const indicator = document.getElementById('bookPageIndicator');
             if(!container || !pageDisplay) return;
 
             container.innerHTML = "";
             pageDisplay.innerText = `Page ${currentBookPage}`;
+            if(indicator) indicator.innerText = `Page: ${currentBookPage}`;
 
             for (let i = 1; i <= 2; i++) {
                 let poolIdx = (currentBookPage - 1) * 2 + (i - 1);
