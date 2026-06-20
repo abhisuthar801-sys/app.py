@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sarkari Result & AI Smart Book - Abhishek Suthar Antique Edition</title>
+    <title>Sarkari Result & AI Smart Book - Abhishek Suthar Newspaper Edition</title>
     
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -21,6 +21,7 @@
             --card-bg: #ffffff;
             --text-dark: #2c3e50;
             --antique-page: #fbf6ef; 
+            --paper-page: #f5f5f5; /* Newspaper theme background */
             --book-border: #e6dcc5;
         }
 
@@ -81,50 +82,89 @@
             outline: none; cursor: pointer; background-color: #f8fafc;
         }
 
+        /* DYNAMIC ANTIQUE / NEWSPAPER MATRIX CONTAINER */
         .book-card {
             background-color: var(--antique-page); border-radius: 12px; padding: 24px 24px 24px 35px; 
-            box-shadow: 0 12px 28px rgba(0,0,0,0.08), inset 0 0 40px rgba(230,220,197,0.3); border: 1px solid var(--book-border);
-            margin-bottom: 25px; position: relative;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.08); border: 1px solid var(--book-border);
+            margin-bottom: 25px; position: relative; transition: all 0.3s ease;
         }
+        
+        /* Newspaper Theme Override State */
+        .book-card.newspaper-mode {
+            background-color: var(--paper-page);
+            border: 2px double #7f8c8d;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
         .book-spine-line {
             position: absolute; left: 18px; top: 0; bottom: 0; width: 4px; 
             background: linear-gradient(90deg, rgba(0,0,0,0.08), rgba(0,0,0,0.01) 50%, rgba(255,255,255,0.15) 100%);
             border-right: 1px solid rgba(0,0,0,0.05);
         }
+        .newspaper-mode .book-spine-line { display: none; }
+
         .book-header-panel {
             display: flex; justify-content: space-between; align-items: center;
             border-bottom: 1px dashed #c8bca6; padding-bottom: 10px; margin-bottom: 18px;
         }
-        .book-title { color: #5c4033; font-size: 1.05rem; font-weight: 800; margin: 0; letter-spacing: 0.3px; }
+        .newspaper-mode .book-header-panel {
+            flex-direction: column; border-bottom: 3px double #333; padding-bottom: 5px; margin-bottom: 15px;
+        }
+
+        .book-title { color: #5c4033; font-size: 1.05rem; font-weight: 800; margin: 0; }
+        .newspaper-mode .book-title {
+            font-family: 'Georgia', serif; font-size: 1.6rem; font-weight: 900; color: #111; letter-spacing: 1px; text-transform: uppercase;
+        }
+
+        .newspaper-meta { display: none; font-size: 0.75rem; font-weight: 700; color: #555; width: 100%; text-align: center; border-top: 1px solid #333; margin-top: 5px; padding-top: 3px; }
+        .newspaper-mode .newspaper-meta { display: block; }
+
         .page-badge { background-color: #8c6d53; color: white; padding: 3px 10px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; }
+        .newspaper-mode .page-badge { background-color: #333; font-size: 0.7rem; margin-top: 5px; }
 
         .gk-list { display: flex; flex-direction: column; gap: 12px; }
+        .newspaper-mode .gk-list {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(45%, 1fr)); gap: 15px;
+        }
+
         .gk-item { background: #fffdfa; border: 1px solid #ebdcb9; padding: 14px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .newspaper-mode .gk-item {
+            background: #fff; border: none; border-bottom: 1px solid #ccc; border-right: 1px dashed #eee; padding: 10px; border-radius: 0; box-shadow: none;
+        }
+
         .gk-question { font-size: 0.95rem; font-weight: 700; color: #2c3e50; margin-bottom: 10px; line-height: 1.5; }
+        .newspaper-mode .gk-question { font-size: 0.9rem; color: #000; font-family: 'Times New Roman', serif; }
         
         .answer-btn {
             background-color: #8c6d53; color: white; border: none; padding: 6px 12px;
             border-radius: 4px; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: all 0.2s;
         }
         .answer-btn:hover { background-color: #6e4e37; }
+        .newspaper-mode .answer-btn { background-color: #444; border-radius: 0; font-size: 0.75rem; }
         
         .gk-answer {
             margin-top: 10px; padding: 10px 12px; background-color: #f4fcf6;
             border-left: 3px solid var(--success); border-radius: 4px; color: #1e522f;
             font-weight: 600; display: none; line-height: 1.5; font-size: 0.85rem;
         }
+        .newspaper-mode .gk-answer { background-color: #f9f9f9; border-left: 3px solid #333; color: #222; }
 
         .book-navigation-panel {
             display: flex; justify-content: space-between; align-items: center;
             margin-top: 20px; border-top: 1px dashed #c8bca6; padding-top: 14px;
         }
+        .newspaper-mode .book-navigation-panel { border-top: 2px solid #333; }
+
         .nav-book-btn {
             background: linear-gradient(135deg, #4a3525, #6e4e37); color: white; border: none;
             padding: 9px 16px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 0.85rem;
             box-shadow: 0 3px 6px rgba(0,0,0,0.1); transition: all 0.2s;
         }
         .nav-book-btn:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; box-shadow: none; }
+        .newspaper-mode .nav-book-btn { background: #222; border-radius: 0; }
 
+        /* Dynamic Job Filters */
         .filter-section {
             background: var(--card-bg); padding: 12px; border-radius: 12px;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-bottom: 20px;
@@ -136,6 +176,7 @@
         }
         .filter-btn.active, .filter-btn:hover { background: var(--sarkari-blue); color: white; border-color: var(--sarkari-blue); }
 
+        /* Sarkari Result Columns */
         .portal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 25px; }
         .portal-column { background: var(--card-bg); border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; overflow: hidden; }
         .column-header { color: white; padding: 10px; font-size: 1rem; font-weight: 800; text-align: center; }
@@ -163,13 +204,13 @@
 
     <div class="ticker-bar">
         <div class="ticker-text">
-            🚀 PORTAL FINALIZED: Kamra Coaching Ganganagar यूट्यूब चैनल और पूर्णतः स्वचालित ज्ञानकोष स्थिर रूप से सक्रिय!
+            📢 UPDATE: डेली इंडियन करंट अफेयर्स (भारत विशेष) एवं न्यूspaper गैजेट मोड सफलतापूर्वक लाइव सक्रिय!
         </div>
     </div>
 
     <div class="header">
         <h1>SARKARI RESULT & <span>AI ANTIQUE BOOK</span></h1>
-        <p>🎯 ABHISHEK SUTHAR 🎯</p>
+        <p>🎯 Abhishek Suthar Interactive Premium Book Theme Layout 🎯</p>
     </div>
 
     <div class="container">
@@ -184,12 +225,13 @@
             </a>
         </div>
 
-        <!-- TIME CONTROLS -->
+        <!-- TIME CONTROLS WITH INDIAN CURRENT AFFAIRS INCLUDED -->
         <div class="card time-filter-card">
             <h3 style="margin-top:0; color: #1e3a8a; font-size: 0.95rem; margin-bottom: 10px;">📅 कालखंड चयन ग्रिड (Select Month & Year):</h3>
             <div class="time-grid">
                 <select class="filter-select" id="yearSelect" onchange="resetBookToPageOne()">
-                    <option value="2026">Current Affairs: 2026</option>
+                    <option value="2026">Current Affairs: 2026 (Global)</option>
+                    <option value="india_live">Daily Indian Current Affairs (भारत विशेष) 📰</option>
                     <option value="2025">Current Affairs: 2025</option>
                     <option value="2024">Current Affairs: 2024</option>
                     <option value="history">इतिहास एवं संस्कृति (History Core)</option>
@@ -211,19 +253,20 @@
             </div>
         </div>
 
-        <!-- BOOK MODULE -->
+        <!-- DYNAMIC FRAME COMPONENT (SWITCHES THEME VIA JAVASCRIPT STATE) -->
         <div class="book-card" id="bookCardSection">
             <div class="book-spine-line"></div>
             
             <div class="book-header-panel">
-                <h3 class="book-title">📖 वैश्विक ज्ञानकोष - पुस्तकालय एडिशन</h3>
-                <span class="page-badge" id="pageNumberDisplay">Page 1</span>
+                <h3 class="book-title" id="panelMainTitle">📖 वैश्विक ज्ञानकोष - पुस्तकालय एडिशन</h3>
+                <div class="newspaper-meta" id="paperMetaBar">THE DAILY INDIA GAZETTE • LIVE NEWSPAPER • NEW DELHI, SATURDAY, JUNE 20, 2026</div>
             </div>
 
             <div class="gk-list" id="bookPageContainer"></div>
 
             <div class="book-navigation-panel">
                 <button class="nav-book-btn" id="prevPageBtn" onclick="flipPage(-1)">◀️ Previous Page</button>
+                <span id="newspaperPageNum" style="display:none; font-weight:700; font-size:0.8rem; color:#444;"></span>
                 <button class="nav-book-btn" id="nextPageBtn" onclick="flipPage(1)">Next Page ▶️</button>
             </div>
         </div>
@@ -255,7 +298,7 @@
 
         <div class="footer">
             🥇 SARKARI RESULT & AI INTERACTIVE BOOK 🥇
-            <div>🐾 DESIGNED & POWERED BY BILLU 🐾</div>
+            <div>🐾 DESIGNED & POWERED BY BILLU & ABHISHEK SUTHAR 🐾</div>
         </div>
 
     </div>
@@ -267,12 +310,15 @@
         const globalOrgs = ["संयुक्त राष्ट्र (UN)", "विश्व बैंक", "अंतर्राष्ट्रीय मुद्रा कोष (IMF)", "यूनेस्को", "नासा (NASA)", "इसरो (ISRO)", "डब्ल्यूएचओ (WHO)"];
         const coreTopics = ["आर्टिफिशियल इंटेलिजेंस रेगुलेशन", "ग्रीन हाइड्रोजन एनर्जी ग्रिड", "ग्लोबल वार्मिंग नियंत्रण संधि", "क्वांटम नेटवर्क सुरक्षा", "साइबर थ्रेट मैनेजमेंट", "अंतरिक्ष मलबे का निपटारा"];
 
+        // Indian Premium Dynamic Segments
+        const indianStates = ["राजस्थान", "उत्तर प्रदेश", "मध्य प्रदेश", "बिहार", "हरियाणा", "पंजाब", "गुजरात", "महाराष्ट्र"];
+        const indianMinistries = ["रक्षा मंत्रालय", "रेल मंत्रालय", "शिक्षा मंत्रालय", "वित्त मंत्रालय", "गृह मंत्रालय", "सड़क परिवहन एवं राजमार्ग मंत्रालय"];
+        const indianSchemes = ["डिजिटल इंडिया मिशन 3.0", "पीएम सूर्यघर मुफ्त बिजली योजना", "लखपति दीदी कार्यक्रम", "आयुष्मान भारत योजना एक्सटेंशन", "अमृत भारत स्टेशन योजना"];
+
         const staticHistoryPool = [
             { q: "मौर्य राजवंश के प्रसिद्ध शासक सम्राट अशोक ने किस ऐतिहासिक युद्ध के बाद बौद्ध धर्म को अपनाया था?", a: "<b>उत्तर: कलिंग युद्ध (261 ईसा पूर्व)।</b><br>कलिंग युद्ध में हुए भीषण नरसंहार को देखकर अशोक का हृदय परिवर्तन हुआ। उन्होंने शांति का मार्ग अपनाया।" },
             { q: "भारतीय राष्ट्रीय कांग्रेस (INC) के प्रथम अधिवेशन की अध्यक्षता 1885 में किसने की थी?", a: "<b>उत्तर: व्योमेश चंद्र बनर्जी (स्थान: बॉम्बे)।</b><br>यह अधिवेशन गोकुलदास तेजपाल संस्कृत कॉलेज में आयोजित किया गया था।" },
-            { q: "प्रसिद्ध चीनी यात्री 'ह्वेनसांग' ने किस उत्तर भारतीय सम्राट के शासनकाल में भारत की यात्रा की थी?", a: "<b>उत्तर: सम्राट हर्षवर्धन।</b><br>ह्वेनसांग ने नालंदा विश्वविद्यालय में बौद्ध धर्म का अध्ययन किया।" },
-            { q: "1916 के प्रसिद्ध 'लखनऊ समझौते' (Lucknow Pact) का मुख्य ऐतिहासिक महत्व क्या था?", a: "<b>उत्तर: कांग्रेस के दोनों धड़ों (नरम दल-गरम दल) और मुस्लिम लीग का एक मंच पर आना।</b>" },
-            { q: "भारतीय पुरातत्व सर्वेक्षण (ASI) के प्रथम महानिदेशक कौन थे जिन्हें भारत में पुरातत्व का जनक कहा जाता है?", a: "<b>उत्तर: सर अलेक्जेंडर कनिंघम।</b><br>उन्होंने 1861 में ऐतिहासिक स्थलों की खुदाई शुरू करवाई थी।" }
+            { q: "प्रसिद्ध चीनी यात्री 'ह्वेनसांग' ने किस उत्तर भारतीय सम्राट के शासनकाल में भारत की यात्रा की थी?", a: "<b>उत्तर: सम्राट हर्षवर्धन।</b><br>ह्वेनसांग ने नालंदा विश्वविद्यालय में बौद्ध धर्म का अध्ययन किया।" }
         ];
 
         const portalData = {
@@ -300,21 +346,37 @@
             currentPage += direction;
             if(currentPage < 1) currentPage = 1;
             renderBookPage();
-            
-            // Fix: Page turn karne par screen automatically top par scroll ho jayegi smoothly
             document.getElementById('bookCardSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function renderBookPage() {
             const container = document.getElementById('bookPageContainer');
+            const bookCard = document.getElementById('bookCardSection');
+            const mainTitle = document.getElementById('panelMainTitle');
             const timeline = document.getElementById('yearSelect').value;
             const monthSelect = document.getElementById('monthSelect');
             const monthText = monthSelect.options[monthSelect.selectedIndex].text;
-            
-            document.getElementById('pageNumberDisplay').innerText = `Page ${currentPage}`;
-            document.getElementById('prevPageBtn').disabled = (currentPage === 1);
+            const pageDisplay = document.getElementById('pageNumberDisplay');
+            const paperPageNum = document.getElementById('newspaperPageNum');
             
             container.innerHTML = "";
+
+            // DYNAMIC THEME TOGGLING (Newspaper Mode vs Antique Book Mode)
+            if (timeline === "india_live") {
+                bookCard.classList.add('newspaper-mode');
+                mainTitle.innerText = "THE DAILY INDIA GAZETTE";
+                pageDisplay.style.display = "none";
+                paperPageNum.style.display = "inline";
+                paperPageNum.innerText = `PAGE NO. ${currentPage}`;
+            } else {
+                bookCard.classList.remove('newspaper-mode');
+                mainTitle.innerText = "📖 वैश्विक ज्ञानकोष - पुस्तकालय एडिशन";
+                pageDisplay.style.display = "inline";
+                pageDisplay.innerText = `Page ${currentPage}`;
+                paperPageNum.style.display = "none";
+            }
+
+            document.getElementById('prevPageBtn').disabled = (currentPage === 1);
 
             for (let qIndex = 1; qIndex <= 5; qIndex++) {
                 let globalCounter = ((currentPage - 1) * 5) + qIndex;
@@ -324,8 +386,22 @@
                     let poolItem = staticHistoryPool[(globalCounter - 1) % staticHistoryPool.length];
                     qText = `[इतिहास खंड] ${poolItem.q}`;
                     ansText = poolItem.a;
-                } else {
-                    // Seed multiplier changed dynamically according to dropdown selection states
+                } 
+                else if (timeline === "india_live") {
+                    // INDIAN NEWSPAPER SYNTHESIS ROADMAP
+                    let state = indianStates[(globalCounter + qIndex) % indianStates.length];
+                    let ministry = indianMinistries[(globalCounter + 2) % indianMinistries.length];
+                    let scheme = indianSchemes[(globalCounter + 1) % indianSchemes.length];
+
+                    if (globalCounter % 2 === 0) {
+                        qText = `<b>[भारत समाचार]</b> केंद्र सरकार के ${ministry} द्वारा 2026 में बुनियादी ढांचे को मजबूत करने के लिए राष्ट्रीय स्तर पर '${scheme}' का नया विस्तार शुरू किया गया है, इससे कौन सा राज्य सबसे अधिक लाभान्वित होगा? (${monthText})`;
+                        ansText = `<b>उत्तर: ${state} राज्य को इस योजना के तहत विशेष बजट आवंटन प्राप्त हुआ है।</b><br>इसका उद्देश्य स्थानीय युवाओं को रोजगार देना और ग्रामीण क्षेत्रों का पूर्ण विकास सुनिश्चित करना है।`;
+                    } else {
+                        qText = `<b>[राष्ट्रीय सुरक्षा / नीति]</b> हाल ही में नई दिल्ली में संपन्न हुई उच्च स्तरीय कैबिनेट बैठक में ${ministry} ने किस प्रमुख डिजिटल तकनीक या '${scheme}' के सुरक्षित क्रियान्वयन को लेकर नीति निर्देश जारी किए हैं?`;
+                        ansText = `<b>उत्तर: नीतिगत रूप से '${scheme}' को मंजूरी दी गई है।</b><br>यह कदम डिजिटल सुरक्षा ढांचे को बढ़ावा देने और सरकारी योजनाओं को सीधे आम नागरिकों तक पारदर्शी रूप से पहुंचाने में मील का पत्थर साबित होगा।`;
+                    }
+                } 
+                else {
                     let seedBase = globalCounter + monthSelect.selectedIndex + parseInt(timeline || 2026);
                     let nat1 = globalNations[(seedBase + 2) % globalNations.length];
                     let nat2 = globalNations[(seedBase + 5) % globalNations.length];
@@ -346,13 +422,20 @@
                 let div = document.createElement('div');
                 div.className = 'gk-item';
                 div.innerHTML = `
-                    <div class="gk-question">📌 <b>Q${globalCounter}.</b> ${qText}</div>
+                    <div class="gk-question">📰 <b>Q${globalCounter}.</b> ${qText}</div>
                     <button class="answer-btn" onclick="togglePageAnswer(${globalCounter})">👁️ Read Solution</button>
                     <div class="gk-answer" id="bookAnswer_${globalCounter}">${ansText}</div>
                 `;
                 container.appendChild(div);
             }
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Display system generated real timestamp inside the Newspaper Meta Header bar automatically
+            const today = new Date();
+            const formattedDate = today.toLocaleDateString('hi-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase();
+            document.getElementById('paperMetaBar').innerText = `THE DAILY INDIA GAZETTE • LIVE NEWSPAPER • NEW DELHI, ${formattedDate}`;
+        });
 
         function togglePageAnswer(id) {
             const ansEl = document.getElementById("bookAnswer_" + id);
