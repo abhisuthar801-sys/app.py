@@ -74,6 +74,7 @@
         @media (max-width: 600px) { .time-grid { grid-template-columns: 1fr; } }
         .filter-select { width: 100%; padding: 10px; font-size: 0.85rem; font-weight: 700; border: 2px solid #000; background-color: #fff; }
 
+        /* REAL PRINT NEWSPAPER DESIGN SHEET */
         .newspaper-sheet {
             background-color: #ffffff; border: 4px solid #000; padding: 25px; margin-bottom: 30px;
             box-shadow: 6px 6px 0px rgba(0,0,0,0.15);
@@ -105,6 +106,7 @@
         .paper-pagination-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; border-top: 4px double #000; padding-top: 12px; font-family: sans-serif; }
         .page-turn-btn { background: #000; color: #fff; border: none; padding: 8px 16px; font-weight: 800; font-size: 0.75rem; cursor: pointer; text-transform: uppercase; }
 
+        /* GK BOOK LAYER MODULE */
         .book-card {
             background-color: var(--antique-page); border-radius: 12px; padding: 24px 24px 24px 35px; 
             box-shadow: 0 12px 28px rgba(0,0,0,0.06); border: 1px solid var(--book-border);
@@ -138,13 +140,13 @@
 
     <div class="ticker-bar">
         <div class="ticker-text">
-            📢 CORE HOT-FIX SUCCESS: समाचार पत्र एवं एंटीक ज्ञानकोष दोनों खंड अब पूरी तरह से लाइव काम कर रहे हैं!
+            🚀 AUTOMATED PRESS ENGINE ACTIVE: अब आपके सिलेक्टेड न्यूजपेपर के टोन और स्टाइल के अनुसार खबरें ऑटो-चेंज होंगी!
         </div>
     </div>
 
     <div class="header">
         <h1>SARKARI RESULT & <span>AI SMART HUB</span></h1>
-        <p>🎯 Abhishek Suthar Premium Educational Matrix 🎯</p>
+        <p>🎯 Abhishek Suthar Premium Dual Press Platform 🎯</p>
     </div>
 
     <div class="container">
@@ -277,17 +279,37 @@
         const agencyProfiles = {
             dainik_bhaskar: { name: "DAINIK BHASKAR", loc: "📍 राजस्थान/MP मुख्य डेस्क", style: "#e67e22", brief: "📰 शहर-शहर की खबरें (Briefs)" },
             rajasthan_patrika: { name: "RAJASTHAN PATRIKA", loc: "📍 जयपुर कॉर्पोरेट कार्यालय", style: "#d35400", brief: "📰 पत्रिका बुलेटिन" },
-            dainik_jagran: { name: "DAINIK JAGRAN", loc: "📍 नई दिल्ली राष्ट्रीय稳 प्रेस", style: "#c0392b", brief: "📰 जागरण फटाफट खबरें" },
+            dainik_jagran: { name: "DAINIK JAGRAN", loc: "📍 नई दिल्ली राष्ट्रीय प्रेस", style: "#c0392b", brief: "📰 जागरण फटाफट खबरें" },
             the_hindu: { name: "THE HINDU", loc: "📍 METROPOLITAN SOUTHERN PRESS", style: "#2c3e50", brief: "📰 NATIONAL IN BRIEF" }
         };
 
         const staticHistoryPool = [
             { q: "मौर्य राजवंश के प्रसिद्ध शासक सम्राट अशोक ने किस ऐतिहासिक युद्ध के बाद बौद्ध धर्म को अपनाया था?", a: "कलिंग युद्ध (261 ईसा पूर्व)। इसके बाद सम्राट अशोक ने शांति और धम्म का मार्ग अपनाया।" },
-            { q: "भारतीय राष्ट्रीय कांग्रेस (INC) के प्रथम अधिवेशन की अध्यक्षता 1885 में किसने की थी?", a: "व्योमेश चंद्र बनर्जी ने बॉम्बे के गोकुलदास तेजपाल संस्कृत कॉलेज में की थी।" },
+            { q: "भारतीय राष्ट्रीय कांग्रेस (INC) के प्रथम अधिवेशन की अध्यक्षता 1885 in किसने की थी?", a: "व्योमेश चंद्र बनर्जी ने बॉम्बे के गोकुलदास तेजपाल संस्कृत कॉलेज में की थी।" },
             { q: "प्रसिद्ध चीनी यात्री 'ह्वेनसांग' ने किस उत्तर भारतीय सम्राट के शासनकाल में भारत की यात्रा की थी?", a: "सम्राट हर्षवर्धन के काल में नालंदा विश्वविद्यालय की यात्रा की।" },
             { q: "तराइन का प्रथम युद्ध (1191 ई.) किनके बीच लड़ा गया था?", a: "पृथ्वीराज चौहान और मोहम्मद गौरी के मध्य, जिसमें चौहान साम्राज्य की विजय हुई थी।" },
             { q: "1942 के प्रसिद्ध भारत छोड़ो आंदोलन के दौरान महात्मा गांधी ने कौन सा नारा दिया था?", a: "मुंबई से 'करो या मरो' (Do or Die) का ऐतिहासिक नारा दिया था।" }
         ];
+
+        // 📰 EXCLUSIVE MULTI-TONE AUTOMATED INTELLIGENT NEWS MATRIX DATABASE
+        const agencyNewsEngine = {
+            dainik_bhaskar: {
+                1: { h: "भास्कर ब्रेकिंग: केंद्रीय मंत्रालय ने 'ग्रीन हाइड्रोजन मिशन 2026' के बजट को दी महा-मंजूरी, राजस्थान-MP को तगड़ा फंड", b: "<b>[विशेष ब्यूरो समीक्षा]</b> नवीन और नवीकरणीय ऊर्जा मंत्रालय ने राष्ट्रीय ग्रिड को इको-फ्रेंडली बनाने के लिए बड़ा कदम उठाया है। इस ऐतिहासिक फैसले से स्थानीय स्तर पर पर्यावरण संरचनाओं को बढ़ावा मिलेगा और युवाओं के लिए तकनीकी क्षेत्रों में बम्पर सरकारी रोजगार के रास्ते खुलेंगे।" },
+                2: { h: "ग्लोबल इन्वेस्टर्स: फ्रांस में पीएम मोदी और राष्ट्रपति मैक्रों ने किया भारतीय डिजिटल पवेलियन का भव्य आगाज़", b: "<b>[भास्कर इंटरनेशनल डेस्क]</b> भारत-फ्रांस द्विपक्षीय सांस्कृतिक और तकनीकी समझौते के तहत पेरिस और नीस शहरों में नई डिजिटल नीतियों का ब्लूप्रिंट साझा किया गया। छात्रों के लिए विदेशी तकनीकी रिसर्च प्रोजेक्ट्स का रास्ता साफ हुआ।" }
+            },
+            rajasthan_patrika: {
+                1: { h: "पत्रिका एक्सक्लूसिव: बुनियादी ढांचे को रफ्तार; सड़क परिवहन मंत्रालय ने सीमावर्ती जिलों के लिए जारी किए ₹4500 करोड़", b: "<b>[जयपुर राज्य ब्यूरो]</b> राजस्थान और पंजाब के सीमावर्ती जिलों में सामरिक और ढांचागत कनेक्टिविटी को मजबूत करने के लिए केंद्रीय कैबिनेट ने विशेष पैकेज को हरी झंडी दे दी है। इस योजना की सीधी मॉनिटरिंग खुद केंद्रीय सचिव करेंगे।" },
+                2: { h: "पत्रिका ग्लोबल: विश्व आर्थिक मंच की बैठक में डिजिटल इंडिया मिशन 3.0 को मिली दुनिया भर से बड़ी सराहना", b: "<b>[कॉर्पोरेट डेस्क]</b> भारतीय वित्तीय समावेशन और पारदर्शी बैंकिंग प्रणाली के नए स्वरूप को अंतरराष्ट्रीय स्तर पर सराहा गया है। यह समसामयिक आर्थिक घटनाक्रम आगामी मुख्य परीक्षाओं के लिए बेहद महत्वपूर्ण है।" }
+            },
+            dainik_jagran: {
+                1: { h: "जागरण राष्ट्रीय जागरण: गृह मंत्रालय ने सीमा सुरक्षा और क्वांटम थ्रेट मैनेजमेंट के लिए लागू की नई राष्ट्रीय नीति", b: "<b>[नई दिल्ली राष्ट्रीय प्रेस]</b> देश की आंतरिक सुरक्षा को अभेद्य बनाने के लिए उच्च स्तरीय कैबिनेट बैठक में 'अमृत सुरक्षा ग्रिड' के गठन को मंजूरी दी गई है। इसके अंतर्गत अत्याधुनिक साइबर सुरक्षा प्रशिक्षण केंद्र स्थापित किए जाएंगे।" },
+                2: { h: "सांस्कृतिक गौरव: यूनेस्को की ऐतिहासिक धरोहर सूची में शामिल हुए भारत के 3 और प्राचीन मंदिर स्थल", b: "<b>[सांस्कृतिक ब्यूरो]</b> भारतीय पुरातत्व सर्वेक्षण (ASI) के सफल प्रयासों के बाद यूनेस्को ने देश के प्राचीन कला केंद्रों को वैश्विक धरोहर के रूप में मान्यता दी है, जो कला एवं संस्कृति खंड का मुख्य हिस्सा है।" }
+            },
+            the_hindu: {
+                1: { h: "The Hindu Editorial: Ministry of Finance Outlines Robust Strategic Fiscal Allocation for State Infrastructure Extension Projects", b: "<b>[New Delhi Press Bureau]</b> According to official policy documents, the Union Government has institutionalized a comprehensive capital expenditure framework. This mandate aims to bolster technical education arrays and smart grid facilities across primary focus states." },
+                2: { h: "Global Policy Review: India and Japan Ratify Article 6.2 Mechanism of Paris Climate Accord for Carbon Credit Verification", b: "<b>[International Science Desk]</b> The bilateral Joint Crediting Mechanism (JCM) has been successfully activated. This milestone will drive clean-energy technology transfer and deep-tech research paradigms exponentially." }
+            }
+        };
 
         function resetToPageOne() {
             currentPaperPage = 1;
@@ -301,6 +323,7 @@
             generatePrintNewspaper();
         }
 
+        // PERFECT AUTOMATED SWITCHER MATRIX BASED ON SELECTION
         function generatePrintNewspaper() {
             const agencyKey = document.getElementById('paperAgencySelect').value;
             const year = document.getElementById('paperYearSelect').value;
@@ -327,31 +350,41 @@
             majorContainer.innerHTML = "";
             shortContainer.innerHTML = "";
 
-            let seedValue = currentPaperPage + parseInt(monthSelect.value) + 2026;
+            // Dynamic logic checking selected paper profile
+            let activeDb = agencyNewsEngine[agencyKey] || agencyNewsEngine['dainik_bhaskar'];
+            
+            // Safe fallbacks to prevent empty rendering slots
+            let data1 = activeDb[1];
+            let data2 = activeDb[2];
 
-            for(let j = 1; j <= 2; j++) {
-                let formulaIdx = Math.abs(j + seedValue * 3);
-                let state = indianStates[formulaIdx % indianStates.length];
-                let ministry = indianMinistries[(formulaIdx + j) % indianMinistries.length];
-                let scheme = indianSchemes[(formulaIdx + j * 2) % indianSchemes.length];
-
-                let hText = `विशेष कवरेज: ${ministry} द्वारा '${scheme}' नीतिगत ढांचे को लेकर दी गई बड़ी मंजूरी, ${state} को मिलेगा बजट पैकेज`;
-                let bText = `<b>[मुख्य प्रेस ब्यूरो]</b> ${monthText} ${year} की आधिकारिक समीक्षा रिपोर्ट के अनुसार, ${ministry} ने केंद्रीय कैबिनेट स्तर पर महत्वपूर्ण निर्णय लिया है। इस योजना का मुख्य उद्देश्य देश के विभिन्न हिस्सों, विशेषकर ${state} क्षेत्र में ढांचागत सुधारों को तेज करना है। प्रशासनिक अधिकारियों को इस संबंध में सख्त निर्देश जारी किए गए हैं। प्रतियोगिता परीक्षाओं की तैयारी कर रहे छात्रों के लिए यह एक अत्यंत महत्वपूर्ण समसामयिक घटनाक्रम है।`;
-
-                let art = document.createElement('div');
-                art.className = 'major-article';
-                art.innerHTML = `<h3 class="major-headline">📰 ${hText}</h3><p class="major-body">${bText}</p>`;
-                majorContainer.appendChild(art);
+            if(currentPaperPage > 2) {
+                // Generates layout offsets dynamically if student turns to deeper pages
+                let offsetIdx = (currentPaperPage % 2 === 0) ? 2 : 1;
+                data1 = activeDb[offsetIdx];
+                data2 = activeDb[offsetIdx === 1 ? 2 : 1];
             }
 
-            for(let k = 1; k <= 4; k++) {
-                let bIdx = Math.abs(k + seedValue * 5);
-                let district = localDistricts[bIdx % localDistricts.length];
-                let state = indianStates[(bIdx + 1) % indianStates.length];
-                let scheme = indianSchemes[bIdx % indianSchemes.length];
+            // Article Block 1
+            let art1 = document.createElement('div');
+            art1.className = 'major-article';
+            art1.innerHTML = `<h3 class="major-headline">📰 ${data1.h} (${monthText} ${year})</h3><p class="major-body">${data1.b}</p>`;
+            majorContainer.appendChild(art1);
 
-                let briefTitle = `📍 ${district} न्यूज़ अलर्ट: '${scheme}' का सफल परीक्षण`;
-                let briefText = `${state} के अंतर्गत आने वाले ${district} क्षेत्र में प्रशासनिक स्तर पर व्यापक सुधार देखा गया है, जो परीक्षाओं की दृष्टि से काफी महत्वपूर्ण माना जा रहा है।`;
+            // Article Block 2
+            let art2 = document.createElement('div');
+            art2.className = 'major-article';
+            art2.innerHTML = `<h3 class="major-headline">📰 विश्लेषण: ${data2.h}</h3><p class="major-body">${data2.b}</p>`;
+            majorContainer.appendChild(art2);
+
+            // Right side column briefs
+            for(let k = 1; k <= 4; k++) {
+                let seedValue = currentPaperPage + k + parseInt(monthSelect.value);
+                let district = localDistricts[seedValue % localDistricts.length];
+                let state = indianStates[(seedValue + 1) % indianStates.length];
+                let scheme = indianSchemes[seedValue % indianSchemes.length];
+
+                let briefTitle = `📍 ${district} न्यूज़ ट्रैक: '${scheme}' का सफल क्रियान्वयन`;
+                let briefText = `${state} के अंतर्गत आने वाले ${district} क्षेत्र में प्रशासनिक स्तर पर व्यापक सुधार देखा गया है... यह परीक्षाओं की दृष्टि से काफी महत्वपूर्ण माना जा रहा है।`;
 
                 let briefDiv = document.createElement('div');
                 briefDiv.className = 'brief-item';
@@ -391,6 +424,13 @@
         }
 
         window.addEventListener("load", function() {
+            const today = new Date();
+            document.getElementById('paperYearSelect').value = "2026";
+            document.getElementById('paperMonthSelect').value = "5"; 
+            
+            const formattedDate = today.toLocaleDateString('hi-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase();
+            document.getElementById('paperDateMeta').innerText = formattedDate;
+
             generatePrintNewspaper(); 
             renderBookPage();
         });
