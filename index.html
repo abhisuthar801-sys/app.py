@@ -106,8 +106,8 @@
         }
         @media (max-width: 800px) { .newspaper-layout-grid { grid-template-columns: 1fr; gap: 15px; } }
 
-        .major-stories-column { border-right: 1px solid #ccc; padding-right: 15px; }
-        @media (max-width: 800px) { .major-stories-column { border-right: none; padding-right: 0; } }
+        .major-stories-column { padding-right: 15px; }
+        @media (min-width: 801px) { .major-stories-column { border-right: 1px solid #ccc; } }
 
         .short-snippets-column { background-color: #fcfcf9; padding: 14px; border: 1px solid #ddd; }
         .briefs-header { font-family: sans-serif; font-size: 0.85rem; font-weight: 900; background: #222; color: #fff; padding: 4px; text-align: center; margin-bottom: 12px; text-transform: uppercase; }
@@ -149,9 +149,8 @@
         .col-result { background: #dc2626; }
 
         .link-list { padding: 8px; list-style: none; margin: 0; display: flex; flex-direction: column; gap: 6px; }
-        .link-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; transition: all 0.2s; }
+        .link-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; }
         .link-item a { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; text-decoration: none; color: #1e293b; font-weight: 600; font-size: 0.85rem; }
-        .link-item:hover { background: #f0fdf4; border-color: #34d399; }
         .job-tag { font-size: 0.65rem; padding: 2px 5px; border-radius: 4px; color: white; font-weight: bold; text-transform: uppercase; background-color: #ef4444; }
 
         .footer {
@@ -163,7 +162,7 @@
 
     <div class="ticker-bar">
         <div class="ticker-text">
-            📰 PRODUCTION ENGINE DEPLOYED: रेंडरिंग बग को पूरी तरह फिक्स कर दिया गया है || 8-पेज लाइव मीडिया हब सुचारू रूप से कार्यरत है!
+            📰 PRODUCTION ENGINE DEPLOYED: स्टेटिक क्लाइंट रेंडरिंग पूरी तरह एक्टिव है || 8-पेज लाइव मीडिया हब सुचारू रूप से कार्यरत है!
         </div>
     </div>
 
@@ -174,7 +173,7 @@
 
     <div class="container">
 
-        <!-- CORE PARTNER PLUG -->
+        <!-- KAMRA COACHING PLUG -->
         <div class="action-tracker-bar">
             <div class="bar-notice">📢 Join Our Official YouTube Learning Channel:</div>
             <a href="https://www.youtube.com/@KamraCoachingGanganagar" target="_blank" class="yt-coaching-btn">
@@ -185,7 +184,7 @@
             </a>
         </div>
 
-        <!-- NEWSPAPER AGENCY MATRIX CHANGER -->
+        <!-- NEWSPAPER BRAND SELECTOR SYSTEM -->
         <div class="paper-selector-card">
             <h4 class="paper-filter-title">📰 डिजिटल समाचार पत्र संस्करण चयन ग्रिड (Select Media Brand):</h4>
             <div class="time-grid">
@@ -217,39 +216,30 @@
             </div>
         </div>
 
-        <!-- NEWSPAPER COMPONENT CONTAINER SHEET -->
+        <!-- REAL NEWSPAPER CONTAINER HARDWARE -->
         <div class="newspaper-sheet" id="newspaperSection">
             <div class="paper-main-header">
-                <h2 class="paper-main-title" id="newspaperHeadlineTitle">LOADING MEDIA...</h2>
+                <h2 class="paper-main-title" id="newspaperHeadlineTitle">DAINIK BHASKAR</h2>
                 <div class="paper-meta-bar">
                     <span id="paperLocationMeta">📍 REGIONAL CITY DESK</span>
-                    <span id="paperDateMeta">SATURDAY, 20 JUNE 2026</span>
+                    <span id="paperDateMeta">शनिवार, 20 जून 2026</span>
                     <span id="paperPriceMeta">PRICE: ₹5.00</span>
                 </div>
             </div>
 
-            <!-- Page Category Banner Indicator -->
             <div class="paper-page-category-banner" id="pageCategoryBanner">मुखपृष्ठ (Front Page - Major Headlines)</div>
 
-            <!-- Responsive Print Layout Grid -->
             <div class="newspaper-layout-grid">
-                
-                <!-- Left: Detailed Stories -->
-                <div class="major-stories-column" id="majorStoriesContainer">
-                    <!-- JavaScript will insert articles here smoothly -->
-                </div>
+                <!-- Left Column -->
+                <div class="major-stories-column" id="majorStoriesContainer"></div>
 
-                <!-- Right: Micro Briefs -->
+                <!-- Right Column -->
                 <div class="short-snippets-column">
-                    <div class="briefs-header">📰 शहर-शहर की खबरें (Briefs)</div>
-                    <div id="shortSnippetsContainer">
-                        <!-- JavaScript will insert briefs here smoothly -->
-                    </div>
+                    <div class="briefs-header" id="briefSectionHeader">📰 शहर-शहर की खबरें (Briefs)</div>
+                    <div id="shortSnippetsContainer"></div>
                 </div>
-
             </div>
             
-            <!-- Pagination Controls -->
             <div class="paper-pagination-footer">
                 <button class="page-turn-btn" id="prevPaperBtn" onclick="turnPaperPage(-1)">◀️ पिछला पृष्ठ</button>
                 <span class="page-status-indicator" id="paperPageIndicator">कुल पृष्ठ: 1 / 8</span>
@@ -257,11 +247,7 @@
             </div>
         </div>
 
-        <!-- SARKARI BOARD ROW MATRIX -->
-        <div class="filter-section">
-            <button class="filter-btn active">🔥 All Live Updates</button>
-        </div>
-
+        <!-- SARKARI LINKS PANEL -->
         <div class="portal-grid">
             <div class="portal-column">
                 <div class="column-header col-jobs">🔥 Latest Jobs 2026</div>
@@ -312,10 +298,10 @@
         };
 
         const agencyProfiles = {
-            dainik_bhaskar: { name: "DAINIK BHASKAR", loc: "📍 राजस्थान/MP मुख्य डेस्क", style: "#e67e22" },
-            rajasthan_patrika: { name: "RAJASTHAN PATRIKA", loc: "📍 जयपुर कॉर्पोरेट कार्यालय", style: "#d35400" },
-            dainik_jagran: { name: "DAINIK JAGRAN", loc: "📍 नई दिल्ली राष्ट्रीय प्रेस", style: "#c0392b" },
-            the_hindu: { name: "THE HINDU", loc: "📍 METROPOLITAN SOUTHERN PRESS", style: "#2c3e50" }
+            dainik_bhaskar: { name: "DAINIK BHASKAR", loc: "📍 राजस्थान/MP मुख्य डेस्क", style: "#e67e22", brief: "📰 शहर-शहर की खबरें (Briefs)" },
+            rajasthan_patrika: { name: "RAJASTHAN PATRIKA", loc: "📍 जयपुर कॉर्पोरेट कार्यालय", style: "#d35400", brief: "📰 पत्रिका बुलेटिन (Patrika Briefs)" },
+            dainik_jagran: { name: "DAINIK JAGRAN", loc: "📍 नई दिल्ली राष्ट्रीय प्रेस", style: "#c0392b", brief: "📰 जाागरण फटाफट खबरें" },
+            the_hindu: { name: "THE HINDU", loc: "📍 METROPOLITAN SOUTHERN PRESS", style: "#2c3e50", brief: "📰 NATIONAL IN BRIEF" }
         };
 
         function resetToPageOne() {
@@ -331,11 +317,15 @@
             document.getElementById('newspaperSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // PERFECT RENDERING CONTEXT FUNCTION
         function generatePrintNewspaper() {
-            const agencyKey = document.getElementById('paperAgencySelect').value;
-            const year = document.getElementById('paperYearSelect').value;
+            const agencySelect = document.getElementById('paperAgencySelect');
+            const yearSelect = document.getElementById('paperYearSelect');
             const monthSelect = document.getElementById('paperMonthSelect');
+
+            if (!agencySelect || !yearSelect || !monthSelect) return;
+
+            const agencyKey = agencySelect.value;
+            const year = yearSelect.value;
             const monthText = monthSelect.options[monthSelect.selectedIndex].text;
             
             const majorContainer = document.getElementById('majorStoriesContainer');
@@ -344,14 +334,17 @@
             const locationMeta = document.getElementById('paperLocationMeta');
             const statusLabel = document.getElementById('newspaperStatusLabel');
             const banner = document.getElementById('pageCategoryBanner');
+            const briefHeader = document.getElementById('briefSectionHeader');
 
-            // Set profile configs safely
+            if (!majorContainer || !shortContainer || !headlineTitle || !locationMeta || !statusLabel || !banner) return;
+
             const profile = agencyProfiles[agencyKey] || agencyProfiles['dainik_bhaskar'];
             headlineTitle.innerText = profile.name;
             headlineTitle.style.color = profile.style;
             locationMeta.innerText = profile.loc;
             statusLabel.innerText = `📰 ${profile.name} • पृष्ठ ${currentPaperPage} / ${totalPaperPages}`;
             banner.innerText = pageCategories[currentPaperPage];
+            if (briefHeader) briefHeader.innerText = profile.brief;
 
             document.getElementById('prevPaperBtn').disabled = (currentPaperPage === 1);
             document.getElementById('nextPaperBtn').disabled = (currentPaperPage === totalPaperPages);
@@ -359,17 +352,16 @@
             majorContainer.innerHTML = "";
             shortContainer.innerHTML = "";
 
-            // Using deterministic multipliers to avoid array out of bounds index crashes
-            let seedValue = currentPaperPage + parseInt(monthSelect.value) + parseInt(year || 2026);
+            let seedValue = currentPaperPage + parseInt(monthSelect.value) + parseInt(year);
 
-            // 1. Render Left Column (Lead News Blocks)
+            // 1. Left Side Column (Major stories)
             for(let j = 1; j <= 2; j++) {
-                let formulaIdx = j + seedValue * 3;
+                let formulaIdx = Math.abs(j + seedValue * 3);
                 let state = indianStates[formulaIdx % indianStates.length];
                 let ministry = indianMinistries[(formulaIdx + j) % indianMinistries.length];
                 let scheme = indianSchemes[(formulaIdx + j * 2) % indianSchemes.length];
 
-                let hText = `विशेष कवरेज: ${ministry} द्वारा '${scheme}' नीतिगत ढांचे के क्रियान्वयन को लेकर दी गई बड़ी मंजूरी, ${state} को मिलेगा विशेष बजट`;
+                let hText = `विशेष रिपोर्ट: ${ministry} द्वारा '${scheme}' नीतिगत ढांचे को लेकर दी गई बड़ी मंजूरी, ${state} को मिलेगा विशेष बजट पैकेज`;
                 let bText = `<b>[नई दिल्ली मुख्य प्रेस ब्यूरो]</b> ${monthText} ${year} की आधिकारिक समीक्षा रिपोर्ट के अनुसार, ${ministry} ने केंद्रीय कैबिनेट स्तर पर महत्वपूर्ण निर्णय लिया है। इस योजना का मुख्य उद्देश्य देश के विभिन्न हिस्सों, विशेषकर ${state} क्षेत्र में ढांचागत सुधारों को तेज करना है। प्रशासनिक अधिकारियों को इस संबंध में सख्त निर्देश जारी किए गए हैं। प्रतियोगिता परीक्षाओं की तैयारी कर रहे छात्रों के लिए यह एक अत्यंत महत्वपूर्ण समसामयिक घटनाक्रम है।`;
 
                 let art = document.createElement('div');
@@ -378,9 +370,9 @@
                 majorContainer.appendChild(art);
             }
 
-            // 2. Render Right Column (Short Brief Snippets)
+            // 2. Right Side Column (Briefs)
             for(let k = 1; k <= 4; k++) {
-                let briefIdx = k + seedValue * 5;
+                let briefIdx = Math.abs(k + seedValue * 5);
                 let district = localDistricts[briefIdx % localDistricts.length];
                 let state = indianStates[(briefIdx + 1) % indianStates.length];
                 let scheme = indianSchemes[briefIdx % indianSchemes.length];
@@ -397,15 +389,23 @@
             document.getElementById('paperPageIndicator').innerText = `पृष्ठ संख्या: ${currentPaperPage} / ${totalPaperPages}`;
         }
 
-        window.onload = function() {
+        // DOMContentLoaded is the safest event for client-side execution in raw HTML files
+        document.addEventListener("DOMContentLoaded", function() {
             const today = new Date();
-            document.getElementById('paperYearSelect').value = today.getFullYear();
-            document.getElementById('paperMonthSelect').value = today.getMonth();
-            const formattedDate = today.toLocaleDateString('hi-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase();
-            document.getElementById('paperDateMeta').innerText = formattedDate;
+            const yearSelect = document.getElementById('paperYearSelect');
+            const monthSelect = document.getElementById('paperMonthSelect');
 
-            generatePrintNewspaper(); // Fire render process
-        };
+            if (yearSelect && monthSelect) {
+                yearSelect.value = today.getFullYear();
+                monthSelect.value = today.getMonth();
+            }
+
+            const formattedDate = today.toLocaleDateString('hi-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase();
+            const dateMeta = document.getElementById('paperDateMeta');
+            if (dateMeta) dateMeta.innerText = formattedDate;
+
+            generatePrintNewspaper(); 
+        });
     </script>
 </body>
 </html>
