@@ -69,9 +69,10 @@
         }
         .yt-icon { width: 16px; height: 16px; fill: currentColor; }
 
+        /* UNIFIED SEARCH MATRIX FILTER CARD */
         .time-filter-card {
             background: var(--card-bg); padding: 14px; border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-bottom: 20px; border-top: 4px solid #8b5cf6;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-bottom: 20px; border-top: 4px solid #ef4444;
         }
         .time-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .filter-select {
@@ -80,25 +81,7 @@
             outline: none; cursor: pointer;
         }
 
-        /* SECTION 1: ANTIQUE BOOK CARD STYLE */
-        .book-card {
-            background-color: var(--antique-page); border-radius: 12px; padding: 24px 24px 24px 35px; 
-            box-shadow: 0 12px 28px rgba(0,0,0,0.06); border: 1px solid var(--book-border);
-            margin-bottom: 25px; position: relative;
-        }
-        .book-spine-line {
-            position: absolute; left: 18px; top: 0; bottom: 0; width: 4px; 
-            background: linear-gradient(90deg, rgba(0,0,0,0.06), rgba(0,0,0,0.01) 50%, rgba(255,255,255,0.1) 100%);
-            border-right: 1px solid rgba(0,0,0,0.04);
-        }
-        .book-header-panel {
-            display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px dashed #c8bca6; padding-bottom: 10px; margin-bottom: 18px;
-        }
-        .book-title { color: #5c4033; font-size: 1.05rem; font-weight: 800; margin: 0; }
-        .page-badge { background-color: #8c6d53; color: white; padding: 3px 10px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; }
-
-        /* SECTION 2: NEWSPAPER CONTAINER (SEPARATED) */
+        /* 📰 SEPARATED NEWSPAPER CONTAINER (TOUCH TO EXPAND) */
         .newspaper-card {
             background-color: #ffffff; border: 1px dashed #7f8c8d; border-radius: 8px;
             padding: 20px; margin-bottom: 25px; cursor: pointer; position: relative;
@@ -130,7 +113,6 @@
 
         .gk-list { display: flex; flex-direction: column; gap: 12px; }
         
-        /* Two column alignment inside newspaper view */
         .newspaper-card.touched-active .gk-list {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(45%, 1fr)); gap: 15px;
         }
@@ -165,10 +147,28 @@
         }
         .nav-book-btn:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; }
 
-        /* Sarkari Result UI */
+        /* 📚 SECTION 2: ANTIQUE BOOK CARD STYLE (GLOBAL/HISTORY) */
+        .book-card {
+            background-color: var(--antique-page); border-radius: 12px; padding: 24px 24px 24px 35px; 
+            box-shadow: 0 12px 28px rgba(0,0,0,0.06); border: 1px solid var(--book-border);
+            margin-bottom: 25px; position: relative;
+        }
+        .book-spine-line {
+            position: absolute; left: 18px; top: 0; bottom: 0; width: 4px; 
+            background: linear-gradient(90deg, rgba(0,0,0,0.06), rgba(0,0,0,0.01) 50%, rgba(255,255,255,0.1) 100%);
+            border-right: 1px solid rgba(0,0,0,0.04);
+        }
+        .book-header-panel {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px dashed #c8bca6; padding-bottom: 10px; margin-bottom: 18px;
+        }
+        .book-title { color: #5c4033; font-size: 1.05rem; font-weight: 800; margin: 0; }
+        .page-badge { background-color: #8c6d53; color: white; padding: 3px 10px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; }
+
+        /* Sarkari Result UI Rows */
         .filter-section {
             background: var(--card-bg); padding: 12px; border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-bottom: 20px; display: flex; gap: 8px; overflow-x: auto;
+            box-shadow: 0 4px 6px -1px rgba-color(0,0,0,0.05); margin-bottom: 20px; display: flex; gap: 8px; overflow-x: auto;
         }
         .filter-btn {
             background: #f1f5f9; color: var(--text-dark); border: 1px solid #cbd5e1;
@@ -201,13 +201,13 @@
 
     <div class="ticker-bar">
         <div class="ticker-text">
-            🚀 2-SEPARATED PANELS: ग्लोबल बुक (ऊपर) और डेली इंडियन अखबार (नीचे) को पूरी तरह अलग-अलग सेट कर दिया गया है!
+            🚀 UNIFIED VERSION: दैनिक समाचार पत्र (भारत विशेष) और इतिहास/ग्लोबल बुक का कंबाइंड सर्च ट्रैकर लाइव है!
         </div>
     </div>
 
     <div class="header">
         <h1>SARKARI RESULT & <span>AI SMART HUB</span></h1>
-        <p>🎯 Abhishek Suthar Premium Separated Educational Framework 🎯</p>
+        <p>🎯 Abhishek Suthar Premium Integrated Learning System 🎯</p>
     </div>
 
     <div class="container">
@@ -222,17 +222,17 @@
             </a>
         </div>
 
-        <!-- GLOBAL BOOK FILTERS -->
+        <!-- MASTER TIMELINE SELECTOR CONTROLS (STUDENT MONTH & YEAR SELECTOR) -->
         <div class="card time-filter-card">
-            <h3 style="margin-top:0; color: #1e3a8a; font-size: 0.95rem; margin-bottom: 10px;">📅 ग्लोबल बुक कालखंड फ़िल्टर (Global Book Filter):</h3>
+            <h3 style="margin-top:0; color: #b91c1c; font-size: 0.95rem; margin-bottom: 10px;">📅 परीक्षा तैयारी कालचक्र (Select Year & Month):</h3>
             <div class="time-grid">
-                <select class="filter-select" id="yearSelect" onchange="resetBookToPageOne()">
-                    <option value="2026">Global Affairs: 2026</option>
-                    <option value="2025">Global Affairs: 2025</option>
-                    <option value="2024">Global Affairs: 2024</option>
-                    <option value="history">ऐतिहासिक काल (History Core)</option>
+                <select class="filter-select" id="yearSelect" onchange="syncPortalContent()">
+                    <option value="live_daily">🔥 LIVE TODAY: Daily Indian Current Affairs</option>
+                    <option value="2026">Archive: Year 2026</option>
+                    <option value="2025">Archive: Year 2025</option>
+                    <option value="2024">Archive: Year 2024</option>
                 </select>
-                <select class="filter-select" id="monthSelect" onchange="resetBookToPageOne()">
+                <select class="filter-select" id="monthSelect" onchange="syncPortalContent()">
                     <option value="jan">January (जनवरी)</option>
                     <option value="feb">February (फरवरी)</option>
                     <option value="mar">March (मार्च)</option>
@@ -249,11 +249,30 @@
             </div>
         </div>
 
-        <!-- 📚 SECTION 1: GLOBAL ANTIQUE BOOK MODULE (UPAR) -->
+        <!-- 📰 SECTION 1: THE REAL DAILY INDEPENDENT NEWSPAPER MATRIX -->
+        <div class="newspaper-card" id="newspaperSection" onclick="triggerNewspaperTouch()">
+            <div class="paper-touch-hint" id="touchHintBadge">Touch to Open Newspaper 📰</div>
+            
+            <div class="paper-main-header">
+                <h2 class="paper-main-title" id="newspaperHeadlineTitle">THE DAILY INDIA GAZETTE</h2>
+                <div class="paper-meta-text" id="paperDateMeta">LIVE NATIONAL PAPER • NEW DELHI</div>
+            </div>
+
+            <div class="gk-list" id="newspaperContentContainer">
+                <!-- Indian current affairs or custom selected logs load dynamically here -->
+            </div>
+            
+            <div class="book-navigation-panel" style="margin-top:15px; padding-top:10px;">
+                <span style="font-size:0.75rem; font-weight:800; color:#333;" id="newspaperStatusLabel">📰 लाइव स्व-अपडेटिंग भारतीय संस्करण</span>
+                <button class="nav-book-btn" style="background:#222; font-size:0.75rem; padding:6px 12px;" onclick="changeNewsSeed(event)">🔄 Next Breaking News</button>
+            </div>
+        </div>
+
+        <!-- 📚 SECTION 2: GLOBAL STATIC BOOK MODULE (UPAR/HISTORY MIX) -->
         <div class="book-card" id="bookCardSection">
             <div class="book-spine-line"></div>
             <div class="book-header-panel">
-                <h3 class="book-title">📖 वैश्विक ज्ञानकोष - पुस्तकालय एडिशन</h3>
+                <h3 class="book-title">📖 वैश्विक संदर्भ सूची - इतिहास एवं स्टैटिक सामान्य ज्ञान</h3>
                 <span class="page-badge" id="pageNumberDisplay">Page 1</span>
             </div>
             <div class="gk-list" id="bookPageContainer"></div>
@@ -262,27 +281,6 @@
                 <button class="nav-book-btn" id="nextPageBtn" onclick="flipPage(1)">Next Page ▶️</button>
             </div>
         </div>
-
-
-        <!-- 📰 SECTION 2: SEPARATED DAILY HINDI/INDIAN NEWSPAPER MODULE (NICHE) -->
-        <div class="newspaper-card" id="newspaperSection" onclick="triggerNewspaperTouch()">
-            <div class="paper-touch-hint" id="touchHintBadge">Touch to Open Newspaper 📰</div>
-            
-            <div class="paper-main-header">
-                <h2 class="paper-main-title">THE DAILY INDIA GAZETTE</h2>
-                <div class="paper-meta-text" id="paperDateMeta">LIVE NATIONAL PAPER • NEW DELHI</div>
-            </div>
-
-            <div class="gk-list" id="newspaperContentContainer">
-                <!-- Indian current affairs loaded dynamically -->
-            </div>
-            
-            <div class="book-navigation-panel" style="margin-top:15px; padding-top:10px;">
-                <span style="font-size:0.75rem; font-weight:800; color:#555;">📰 दैनिक स्व-अपडेटिंग भारतीय खंड</span>
-                <button class="nav-book-btn" style="background:#222; font-size:0.75rem; padding:6px 12px;" onclick="refreshNewspaperGrid(event)">🔄 Change News</button>
-            </div>
-        </div>
-
 
         <!-- SARKARI RESULT JOBS ROW -->
         <div class="filter-section">
@@ -308,7 +306,7 @@
         </div>
 
         <div class="footer">
-            🥇 SARKARI RESULT & SEPARATED DUAL FRAME ENGINE 🥇
+            🥇 SARKARI RESULT & INTEGRATED ARCHIVE TRACKER 🥇
             <div>🐾 DESIGNED & POWERED BY BILLU & ABHISHEK SUTHAR 🐾</div>
         </div>
 
@@ -316,11 +314,11 @@
 
     <script>
         let currentPage = 1;
-        let paperSeed = 1;
+        let breakingNewsSeed = 0;
 
         const globalNations = ["भारत", "अमेरिका", "रूस", "ब्रिटेन", "फ्रांस", "जर्मनी", "जापान", "कनाडा", "ऑस्ट्रेलिया", "इटली"];
         const globalOrgs = ["संयुक्त राष्ट्र (UN)", "विश्व बैंक", "अंतर्राष्ट्रीय मुद्रा कोष (IMF)", "यूनेस्को", "नासा (NASA)", "इसरो (ISRO)"];
-        const coreTopics = ["आर्टिफिशियल इंटेलिजेंस रेगुलेशन", "ग्रीन हाइड्रोजन एनर्जी ग्रिड", "ग्लोबल वार्मिंग नियंत्रण संधि", "क्वांटम नेटवर्क सुरक्षा", "साइबर थ्रेट मैनेजमेंट"];
+        const coreTopics = ["आर्टिफिशियल इंटेलिजेंस रेगुलेशन", "ग्रीन हाइड्रोजन ऊर्जा ग्रिड", "ग्लोबल वार्मिंग नियंत्रण संधि", "क्वांटम नेटवर्क सुरक्षा", "साइबर थ्रेट मैनेजमेंट"];
 
         const indianStates = ["राजस्थान", "उत्तर प्रदेश", "मध्य प्रदेश", "बिहार", "हरियाणा", "पंजाब", "गुजरात", "महाराष्ट्र"];
         const indianMinistries = ["रक्षा मंत्रालय", "रेल मंत्रालय", "शिक्षा मंत्रालय", "वित्त मंत्रालय", "गृह मंत्रालय"];
@@ -351,7 +349,6 @@
         function triggerNewspaperTouch() {
             const paperCard = document.getElementById('newspaperSection');
             const hint = document.getElementById('touchHintBadge');
-            
             if(!paperCard.classList.contains('touched-active')) {
                 paperCard.classList.add('touched-active');
                 hint.innerText = "📰 Akhbar Mode Active";
@@ -359,34 +356,67 @@
             }
         }
 
-        function refreshNewspaperGrid(e) {
-            e.stopPropagation(); // Stop parent layout triggers
-            paperSeed += 3;
-            compileNewspaperData();
+        function changeNewsSeed(e) {
+            e.stopPropagation();
+            breakingNewsSeed += 2;
+            syncPortalContent();
         }
 
-        function compileNewspaperData() {
-            const container = document.getElementById('newspaperContentContainer');
-            container.innerHTML = "";
+        function syncPortalContent() {
+            const year = document.getElementById('yearSelect').value;
+            const monthSelect = document.getElementById('monthSelect');
+            const monthText = monthSelect.options[monthSelect.selectedIndex].text;
+            
+            const newsContainer = document.getElementById('newspaperContentContainer');
+            const newsHeadline = document.getElementById('newspaperHeadlineTitle');
+            const statusLabel = document.getElementById('newspaperStatusLabel');
+            
+            newsContainer.innerHTML = "";
 
-            for (let i = 1; i <= 4; i++) {
-                let dynamicIdx = i + paperSeed;
-                let state = indianStates[dynamicIdx % indianStates.length];
-                let ministry = indianMinistries[(dynamicIdx + 2) % indianMinistries.length];
-                let scheme = indianSchemes[(dynamicIdx + 1) % indianSchemes.length];
+            if (year === "live_daily") {
+                // DEFAULT STATE: PURE LIVE CHRONICLE CHANNELS
+                newsHeadline.innerText = "THE DAILY INDIA GAZETTE";
+                statusLabel.innerText = "📰 लाइव स्व-अपडेटिंग भारतीय संस्करण";
+                
+                for (let i = 1; i <= 4; i++) {
+                    let idx = i + breakingNewsSeed;
+                    let state = indianStates[idx % indianStates.length];
+                    let ministry = indianMinistries[(idx + 2) % indianMinistries.length];
+                    let scheme = indianSchemes[(idx + 1) % indianSchemes.length];
 
-                let qText = `<b>[राष्ट्रीय मुख्य समाचार]</b> हाल ही में भारत सरकार के ${ministry} द्वारा देशहित में '${scheme}' के तहत एक महत्वपूर्ण नीतिगत फैसला लिया गया है, जिससे ${state} क्षेत्र के लाखों विद्यार्थियों को सीधा लाभ मिलेगा। इसके मुख्य बिंदु क्या हैं?`;
-                let ansText = `<b>उत्तर: इस नीति से ${state} में अत्याधुनिक इंफ्रास्ट्रक्चर सेंटर स्थापित किए जाएंगे।</b><br>यह निर्णय विकास को गति देने और शिक्षा/रोजगार के अवसरों को पारदर्शी बनाने के लिए मील का पत्थर साबित होगा।`;
+                    let qText = `<b>[राष्ट्रीय मुख्य समाचार]</b> हाल ही में भारत सरकार के ${ministry} द्वारा '${scheme}' नीतिगत प्रस्ताव के तहत एक महत्वपूर्ण फैसला लिया गया है, जिससे ${state} के लाखों विद्यार्थियों को सीधा लाभ मिलेगा। इसके मुख्य बिंदु क्या हैं?`;
+                    let ansText = `<b>उत्तर: इस नीति से ${state} में अत्याधुनिक इंफ्रास्ट्रक्चर सेंटर स्थापित किए जाएंगे।</b><br>यह निर्णय विकास को गति देने और शिक्षा/रोजगार के अवसरों को पारदर्शी बनाने के लिए मील का पत्थर साबित होगा।`;
 
-                let div = document.createElement('div');
-                div.className = 'gk-item';
-                div.innerHTML = `
-                    <div class="gk-question">📌 ${qText}</div>
-                    <button class="answer-btn" onclick="togglePaperAnswer(event, 'paperAns_${i}')">👁️ Read Breaking News</button>
-                    <div class="gk-answer" id="paperAns_${i}">${ansText}</div>
-                `;
-                container.appendChild(div);
+                    appendNewsItem(newsContainer, i, qText, ansText);
+                }
+            } else {
+                // ARCHIVE STATE: SWITCHES ACCORDING TO USER YEAR & MONTH SELECTOR
+                newsHeadline.innerText = `INDIA ARCHIVE • EDITION ${year}`;
+                statusLabel.innerText = `📁 फ़्लैशबैक डेटा: ${monthText} ${year}`;
+                
+                for (let i = 1; i <= 4; i++) {
+                    let idx = i + breakingNewsSeed + monthSelect.selectedIndex + parseInt(year);
+                    let nat = globalNations[idx % globalNations.length];
+                    let org = globalOrgs[(idx + 3) % globalOrgs.length];
+                    let topic = coreTopics[(idx + 1) % coreTopics.length];
+
+                    let qText = `<b>[संग्रह समाचार पत्र]</b> ${monthText} ${year} के ऐतिहासिक सूचकांक रिकॉर्ड के अनुसार, ${org} द्वारा जारी डेटा फ्रेम में '${topic}' के कार्यान्वयन में भारत और ${nat} के बीच क्या द्विपक्षीय समझौता हुआ था?`;
+                    let ansText = `<b>उत्तर: ${nat} और भारत के बीच इस रणनीतिक मुद्दे पर एक उच्च स्तरीय एमओयू हस्ताक्षरित किया गया था।</b>`;
+
+                    appendNewsItem(newsContainer, i, qText, ansText);
+                }
             }
+        }
+
+        function appendNewsItem(container, i, q, a) {
+            let div = document.createElement('div');
+            div.className = 'gk-item';
+            div.innerHTML = `
+                <div class="gk-question">📌 ${q}</div>
+                <button class="answer-btn" onclick="togglePaperAnswer(event, 'paperAns_${i}')">👁️ Read Breaking News</button>
+                <div class="gk-answer" id="paperAns_${i}">${a}</div>
+            `;
+            container.appendChild(div);
         }
 
         function togglePaperAnswer(e, id) {
@@ -409,41 +439,19 @@
 
         function renderBookPage() {
             const container = document.getElementById('bookPageContainer');
-            const timeline = document.getElementById('yearSelect').value;
-            const monthSelect = document.getElementById('monthSelect');
-            const monthText = monthSelect.options[monthSelect.selectedIndex].text;
-            
-            document.getElementById('pageNumberDisplay').innerText = `Page ${currentPage}`;
             container.innerHTML = "";
-
-            let yearMultiplier = timeline === "history" ? 2026 : parseInt(timeline);
+            document.getElementById('pageNumberDisplay').innerText = `Page ${currentPage}`;
 
             for (let qIndex = 1; qIndex <= 5; qIndex++) {
                 let globalCounter = ((currentPage - 1) * 5) + qIndex;
-                let qText = "", ansText = "";
-
-                if (timeline === "history") {
-                    let poolItem = staticHistoryPool[(globalCounter - 1) % staticHistoryPool.length];
-                    qText = `[इतिहास खंड] ${poolItem.q}`;
-                    ansText = poolItem.a;
-                } else {
-                    let seedBase = globalCounter + monthSelect.selectedIndex + yearMultiplier;
-                    let nat1 = globalNations[(seedBase + 2) % globalNations.length];
-                    let nat2 = globalNations[(seedBase + 5) % globalNations.length];
-                    
-                    let org = globalOrgs[(seedBase + 3) % globalOrgs.length];
-                    let topic = coreTopics[(seedBase + 1) % coreTopics.length];
-
-                    qText = `[वैश्विक सूचकांक] ${org} द्वारा जारी हालिया डेटा इंडेक्स में, '${topic}' के बेहतर क्रियान्वयन में कौन सा देश शीर्ष पर रहा? (${monthText} ${yearMultiplier})`;
-                    ansText = `<b>उत्तर: इस नीतिगत सूचकांक में ${nat1} प्रथम स्थान पर रहा है, जबकि ${nat2} दूसरे पायदान पर है।</b>`;
-                }
-
+                let poolItem = staticHistoryPool[(globalCounter - 1) % staticHistoryPool.length];
+                
                 let div = document.createElement('div');
                 div.className = 'gk-item';
                 div.innerHTML = `
-                    <div class="gk-question">📌 <b>Q${globalCounter}.</b> ${qText}</div>
+                    <div class="gk-question">📌 <b>Q${globalCounter}.</b> [इतिहास / स्टैटिक जीके] ${poolItem.q}</div>
                     <button class="answer-btn" onclick="toggleBookAnswer(${globalCounter})">👁️ Read Solution</button>
-                    <div class="gk-answer" id="bookAnswer_${globalCounter}">${ansText}</div>
+                    <div class="gk-answer" id="bookAnswer_${globalCounter}">${poolItem.a}</div>
                 `;
                 container.appendChild(div);
             }
@@ -486,8 +494,8 @@
             const formattedDate = today.toLocaleDateString('hi-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase();
             document.getElementById('paperDateMeta').innerText = `LIVE NATIONAL PAPER • NEW DELHI • ${formattedDate}`;
             
+            syncPortalContent();
             renderBookPage(); 
-            compileNewspaperData();
             renderJobsMatrix("all"); 
         };
     </script>
