@@ -120,24 +120,21 @@
         .newspaper-mode .page-badge { background-color: #333; font-size: 0.7rem; margin-top: 5px; }
 
         .gk-list { display: flex; flex-direction: column; gap: 12px; }
-        .newspaper-mode .gk-list {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(45%, 1fr)); gap: 15px;
-        }
-
+        
         .gk-item { background: #fffdfa; border: 1px solid #ebdcb9; padding: 14px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
         .newspaper-mode .gk-item {
-            background: #fff; border: none; border-bottom: 1px solid #ccc; border-right: 1px dashed #eee; padding: 10px; border-radius: 0; box-shadow: none;
+            background: #fff; border: none; border-bottom: 1px solid #ccc; padding: 12px; box-shadow: none; border-radius: 4px;
         }
 
         .gk-question { font-size: 0.95rem; font-weight: 700; color: #2c3e50; margin-bottom: 10px; line-height: 1.5; }
-        .newspaper-mode .gk-question { font-size: 0.9rem; color: #000; font-family: 'Times New Roman', serif; }
+        .newspaper-mode .gk-question { font-size: 0.95rem; color: #000; font-family: 'Times New Roman', serif; }
         
         .answer-btn {
             background-color: #8c6d53; color: white; border: none; padding: 6px 12px;
             border-radius: 4px; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: all 0.2s;
         }
         .answer-btn:hover { background-color: #6e4e37; }
-        .newspaper-mode .answer-btn { background-color: #444; border-radius: 0; font-size: 0.75rem; }
+        .newspaper-mode .answer-btn { background-color: #444; font-size: 0.8rem; }
         
         .gk-answer {
             margin-top: 10px; padding: 10px 12px; background-color: #f4fcf6;
@@ -198,7 +195,7 @@
 
     <div class="ticker-bar">
         <div class="ticker-text">
-            📢 SYSTEM FIX: अभिषेक सुथार ऑफिशियल वेब इंजन पूरी तरह स्टेबल और चालू है || सभी प्रश्न लोड हो चुके हैं।
+            🚀 FIXED & STABLE: अभिषेक सुथार ऑफिशियल वेब इंजन पूरी तरह ठीक कर दिया गया है। सभी प्रश्न लोड हो चुके हैं।
         </div>
     </div>
 
@@ -261,7 +258,7 @@
 
             <div class="book-navigation-panel">
                 <button class="nav-book-btn" id="prevPageBtn" onclick="flipPage(-1)">◀️ Previous Page</button>
-                <span id="newspaperPageNum" style="display:none; font-weight:700; font-size:0.8rem; color:#444;"></span>
+                <span id="newspaperPageNum" style="font-weight:700; font-size:0.85rem; color:#444;"></span>
                 <button class="nav-book-btn" id="nextPageBtn" onclick="flipPage(1)">Next Page ▶️</button>
             </div>
         </div>
@@ -299,11 +296,13 @@
     </div>
 
     <script>
+        let currentPage = 1;
+
         const globalNations = ["भारत", "अमेरिका", "रूस", "ब्रिटेन", "फ्रांस", "जर्मनी", "जापान", "कनाडा", "ऑस्ट्रेलिया", "इटली"];
         const globalOrgs = ["संयुक्त राष्ट्र (UN)", "विश्व बैंक", "अंतर्राष्ट्रीय मुद्रा कोष (IMF)", "यूनेस्को", "नासा (NASA)", "इसरो (ISRO)", "डब्ल्यूएचओ (WHO)"];
-        const coreTopics = ["आर्टिफिशियल इंटेलिजेंस रेगुलेशन", "ग्रीन हाइड्रोजन एनर्जी ग्रिड", "ग्लोबल वार्मिंग नियंत्रण संधि", "क्वांटम नेटवर्क सुरक्षा", "साइबर थ्रेट Management", "अंतरिक्ष मलबे का निपटारा"];
+        const coreTopics = ["आर्टिफिशियल इंटेलिजेंस रेगुलेशन", "ग्रीन हाइड्रोजन एनर्जी ग्रिड", "ग्लोबल वार्मिंग नियंत्रण संधि", "क्वांटम नेटवर्क सुरक्षा", "साइबर थ्रेट मैनेजमेंट", "अंतरिक्ष मलबे का निपटारा"];
 
-        const indianStates = ["राजस्थान", "उत्तर प्रदेश", "मध्य प्रदेश", "बिहार", "हरियाणा", "पंजाब", "गुजरात", "महाराष्ट्र"];
+        const indianStates = ["राजस्थान", "उत्तर Pradesh", "मध्य प्रदेश", "बिहार", "हरियाणा", "पंजाब", "गुजरात", "महाराष्ट्र"];
         const indianMinistries = ["रक्षा मंत्रालय", "रेल मंत्रालय", "शिक्षा मंत्रालय", "वित्त मंत्रालय", "गृह मंत्रालय", "सड़क परिवहन मंत्रालय"];
         const indianSchemes = ["डिजिटल इंडिया मिशन 3.0", "पीएम सूर्यघर मुफ्त बिजली योजना", "लखपति दीदी कार्यक्रम", "आयुष्मान भारत योजना", "अमृत भारत स्टेशन योजना"];
 
@@ -324,7 +323,7 @@
                 { title: "रेलवे ALP परीक्षा सिटी इंटिमेशन लिंक 2026", cat: "railway", tag: "update" }
             ],
             results: [
-                { title: "यूपी पुलिस कांस्टेबल परीक्षा फाइनल रिजल्ट 2026", cat: "police", tag: "new" },
+                { title: "यूपी पुलिस कांस्टेबल परीक्षा final रिजल्ट 2026", cat: "police", tag: "new" },
                 { title: "आरआरबी (RRB) ग्रुप डी परीक्षा परिणाम 2026", cat: "railway", tag: "new" }
             ]
         };
@@ -353,6 +352,7 @@
             
             container.innerHTML = "";
 
+            // Dynamic Styling Toggle Logic
             if (timeline === "india_live") {
                 bookCard.classList.add('newspaper-mode');
                 mainTitle.innerText = "THE DAILY INDIA GAZETTE";
@@ -368,6 +368,11 @@
             }
 
             document.getElementById('prevPageBtn').disabled = (currentPage === 1);
+
+            // Numeric parsed variable setup to completely prevent code-freezing logic errors
+            let yearMultiplier = 2026;
+            if (timeline === "2025") yearMultiplier = 2025;
+            if (timeline === "2024") yearMultiplier = 2024;
 
             for (let qIndex = 1; qIndex <= 5; qIndex++) {
                 let globalCounter = ((currentPage - 1) * 5) + qIndex;
@@ -392,7 +397,7 @@
                     }
                 } 
                 else {
-                    let seedBase = globalCounter + monthSelect.selectedIndex + (timeline === "2025" ? 2025 : timeline === "2024" ? 2024 : 2026);
+                    let seedBase = globalCounter + monthSelect.selectedIndex + yearMultiplier;
                     let nat1 = globalNations[(seedBase + 2) % globalNations.length];
                     let nat2 = globalNations[(seedBase + 5) % globalNations.length];
                     if(nat1 === nat2) nat2 = globalNations[(seedBase + 7) % globalNations.length];
@@ -401,10 +406,10 @@
                     let topic = coreTopics[(seedBase + 1) % coreTopics.length];
 
                     if (globalCounter % 2 === 0) {
-                        qText = `[वैश्विक सूचकांक] हाल ही में ${org} द्वारा जारी वार्षिक रैंकिंग इंडेक्स में, '${topic}' के क्रियान्वयन में कौन सा देश शीर्ष स्थान पर रहा है? (${monthText} ${timeline})`;
+                        qText = `[वैश्विक सूचकांक] हाल ही में ${org} द्वारा जारी वार्षिक रैंकिंग इंडेक्स में, '${topic}' के क्रियान्वयन में कौन सा देश शीर्ष स्थान पर रहा है? (${monthText} ${yearMultiplier})`;
                         ansText = `<b>उत्तर: इस सूचकांक में ${nat1} प्रथम स्थान पर रहा है, जबकि ${nat2} दूसरे स्थान पर रहा।</b><br>भारत ने इस नीति विकास में पिछले वर्ष की तुलना में काफी बेहतर सुधार किया है।`;
                     } else {
-                        qText = `[वैश्विक नीति] ${monthText} ${timeline} के आधिकारिक दस्तावेजों के अनुसार, ${nat1} और ${nat2} ने किस महत्वपूर्ण विषय अथवा '${topic}' को लेकर एक बड़े रणनीतिक सहयोग समझौते पर हस्ताक्षर किए हैं?`;
+                        qText = `[वैश्विक नीति] ${monthText} ${yearMultiplier} के आधिकारिक दस्तावेजों के अनुसार, ${nat1} और ${nat2} ने किस महत्वपूर्ण विषय अथवा '${topic}' को लेकर एक बड़े रणनीतिक सहयोग समझौते पर हस्ताक्षर किए हैं?`;
                         ansText = `<b>उत्तर: दोनों देशों के बीच '${topic}' पर ऐतिहासिक सुरक्षा और व्यापार समझौता हुआ है।</b>`;
                     }
                 }
@@ -457,7 +462,6 @@
             renderJobsMatrix(category);
         }
 
-        // Single Master Initialization Handler to Fix Rendering Bug Permanently
         window.onload = function() {
             const today = new Date();
             const formattedDate = today.toLocaleDateString('hi-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase();
