@@ -3,25 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sarkari Result, AI Multi-Newspaper & Book Portal - Abhishek Suthar Edition</title>
+    <title>Sarkari Result & AI Multi-Page Newspaper - Abhishek Suthar Edition</title>
     
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#1e3a8a">
     
     <style>
         :root {
-            --primary-dark: #0f172a;
-            --sarkari-red: #ef4444;
+            --bg-light: #f5f4f0; /* Original newsprint gray-white color tint */
             --sarkari-blue: #1e3a8a;
             --premium-gold: #eab308;
-            --success: #10b981;
-            --bg-light: #f5f4f0; /* Real newsprint page background tint */
-            --card-bg: #ffffff;
             --text-dark: #111111;
-            --antique-page: #fbf6ef; 
-            --book-border: #e6dcc5;
         }
 
         body {
@@ -33,186 +25,127 @@
         }
 
         .ticker-bar {
-            background: linear-gradient(90deg, #111, #222);
-            color: #fff; padding: 6px 12px; font-weight: bold; font-size: 0.85rem;
+            background: #000; color: #fff; padding: 6px 12px; font-weight: bold; font-size: 0.85rem;
             overflow: hidden; white-space: nowrap; border-bottom: 2px solid #000;
+            font-family: sans-serif;
         }
         .ticker-text { display: inline-block; padding-left: 100%; animation: textScroll 25s linear infinite; }
         @keyframes textScroll { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
 
         .header {
             background: linear-gradient(135deg, var(--sarkari-blue), #1d4ed8);
-            color: white; padding: 16px; text-align: center;
-            border-bottom: 4px solid var(--premium-gold); font-family: 'Segoe UI', sans-serif;
+            color: white; padding: 16px; text-align: center; font-family: sans-serif;
         }
         .header h1 { margin: 0; font-size: 1.5rem; font-weight: 900; }
-        .header h1 span { color: var(--premium-gold); }
         .header p { margin: 4px 0 0 0; font-size: 0.85rem; opacity: 0.9; }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 15px; }
+        .container { max-width: 1150px; margin: 0 auto; padding: 15px; }
 
-        .action-tracker-bar {
-            background: #ffffff; padding: 10px 15px; border: 2px solid #000; margin-bottom: 20px;
-            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
-            font-family: 'Segoe UI', sans-serif;
-        }
-        .bar-notice { font-size: 0.9rem; color: #000; font-weight: 800; }
-        .yt-coaching-btn {
-            background: #ff0000; color: white; border: none; padding: 8px 16px;
-            border-radius: 4px; font-weight: 800; font-size: 0.85rem; text-decoration: none; display: flex; align-items: center; gap: 6px;
-        }
-
-        /* 📰 ORIGINAL PRINT NEWSPAPER CONTROLLER SYSTEM */
+        /* PRINT MEDIA CONTROL PANEL */
         .paper-selector-card {
             background: #ffffff; padding: 14px; border: 4px double #000; border-bottom: none;
-            display: flex; flex-direction: column; gap: 10px; font-family: 'Segoe UI', sans-serif;
+            display: flex; flex-direction: column; gap: 10px; font-family: sans-serif;
         }
-        .paper-filter-title { font-size: 0.9rem; font-weight: 900; color: #000; margin: 0; text-transform: uppercase; letter-spacing: 0.5px; }
         .time-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 10px; }
         @media (max-width: 600px) { .time-grid { grid-template-columns: 1fr; } }
         .filter-select {
             width: 100%; padding: 10px; font-size: 0.85rem; font-weight: 700;
-            border: 2px solid #000; background-color: #fff; outline: none; cursor: pointer;
+            border: 2px solid #000; background-color: #fff; outline: none;
         }
 
-        /* 📰 THE REAL PHYSICAL NEWSPAPER SHEET COMPONENT */
+        /* 📰 THE REAL PHYSICAL MULTI-PAGE NEWSPAPER FRAME SHEET */
         .newspaper-sheet {
             background-color: #ffffff; border: 4px solid #000; padding: 25px; margin-bottom: 25px;
-            box-shadow: 5px 5px 0px rgba(0,0,0,0.1); position: relative;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.15); position: relative;
         }
         
-        .paper-main-header { text-align: center; border-bottom: 5px double #000; padding-bottom: 5px; margin-bottom: 15px; }
+        .paper-main-header { text-align: center; border-bottom: 5px double #000; padding-bottom: 5px; margin-bottom: 12px; }
         .paper-main-title {
-            font-family: 'Times New Roman', 'Georgia', serif; font-size: 2.6rem; font-weight: 900; color: #000;
+            font-family: 'Times New Roman', serif; font-size: 2.8rem; font-weight: 900; color: #000;
             letter-spacing: -1px; margin: 0; text-transform: uppercase; line-height: 1;
         }
         
-        /* Classic thin double rule meta bar for print layouts */
         .paper-meta-bar {
             display: flex; justify-content: space-between; border-top: 1px solid #000; border-bottom: 1px solid #000;
-            padding: 4px 10px; margin-top: 8px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
-        }
-
-        /* Print Style Columns Content Structure */
-        .newspaper-columns-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 15px;
-        }
-        @media (max-width: 750px) { .newspaper-columns-grid { grid-template-columns: 1fr; gap: 15px; } }
-
-        .news-article-block {
-            border-bottom: 1px solid #000; padding-bottom: 15px; margin-bottom: 5px;
-        }
-        .news-article-block:last-child { border-bottom: none; }
-        
-        .article-headline {
-            font-size: 1.15rem; font-weight: 900; color: #000; line-height: 1.3; margin: 0 0 8px 0;
-            font-family: 'Times New Roman', serif; text-transform: capitalize;
-        }
-        .article-body-text {
-            font-size: 0.95rem; color: #111; line-height: 1.5; text-align: justify; margin: 0 0 10px 0;
+            padding: 4px 10px; margin-top: 8px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase;
         }
         
-        .read-article-btn {
-            background: none; border: 1px solid #000; color: #000; padding: 4px 10px; font-weight: 900;
-            font-size: 0.75rem; cursor: pointer; text-transform: uppercase; font-family: 'Segoe UI', sans-serif;
-            transition: all 0.2s;
-        }
-        .read-article-btn:hover { background: #000; color: #fff; }
-
-        .article-expanded-panel {
-            background-color: #f9f9f9; border-left: 4px solid #000; padding: 10px 14px; margin-top: 10px;
-            font-size: 0.9rem; font-weight: 600; line-height: 1.5; color: #222; display: none; font-family: 'Segoe UI', sans-serif;
+        .paper-page-category-banner {
+            background-color: #000; color: #fff; text-align: center; padding: 4px;
+            font-size: 0.85rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase;
+            font-family: sans-serif; margin-bottom: 15px;
         }
 
-        .paper-bottom-infobar {
-            margin-top: 20px; border-top: 3px double #000; padding-top: 12px;
-            display: flex; justify-content: space-between; align-items: center; font-family: 'Segoe UI', sans-serif;
+        /* REAL PRINT COLUMN MIX BOARD */
+        .newspaper-layout-grid {
+            display: grid; grid-template-columns: 2fr 1fr; gap: 20px;
         }
-        .fresh-refresh-btn {
+        @media (max-width: 800px) { .newspaper-layout-grid { grid-template-columns: 1fr; } }
+
+        /* Left Side: Major Lead Stories (Bdi Khabrein) */
+        .major-stories-column { border-right: 1px solid #ccc; padding-right: 15px; }
+        @media (max-width: 800px) { .major-stories-column { border-right: none; padding-right: 0; } }
+
+        /* Right Side: Short Snippets Panel (Choti Khabrein / Briefs) */
+        .short-snippets-column { background-color: #fcfcf9; padding: 10px; border: 1px solid #ddd; }
+        .briefs-header { font-family: sans-serif; font-size: 0.85rem; font-weight: 900; background: #222; color: #fff; padding: 4px; text-align: center; margin-bottom: 10px; text-transform: uppercase; }
+
+        .major-article { border-bottom: 1px solid #000; padding-bottom: 14px; margin-bottom: 14px; }
+        .major-article:last-child { border-bottom: none; }
+        .major-headline { font-size: 1.3rem; font-weight: 900; color: #000; margin: 0 0 6px 0; line-height: 1.2; }
+        .major-body { font-size: 0.95rem; color: #111; line-height: 1.5; text-align: justify; margin: 0; }
+
+        .brief-item { border-bottom: 1px dashed #777; padding-bottom: 8px; margin-bottom: 8px; }
+        .brief-item:last-child { border-bottom: none; }
+        .brief-title { font-size: 0.95rem; font-weight: 800; color: #b91c1c; margin: 0 0 3px 0; }
+        .brief-text { font-size: 0.85rem; color: #333; line-height: 1.4; margin: 0; text-align: justify; }
+
+        /* MULTI-PAGE NAVIGATION FOOTER */
+        .paper-pagination-footer {
+            margin-top: 20px; border-top: 4px double #000; padding-top: 12px;
+            display: flex; justify-content: space-between; align-items: center; font-family: sans-serif;
+        }
+        .page-turn-btn {
             background: #000; color: #fff; border: none; padding: 6px 14px; font-weight: 800; font-size: 0.75rem; cursor: pointer; text-transform: uppercase;
         }
+        .page-turn-btn:disabled { background: #ccc; color: #777; cursor: not-allowed; }
+        .page-status-indicator { font-weight: 900; font-size: 0.85rem; text-transform: uppercase; }
 
-        /* 📚 ANTIQUE REFERENCE BOOK STYLE */
-        .book-card {
-            background-color: var(--antique-page); border-radius: 8px; padding: 20px 20px 20px 30px; 
-            box-shadow: 0 6px 15px rgba(0,0,0,0.05); border: 1px solid var(--book-border);
-            margin-bottom: 25px; position: relative; font-family: 'Segoe UI', sans-serif;
-        }
-        .book-spine-line {
-            position: absolute; left: 14px; top: 0; bottom: 0; width: 4px; 
-            background: linear-gradient(90deg, rgba(0,0,0,0.05), transparent); border-right: 1px solid rgba(0,0,0,0.03);
-        }
-        .book-header-panel { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #c8bca6; padding-bottom: 8px; margin-bottom: 15px; }
-        .book-title { color: #5c4033; font-size: 1rem; font-weight: 800; margin: 0; }
-        .page-badge { background-color: #8c6d53; color: white; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; }
-        
-        .book-item-box { background: #ffffff; border: 1px solid #e2e8f0; padding: 12px; border-radius: 6px; margin-bottom: 10px; }
-        .book-q { font-size: 0.9rem; font-weight: 700; color: #1e293b; margin-bottom: 6px; }
-
-        /* SARKARI PORTAL GRID DESIGN */
-        .filter-section {
-            background: #fff; padding: 10px; border: 2px solid #000; margin-bottom: 20px; display: flex; gap: 8px; overflow-x: auto; font-family: 'Segoe UI', sans-serif;
-        }
-        .filter-btn {
-            background: #f1f5f9; color: #000; border: 1px solid #cbd5e1; padding: 6px 12px; font-weight: 700; cursor: pointer; font-size: 0.8rem; border-radius: 4px;
-        }
-        .filter-btn.active, .filter-btn:hover { background: var(--sarkari-blue); color: white; }
-
-        .portal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 25px; font-family: 'Segoe UI', sans-serif; }
-        .portal-column { background: #fff; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); border: 1px solid #cbd5e1; overflow: hidden; }
-        .column-header { color: white; padding: 10px; font-size: 0.95rem; font-weight: 800; text-align: center; }
-        .col-jobs { background: #059669; }
-        .col-admit { background: #d97706; }
-        .col-result { background: #dc2626; }
-
-        .link-list { padding: 8px; list-style: none; margin: 0; display: flex; flex-direction: column; gap: 6px; }
-        .link-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; }
-        .link-item a { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; text-decoration: none; color: #1e293b; font-weight: 600; font-size: 0.85rem; }
-        .job-tag { font-size: 0.6rem; padding: 2px 4px; border-radius: 3px; color: white; font-weight: bold; }
-        .tag-new { background-color: #ef4444; }
-
-        .footer {
-            background: #111; color: #eab308; text-align: center; padding: 15px; margin-top: 30px; font-weight: 800; font-size: 0.85rem; font-family: 'Segoe UI', sans-serif;
-        }
+        /* REFS SECTION */
+        .book-card { background-color: var(--antique-page); border: 1px solid var(--book-border); padding: 15px; margin-bottom: 25px; border-radius: 6px; font-family: sans-serif; }
     </style>
 </head>
 <body>
 
     <div class="ticker-bar">
         <div class="ticker-text">
-            📰 DAILY PRINT HARDWARE SYNCHRONIZER: अब यह हूबहू असली प्रिंटेड समाचार पत्र (Real Column-Wise Layout) की तरह दिखता है!
+            📰 MULTI-PAGE MEDIA ARCHITECTURE: पूर्णतः 8-पृष्ठों का वास्तविक मुद्रित समाचार पत्र ढांचा सक्रिय || बड़ी एवं लघु खबरों का लाइव मिश्रण!
         </div>
     </div>
 
     <div class="header">
-        <h1>SARKARI RESULT & <span>AI SMART HUB</span></h1>
-        <p>🎯 Abhishek Suthar Premium Integrated Learning System 🎯</p>
+        <h1>SARKARI RESULT & <span>AI SMART NEWSPAPER</span></h1>
+        <p>🎯 Abhishek Suthar Premium 8-Page Live Press Layout 🎯</p>
     </div>
 
     <div class="container">
 
-        <div class="action-tracker-bar">
-            <div class="bar-notice">📢 Join Our Official YouTube Learning Channel:</div>
-            <a href="https://www.youtube.com/@KamraCoachingGanganagar" target="_blank" class="yt-coaching-btn">Kamra Coaching Ganganagar</a>
-        </div>
-
-
+        <!-- PRESS CONTROLLER -->
         <div class="paper-selector-card">
-            <h4 class="paper-filter-title">📰 प्रिंट एडिशन और प्रकाशक चयन (Select Print Media Agency):</h4>
+            <h4 style="margin:0; font-size:0.85rem; font-weight:900;">📰 समाचार पत्र एवं संस्करण चयन (Select Media Brand):</h4>
             <div class="time-grid">
-                <select class="filter-select" id="paperAgencySelect" onchange="syncNewspaperContent()">
+                <select class="filter-select" id="paperAgencySelect" onchange="resetToPageOne()">
                     <option value="dainik_bhaskar">दैनिक भास्कर (Dainik Bhaskar)</option>
                     <option value="rajasthan_patrika">राजस्थान पत्रिका (Rajasthan Patrika)</option>
-                    <option value="dainik_jagran">दैनिक जागरण (National Print)</option>
-                    <option value="the_hindu">The Hindu (Premium Press)</option>
-                    <option value="times_of_india">The Times of India (TOI)</option>
+                    <option value="dainik_jagran">दैनिक जागरण (National Press)</option>
+                    <option value="the_hindu">The Hindu (Premium Desk)</option>
                 </select>
-                <select class="filter-select" id="paperYearSelect" onchange="syncNewspaperContent()">
+                <select class="filter-select" id="paperYearSelect" onchange="resetToPageOne()">
                     <option value="2026">Year 2026</option>
                     <option value="2025">Year 2025</option>
                     <option value="2024">Year 2024</option>
                 </select>
-                <select class="filter-select" id="paperMonthSelect" onchange="syncNewspaperContent()">
+                <select class="filter-select" id="paperMonthSelect" onchange="resetToPageOne()">
                     <option value="0">January (जनवरी)</option>
                     <option value="1">February (फरवरी)</option>
                     <option value="2">March (मार्च)</option>
@@ -229,219 +162,172 @@
             </div>
         </div>
 
+        <!-- 📰 THE PHYSICAL NEWSPAPER PRINT SHEET -->
         <div class="newspaper-sheet" id="newspaperSection">
             <div class="paper-main-header">
-                <h2 class="paper-main-title" id="newspaperHeadlineTitle">DAILY BROADCAST</h2>
-                
+                <h2 class="paper-main-title" id="newspaperHeadlineTitle">LOADING...</h2>
                 <div class="paper-meta-bar">
-                    <span id="paperLocationMeta">📍 REGIONAL CITY DESK</span>
+                    <span id="paperLocationMeta">📍 SITE COPIES</span>
                     <span id="paperDateMeta">SATURDAY, 20 JUNE 2026</span>
-                    <span id="paperPriceMeta">PRICE: ₹5.00 ONLY</span>
+                    <span id="paperPriceMeta">PRICE: ₹5.00</span>
                 </div>
             </div>
 
-            <div class="newspaper-columns-grid" id="newspaperContentContainer">
+            <!-- Page Meta Type Category (Changes dynamically per page turn!) -->
+            <div class="paper-page-category-banner" id="pageCategoryBanner">मुखपृष्ठ (Front Page - Major Headlines)</div>
+
+            <!-- Double Columns Print Architecture -->
+            <div class="newspaper-layout-grid">
+                
+                <!-- Left Side: Bdi Khabrein (Lead Articles) -->
+                <div class="major-stories-column" id="majorStoriesContainer">
+                    <!-- Loaded Dynamically -->
                 </div>
+
+                <!-- Right Side: Choti Khabrein (Briefs Panel) -->
+                <div class="short-snippets-column">
+                    <div class="briefs-header">📰 शहर-शहर की खबरें (Briefs)</div>
+                    <div id="shortSnippetsContainer">
+                        <!-- Loaded Dynamically -->
+                    </div>
+                </div>
+
+            </div>
             
-            <div class="paper-bottom-infobar">
-                <span style="font-size:0.75rem; font-weight:800; color:#000;" id="newspaperStatusLabel">📰 Print Desk Frame Connected</span>
-                <button class="fresh-refresh-btn" onclick="forceFreshNewsMatrix(event)">🔄 Refresh Daily News</button>
+            <!-- Real Newspaper Footer Pagination Grid -->
+            <div class="paper-pagination-footer">
+                <button class="page-turn-btn" id="prevPaperBtn" onclick="turnPaperPage(-1)">◀️ पिछला पृष्ठ</button>
+                <span class="page-status-indicator" id="paperPageIndicator">कुल पृष्ठ: 1 / 8</span>
+                <button class="page-turn-btn" id="nextPaperBtn" onclick="turnPaperPage(1)">अगला पृष्ठ ▶️</button>
             </div>
         </div>
 
-
-        <div class="book-card" id="bookCardSection">
-            <div class="book-spine-line"></div>
-            <div class="book-header-panel">
-                <h3 class="book-title">📖 वैश्विक संदर्भ सूची - इतिहास एवं स्टैटिक सामान्य ज्ञान</h3>
-                <span class="page-badge" id="pageNumberDisplay">Page 1</span>
-            </div>
-            <div id="bookPageContainer"></div>
-            <div class="book-navigation-panel" style="border:none; margin:0; padding:0;">
-                <button class="nav-book-btn" onclick="flipPage(-1)">◀️ Prev</button>
-                <button class="nav-book-btn" onclick="flipPage(1)">Next ▶️</button>
-            </div>
-        </div>
-
-
-        <div class="filter-section">
-            <button class="filter-btn active" onclick="filterCategory('all')">🔥 All Updates</button>
-            <button class="filter-btn" onclick="filterCategory('railway')">🚂 Railway Jobs</button>
-            <button class="filter-btn" onclick="filterCategory('ssc')">⚡ SSC Jobs</button>
-        </div>
-
+        <!-- SARKARI LINKS PANEL -->
         <div class="portal-grid">
-            <div class="portal-column">
-                <div class="column-header col-jobs">🔥 Latest Jobs 2026</div>
-                <ul class="link-list" id="jobsList"></ul>
-            </div>
-            <div class="portal-column">
-                <div class="column-header col-admit">🎟️ Admit Card</div>
-                <ul class="link-list" id="admitList"></ul>
-            </div>
-            <div class="portal-column">
-                <div class="column-header col-result">🏆 Results</div>
-                <ul class="link-list" id="resultsList"></ul>
-            </div>
+            <div class="portal-column"><div class="column-header col-jobs">🔥 Latest Jobs 2026</div><ul class="link-list" id="jobsList"><li><a href="https://www.sarkariresult.com" target="_blank">📢 रेलवे RRB तकनीशियन भर्ती फॉर्म 2026</a></li></ul></div>
+            <div class="portal-column"><div class="column-header col-admit">🎟️ Admit Card</div><ul class="link-list" id="admitList"><li><a href="https://www.sarkariresult.com" target="_blank">📢 एसएससी CHSL परीक्षा प्रवेश पत्र</a></li></ul></div>
+            <div class="portal-column"><div class="column-header col-result">🏆 Results</div><ul class="link-list" id="resultsList"><li><a href="https://www.sarkariresult.com" target="_blank">📢 यूपी पुलिस फाइनल रिजल्ट घोषित</a></li></ul></div>
         </div>
 
         <div class="footer">
-            🥇 REAL PRINT-HARDWARE ARCHITECTURE ENGINE 🥇
+            🥇 REAL 8-PAGE PRINT MEDIA AUTOMATION SYSTEM 🥇
             <div style="color: #aaa; font-size: 0.75rem; margin-top: 4px;">🐾 DESIGNED & POWERED BY BILLU & ABHISHEK SUTHAR 🐾</div>
         </div>
 
     </div>
 
     <script>
-        let currentPage = 1;
-        // Seed increments dynamically to reset matrix pools infinitely
-        let microRandomSeed = Math.floor(Math.random() * 100);
+        let currentPaperPage = 1;
+        const totalPaperPages = 8;
 
-        const indianStates = ["राजस्थान", "उत्तर प्रदेश", "मध्य प्रदेश", "बिहार", "हरियाणा", "पंजाब", "गुजरात", "महाराष्ट्र"];
-        const indianMinistries = ["रक्षा मंत्रालय", "रेल मंत्रालय", "शिक्षा मंत्रालय", "वित्त मंत्रालय", "गृह मंत्रालय"];
-        const indianSchemes = ["डिजिटल इंडिया मिशन 3.0", "PM सूर्यघर मुफ्त बिजली योजना", "लखपति दीदी कार्यक्रम", "आयुष्मान भारत स्वास्थ्य योजना", "अमृत भारत स्टेशन नीति"];
-        
-        const coreTopics = ["आर्टिफिशियल इंटेलिजेंस रेगुलेशन एक्ट", "ग्रीन हाइड्रोजन एनर्जी ग्रिड", "स्पेस डिफेंस रिसर्च प्रोग्राम", "इलेक्ट्रॉनिक कंपोनेंट मैन्युफैक्चरिंग हब"];
+        const indianStates = ["राजस्थान", "उत्तर प्रदेश", "मध्य प्रदेश", "बिहार", "हरियाणा", "पंजाब", "गुजरात", "महाराष्ट्र", "दिल्ली", "झारखंड"];
+        const indianMinistries = ["रक्षा मंत्रालय", "रेल मंत्रालय", "शिक्षा मंत्रालय", "वित्त मंत्रालय", "गृह मंत्रालय", "सड़क परिवहन एवं राजमार्ग मंत्रालय"];
+        const indianSchemes = ["डिजिटल इंडिया मिशन 3.0", "PM सूर्यघर मुफ्त बिजली योजना", "लखपति दीदी कार्यक्रम", "आयुष्मान भारत स्वास्थ्य कवरेज", "अमृत भारत रेलवे स्टेशन नीति", "मेक इन इंडिया 2.0"];
+        const localDistricts = ["गंगानगर", "हनुमानगढ़", "जयपुर", "जोधपुर", "बीकानेर", "लखनऊ", "पटना", "इंदौर", "भोपाल", "अहमदाबाद"];
 
-        const staticHistoryPool = [
-            { q: "मौर्य राजवंश के प्रसिद्ध शासक सम्राट अशोक ने किस ऐतिहासिक युद्ध के बाद बौद्ध धर्म को अपनाया था?", a: "<b>उत्तर: कलिंग युद्ध (261 ईसा पूर्व)।</b>" },
-            { q: "भारतीय राष्ट्रीय कांग्रेस (INC) के प्रथम अधिवेशन की अध्यक्षता 1885 में किसने की थी?", a: "<b>उत्तर: व्योमेश चंद्र बनर्जी (स्थान: बॉम्बे)।</b>" },
-            { q: "प्रसिद्ध चीनी यात्री 'ह्वेनसांग' ने किस उत्तर भारतीय सम्राट के शासनकाल में भारत की यात्रा की थी?", a: "<b>उत्तर: सम्राट हर्षवर्धन।</b>" }
-        ];
-
-        const portalData = {
-            jobs: [{ title: "रेलवे RRB तकनीशियन भर्ती ऑनलाइन फॉर्म 2026", cat: "railway", tag: "new" }],
-            admit: [{ title: "एसएससी CHSL परीक्षा एडमिट कार्ड 2026", cat: "ssc", tag: "new" }],
-            results: [{ title: "यूपी police कांस्टेबल फाइनल रिजल्ट 2026", cat: "police", tag: "new" }]
+        // 8 Pages Category Configuration Mapping
+        const pageCategories = {
+            1: "मुखपृष्ठ (Page 1: Front Page - Breaking National News)",
+            2: "अंतर्राष्ट्रीय जगत (Page 2: Global Foreign Affairs & Trilateral Policy)",
+            3: "देश-प्रदेश (Page 3: State & Regional Political Matrix)",
+            4: "अर्थजगत एवं व्यापार (Page 4: Business, Inflation & Market Stocks)",
+            5: "खेल समाचार (Page 5: Sports, Cricket Arena & Olympics Updates)",
+            6: "संपादकीय पन्ना (Page 6: Editorial Column & Analytical Reviews)",
+            7: "विज्ञान एवं तकनीक (Page 7: Science, Space Research & AI Innovations)",
+            8: "रोजगार समाचार (Page 8: Sarkari Job Notifications & Career Guidance)"
         };
 
-        const agencyConfig = {
+        const agencyProfiles = {
             dainik_bhaskar: { name: "DAINIK BHASKAR", loc: "📍 राजस्थान/MP मुख्य डेस्क", style: "#e67e22" },
-            rajasthan_patrika: { name: "RAJASTHAN PATRIKA", loc: "📍 जयपुर कॉपोरेट कार्यालय", style: "#d35400" },
-            dainik_jagran: { name: "DAINIK JAGRAN", loc: "📍 नई दिल्ली राष्ट्रीय डेस्क", style: "#c0392b" },
-            the_hindu: { name: "THE HINDU", loc: "📍 CHENNAI HEADQUARTERS", style: "#2c3e50" },
-            times_of_india: { name: "THE TIMES OF INDIA", loc: "📍 MUMBAI CENTRAL PRESS", style: "#1976d2" }
+            rajasthan_patrika: { name: "RAJASTHAN PATRIKA", loc: "📍 जयपुर कॉर्पोरेट कार्यालय", style: "#d35400" },
+            dainik_jagran: { name: "DAINIK JAGRAN", loc: "📍 नई दिल्ली राष्ट्रीय प्रेस", style: "#c0392b" },
+            the_hindu: { name: "THE HINDU", loc: "📍 METROPOLITAN SOUTHERN PRESS", style: "#2c3e50" }
         };
 
-        function forceFreshNewsMatrix(e) {
-            e.stopPropagation();
-            microRandomSeed = Math.floor(Math.random() * 500) + 1;
-            syncNewspaperContent();
+        function resetToPageOne() {
+            currentPaperPage = 1;
+            generatePrintNewspaper();
         }
 
-        function initCurrentDateSetup() {
-            const today = new Date();
-            const currentYear = today.getFullYear(); 
-            const currentMonth = today.getMonth();   
-
-            document.getElementById('paperYearSelect').value = currentYear;
-            document.getElementById('paperMonthSelect').value = currentMonth;
-
-            const formattedDate = today.toLocaleDateString('hi-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase();
-            document.getElementById('paperDateMeta').innerText = formattedDate;
+        function turnPaperPage(dir) {
+            currentPaperPage += dir;
+            if(currentPaperPage < 1) currentPaperPage = 1;
+            if(currentPaperPage > totalPaperPages) currentPaperPage = totalPaperPages;
+            generatePrintNewspaper();
+            document.getElementById('newspaperSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // INFINITE NON-REPETITIVE DYNAMIC LAYOUT GENERATOR
-        function syncNewspaperContent() {
+        function generatePrintNewspaper() {
             const agencyKey = document.getElementById('paperAgencySelect').value;
             const year = document.getElementById('paperYearSelect').value;
             const monthSelect = document.getElementById('paperMonthSelect');
             const monthText = monthSelect.options[monthSelect.selectedIndex].text;
             
-            const container = document.getElementById('newspaperContentContainer');
+            const majorContainer = document.getElementById('majorStoriesContainer');
+            const shortContainer = document.getElementById('shortSnippetsContainer');
             const headlineTitle = document.getElementById('newspaperHeadlineTitle');
             const locationMeta = document.getElementById('paperLocationMeta');
             const statusLabel = document.getElementById('newspaperStatusLabel');
+            const banner = document.getElementById('pageCategoryBanner');
 
-            const cfg = agencyConfig[agencyKey] || agencyConfig['dainik_bhaskar'];
-            headlineTitle.innerText = cfg.name;
-            headlineTitle.style.color = cfg.style;
-            locationMeta.innerText = cfg.loc;
-            statusLabel.innerText = `📰 ${cfg.name} (मूल प्रति): ${monthText} ${year}`;
-            
-            container.innerHTML = "";
-            let numMonth = parseInt(monthSelect.value);
-            let numYear = parseInt(year);
+            const profile =   agencyProfiles[agencyKey] || agencyProfiles['dainik_bhaskar'];
+            headlineTitle.innerText = profile.name;
+            headlineTitle.style.color = profile.style;
+            locationMeta.innerText = profile.loc;
+            statusLabel.innerText = `📰 ${profile.name} • पृष्ठ ${currentPaperPage} / ${totalPaperPages}`;
+            banner.innerText = pageCategories[currentPaperPage];
 
-            // Generates 4 distinct real print look columns articles dynamically using linear math mapping
-            for (let i = 1; i <= 4; i++) {
-                let formulaIndex = i + microRandomSeed + numMonth + numYear;
-                
-                let state = indianStates[formulaIndex % indianStates.length];
-                let ministry = indianMinistries[(formulaIndex + 2) % indianMinistries.length];
-                let scheme = indianSchemes[(formulaIndex + 1) % indianSchemes.length];
-                let topic = coreTopics[formulaIndex % coreTopics.length];
+            document.getElementById('prevPaperBtn').disabled = (currentPaperPage === 1);
+            document.getElementById('nextPaperBtn').disabled = (currentPaperPage === totalPaperPages);
 
-                let hText = `बड़ी घोषणा: ${ministry} ने ${state} में '${scheme}' के अगले चरण को दी हरी झंडी`;
-                let bText = `<b>[विशेष रिपोर्ट]</b> नई दिल्ली और संबंधित राज्यों के संयुक्त तत्वावधान में आयोजित मुख्य बैठक में ${ministry} ने '${topic}' फ्रेमवर्क को मजबूत करने के लिए प्रतिबद्धता जताई है। इस निर्णय से ग्राउंड लेवल पर प्रशासनिक व्यवस्थाओं को अत्यधिक लाभ मिलेगा।`;
-                let expandedText = `<b>समीक्षा एवं परीक्षा हेतु मुख्य बिंदु:</b><br>1. इस योजना के तहत ${state} को केंद्र की तरफ से वित्तीय सहायता दी जाएगी।<br>2. प्रतियोगिता परीक्षाओं की दृष्टि से इस मिशन का नोडल विभाग स्वयं केंद्रीय मंत्रालय होगा।`;
+            majorContainer.innerHTML = "";
+            shortContainer.innerHTML = "";
+
+            let seed = currentPaperPage + parseInt(monthSelect.value) + parseInt(year);
+
+            // 1. GENERATE MAJOR STORIES (Bdi Khabrein - 2 Articles Per Page)
+            for(let j = 1; j <= 2; j++) {
+                let formulaIdx = j + seed * 3;
+                let state = indianStates[formulaIdx % indianStates.length];
+                let ministry = indianMinistries[(formulaIdx + j) % indianMinistries.length];
+                let scheme = indianSchemes[(formulaIdx + j * 2) % indianSchemes.length];
+
+                let hText = `विशेष कवरेज: ${ministry} द्वारा '${scheme}' नीतिगत ढांचे के क्रियान्वयन को लेकर दी गई बड़ी मंजूरी, ${state} को मिलेगा विशेष पैकेज`;
+                let bText = `<b>[नई दिल्ली मुख्य प्रेस ब्यूरो]</b> ${monthText} ${year} की आधिकारिक समीक्षा रिपोर्ट के अनुसार, ${ministry} ने केंद्रीय कैबिनेट स्तर पर महत्वपूर्ण निर्णय लिया है। इस योजना का मुख्य उद्देश्य देश के विभिन्न हिस्सों, विशेषकर ${state} क्षेत्र में ढांचागत सुधारों को तेज करना है। प्रशासनिक अधिकारियों को इस संबंध में सख्त निर्देश जारी किए गए हैं। प्रतियोगिता परीक्षाओं की तैयारी कर रहे छात्रों के लिए यह एक अत्यंत महत्वपूर्ण समसामयिक घटनाक्रम है।`;
 
                 let art = document.createElement('div');
-                art.className = 'news-article-block';
-                art.innerHTML = `
-                    <h3 class="article-headline">📰 ${hText}</h3>
-                    <p class="article-body-text">${bText}</p>
-                    <button class="read-article-btn" onclick="toggleArticleData(event, 'expandedNews_${i}')">📋 Read Editorial Summary</button>
-                    <div class="article-expanded-panel" id="expandedNews_${i}">${expandedText}</div>
-                `;
-                container.appendChild(art);
+                art.className = 'major-article';
+                art.innerHTML = `<h3 class="major-headline">📰 ${hText}</h3><p class="major-body">${bText}</p>`;
+                majorContainer.appendChild(art);
             }
-        }
 
-        function toggleArticleData(e, id) {
-            e.stopPropagation();
-            const panel = document.getElementById(id);
-            panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
-        }
+            // 2. GENERATE SHORT BRIEF SNIPPETS (Choti Khabrein - 4 Items Per Page)
+            for(let k = 1; k <= 4; k++) {
+                let briefIdx = k + seed * 5;
+                let district = localDistricts[briefIdx % localDistricts.length];
+                let state = indianStates[(briefIdx + 1) % indianStates.length];
+                let scheme = indianSchemes[briefIdx % indianSchemes.length];
 
-        function flipPage(direction) {
-            currentPage += direction;
-            if(currentPage < 1) currentPage = 1;
-            renderBookPage();
-        }
+                let briefTitle = `📍 ${district} अलर्ट: '${scheme}' का सफल परीक्षण`;
+                let briefText = `${state} के अंतर्गत आने वाले ${district} क्षेत्र में प्रशासनिक स्तर पर व्यापक सुधार देखा गया है, जो परीक्षाओं की दृष्टि से काफी महत्वपूर्ण माना जा रहा है।`;
 
-        function renderBookPage() {
-            const container = document.getElementById('bookPageContainer');
-            container.innerHTML = "";
-            document.getElementById('pageNumberDisplay').innerText = `Page ${currentPage}`;
-
-            for (let qIndex = 1; qIndex <= 2; qIndex++) {
-                let globalCounter = ((currentPage - 1) * 2) + qIndex;
-                let poolItem = staticHistoryPool[(globalCounter - 1) % staticHistoryPool.length];
-                
-                let div = document.createElement('div');
-                div.className = 'book-item-box';
-                div.innerHTML = `
-                    <div class="book-q"><b>Q${globalCounter}.</b> ${poolItem.q}</div>
-                    <div style="font-size:0.85rem; color:#059669; font-weight:700;">${poolItem.a}</div>
-                `;
-                container.appendChild(div);
+                let briefDiv = document.createElement('div');
+                briefDiv.className = 'brief-item';
+                briefDiv.innerHTML = `<h4 class="brief-title">${briefTitle}</h4><p class="brief-text">${briefText}</p>`;
+                shortContainer.appendChild(briefDiv);
             }
-        }
 
-        function renderJobsMatrix(filterType = "all") {
-            const renderCol = (targetId, arr) => {
-                const el = document.getElementById(targetId); el.innerHTML = "";
-                arr.forEach(item => {
-                    let li = document.createElement('li'); li.className = 'link-item';
-                    li.innerHTML = `<a href="https://www.sarkariresult.com" target="_blank"><span>📢 ${item.title}</span><span class="job-tag tag-new">NEW</span></a>`;
-                    el.appendChild(li);
-                });
-            };
-            renderCol("jobsList", portalData.jobs);
-            renderCol("admitList", portalData.admit);
-            renderCol("resultsList", portalData.results);
-        }
-
-        function filterCategory(category) {
-            renderJobsMatrix(category);
+            document.getElementById('paperPageIndicator').innerText = `पृष्ठ संख्या: ${currentPaperPage} / ${totalPaperPages}`;
         }
 
         window.onload = function() {
-            initCurrentDateSetup(); 
-            syncNewspaperContent(); 
-            renderBookPage(); 
-            renderJobsMatrix("all"); 
+            const today = new Date();
+            document.getElementById('paperYearSelect').value = today.getFullYear();
+            document.getElementById('paperMonthSelect').value = today.getMonth();
+            const formattedDate = today.toLocaleDateString('hi-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase();
+            document.getElementById('paperDateMeta').innerText = formattedDate;
+
+            generatePrintNewspaper();
         };
     </script>
 </body>
