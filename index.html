@@ -138,7 +138,7 @@
 
     <div class="ticker-bar">
         <div class="ticker-text">
-            📢 CORE HOT-FIX SUCCESS: .py पर्यावरण टकराव को पूरी तरह से हल कर दिया गया है। सभी खंड सुचारू रूप से लाइव हैं!
+            📢 CORE HOT-FIX SUCCESS: समाचार पत्र एवं एंटीक ज्ञानकोष दोनों खंड अब पूरी तरह से लाइव काम कर रहे हैं!
         </div>
     </div>
 
@@ -206,9 +206,9 @@
             </div>
             
             <div class="paper-pagination-footer">
-                <button class="page-turn-btn" id="prevPaperBtn" onclick="turnPaperPage(-1)">◀️ पिछला पृष्ठ</button>
+                <button class="page-turn-btn" id="prevPaperBtn" onclick="turnPaperPage(-1)">◀️</button>
                 <span class="page-status-indicator" id="paperPageIndicator">कुल पृष्ठ: 1 / 8</span>
-                <button class="page-turn-btn" id="nextPaperBtn" onclick="turnPaperPage(1)">अगला पृष्ठ ▶️</button>
+                <button class="page-turn-btn" id="nextPaperBtn" onclick="turnPaperPage(1)">▶️</button>
             </div>
         </div>
 
@@ -241,14 +241,14 @@
             <div class="portal-column">
                 <div class="column-header col-result">🏆 Results</div>
                 <ul class="link-list">
-                    <li class="link-item"><a href="https://www.sarkariresult.com" target="_blank"><span>📢 यूपी पुलिस कांस्टेबल परीक्षा फाइनल रिजल्ट</span><span class="job-tag" style="background:#10b981;">LIVE</span></a></li>
+                    <li class="link-item"><a href="https://www.sarkariresult.com" target="_blank"><span>📢 यूपी पुलिस कांस्टेबल परीक्षा FINAL RESULT</span><span class="job-tag" style="background:#10b981;">LIVE</span></a></li>
                 </ul>
             </div>
         </div>
 
         <div class="footer">
             🥇 SARKARI RESULT & STABLE PRINT PLATFORM 🥇
-            <div style="color: #64748b; font-size: 0.75rem; margin-top: 4px;">🐾 DESIGNED & POWERED BY BILLU & ABHISHEK SUTHAR 🐾</div>
+            <div style="color: #64748b; font-size: 0.75rem; margin-top: 4px;">🐾 DESIGNED & POWERED BY ABHISHEK SUTHAR 🐾</div>
         </div>
 
     </div>
@@ -258,7 +258,7 @@
         let currentBookPage = 1;
         const totalPaperPages = 8;
 
-        const indianStates = ["राजस्थान", "उत्तर प्रदेश", "मध्य Pradesh", "बिहार", "हरियाणा", "पंजाब", "गुजरात", "महाराष्ट्र", "दिल्ली", "झारखंड"];
+        const indianStates = ["राजस्थान", "उत्तर प्रदेश", "मध्य प्रदेश", "बिहार", "हरियाणा", "पंजाब", "गुजरात", "महाराष्ट्र", "दिल्ली", "झारखंड"];
         const indianMinistries = ["रक्षा मंत्रालय", "रेल मंत्रालय", "शिक्षा मंत्रालय", "वित्त मंत्रालय", "गृह मंत्रालय", "सड़क परिवहन मंत्रालय"];
         const indianSchemes = ["डिजिटल इंडिया मिशन 3.0", "PM सूर्यघर मुफ्त बिजली योजना", "लखपति दीदी कार्यक्रम", "आयुष्मान भारत स्वास्थ्य कवरेज", "अमृत भारत रेलवे स्टेशन नीति", "मेक इन इंडिया 2.0"];
         const localDistricts = ["गंगानगर", "हनुमानगढ़", "जयपुर", "जोधपुर", "बीकानेर", "लखनऊ", "पटना", "इंदौर", "भोपाल", "अहमदाबाद"];
@@ -277,7 +277,7 @@
         const agencyProfiles = {
             dainik_bhaskar: { name: "DAINIK BHASKAR", loc: "📍 राजस्थान/MP मुख्य डेस्क", style: "#e67e22", brief: "📰 शहर-शहर की खबरें (Briefs)" },
             rajasthan_patrika: { name: "RAJASTHAN PATRIKA", loc: "📍 जयपुर कॉर्पोरेट कार्यालय", style: "#d35400", brief: "📰 पत्रिका बुलेटिन" },
-            dainik_jagran: { name: "DAINIK JAGRAN", loc: "📍 नई दिल्ली राष्ट्रीय प्रेस", style: "#c0392b", brief: "📰 जागरण फटाफट खबरें" },
+            dainik_jagran: { name: "DAINIK JAGRAN", loc: "📍 नई दिल्ली राष्ट्रीय稳 प्रेस", style: "#c0392b", brief: "📰 जागरण फटाफट खबरें" },
             the_hindu: { name: "THE HINDU", loc: "📍 METROPOLITAN SOUTHERN PRESS", style: "#2c3e50", brief: "📰 NATIONAL IN BRIEF" }
         };
 
@@ -311,7 +311,6 @@
             const shortContainer = document.getElementById('shortSnippetsContainer');
             const headlineTitle = document.getElementById('newspaperHeadlineTitle');
             const locationMeta = document.getElementById('paperLocationMeta');
-            const statusLabel = document.getElementById('newspaperStatusLabel');
             const banner = document.getElementById('pageCategoryBanner');
             const briefHeader = document.getElementById('briefSectionHeader');
 
@@ -319,7 +318,6 @@
             headlineTitle.innerText = profile.name;
             headlineTitle.style.color = profile.style;
             locationMeta.innerText = profile.loc;
-            statusLabel.innerText = `📰 ${profile.name} • पृष्ठ ${currentPaperPage} / ${totalPaperPages}`;
             banner.innerText = pageCategories[currentPaperPage];
             if (briefHeader) briefHeader.innerText = profile.brief;
 
@@ -392,14 +390,10 @@
             }
         }
 
-        // DIRECT ROOT INITIALIZATION WITHOUT CALCULATION CONFLICTS
-        function initApp() {
+        window.addEventListener("load", function() {
             generatePrintNewspaper(); 
             renderBookPage();
-        }
-
-        // Trigger safe load bound immediately
-        window.addEventListener("load", initApp);
+        });
     </script>
 </body>
 </html>
